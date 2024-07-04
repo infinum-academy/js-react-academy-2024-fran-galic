@@ -1,5 +1,6 @@
 var reviews = [];
 var avgRating = 0;
+var currentRatingValue = 0;
 
 function callAvgRating() {
    var sum = 0;
@@ -14,20 +15,14 @@ function callAvgRating() {
 function addReview() { 
    reviewObject = {};
    reviewObject.description = document.querySelector(".main-description").value;
-   reviewObject.grade = parseInt(document.querySelector(".rating-text").value);
-  
-   //filtriranje losih reviews:
-   if(![1, 2, 3, 4, 5].includes(reviewObject.grade)) {
-      document.querySelector(".main-description").value = "Add review";
-      document.querySelector(".rating-text").value = "";
-      return;
-   }
+   reviewObject.grade = currentRatingValue;
 
    reviews.push(reviewObject);   
    rednerReviews();
 
    document.querySelector(".main-description").value = "Add review";
-   document.querySelector(".rating-text").value = "";
+   currentRatingValue = 0;
+   resetStars();
 
    saveToLocalStorage(reviews);
 }
@@ -58,7 +53,20 @@ function createReview(review) {
    var insideDiv_2 = document.createElement("div");
    insideDiv_2.classList.add('grade');
    insideDiv_2.innerHTML = review.grade;
+//   insideDiv_2.innerHTML = (review.grade + "/5");
 
+/*    //stavranje zvijezda
+   var starContainer = document.createElement("div");
+   starContainerclassList.add('rating-input');
+   for (let i = 1; i <= 5; i++) {
+      const star = document.createElement('span');
+      star.className = 'star-review';
+      star.setAttribute('data-value', i);
+      star.innerHTML = '&#9733;'; // Black star HTML entity
+      star.style.color = review.grade >= i ? "gold" : "gray";
+      ratingInput.appendChild(star);
+  }
+ */
    /* dodaj gumb za brisanje */
    var deleteButton = document.createElement("input");
    deleteButton.classList.add('delete-button');
@@ -75,6 +83,7 @@ function createReview(review) {
 
    newReview.appendChild(insideDiv_1);
    newReview.appendChild(insideDiv_2);
+   //newReview.appendChild(starContainer);
    newReview.appendChild(deleteButton);
 
    return newReview;
@@ -110,9 +119,27 @@ function loadFromLocalStorage() {
    return reviews;
 }
 
+document.querySelectorAll('.star').forEach(star => {
+   star.onclick = function() {
+       const ratingValue = parseInt(this.getAttribute('data-value'), 10);
+       currentRatingValue = ratingValue;
+       const stars = document.querySelectorAll('.star');
+       stars.forEach(star => {
+           star.style.color = star.dataset.value <= ratingValue ? 'gold' : 'gray';
+       });
+   }
+});
+
+function resetStars() {
+   document.querySelectorAll('.star').forEach(star => { 
+      star.style.color = "gray";
+   });
+}
+
 //svaki put kad se ponovno ucita stranica
 renderAvgScore();
 
 var tempReviews = loadFromLocalStorage();
 if (tempReviews !== null) reviews = tempReviews;
 rednerReviews();
+
