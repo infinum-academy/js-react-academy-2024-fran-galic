@@ -52,21 +52,21 @@ function createReview(review) {
 
    var insideDiv_2 = document.createElement("div");
    insideDiv_2.classList.add('grade');
-   insideDiv_2.innerHTML = review.grade;
-//   insideDiv_2.innerHTML = (review.grade + "/5");
+   insideDiv_2.innerHTML = (review.grade + "/5");
 
-/*    //stavranje zvijezda
+   //stavranje zvijezda
    var starContainer = document.createElement("div");
-   starContainerclassList.add('rating-input');
+   starContainer.classList.add('rating-input');
    for (let i = 1; i <= 5; i++) {
       const star = document.createElement('span');
       star.className = 'star-review';
       star.setAttribute('data-value', i);
       star.innerHTML = '&#9733;'; // Black star HTML entity
       star.style.color = review.grade >= i ? "gold" : "gray";
-      ratingInput.appendChild(star);
+      starContainer.appendChild(star);
   }
- */
+  console.log(starContainer);
+
    /* dodaj gumb za brisanje */
    var deleteButton = document.createElement("input");
    deleteButton.classList.add('delete-button');
@@ -83,7 +83,7 @@ function createReview(review) {
 
    newReview.appendChild(insideDiv_1);
    newReview.appendChild(insideDiv_2);
-   //newReview.appendChild(starContainer);
+   newReview.appendChild(starContainer);
    newReview.appendChild(deleteButton);
 
    return newReview;

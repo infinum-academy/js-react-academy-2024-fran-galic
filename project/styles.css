@@ -148,3 +148,7 @@ body {
 .star.selected {
    color: gold;
 }
+
+.star-review {
+   font-size: 24px;
+}
