@@ -28,6 +28,8 @@ function addReview() {
 
    document.querySelector(".main-description").value = "Add review";
    document.querySelector(".rating-text").value = "";
+
+   saveToLocalStorage(reviews);
 }
 
 function rednerReviews() {
@@ -67,6 +69,7 @@ function createReview(review) {
       reviews = reviews.filter((r) => {
          return r !== review;
       });
+      saveToLocalStorage(reviews);
       rednerReviews();
    };
 
@@ -87,8 +90,6 @@ function renderAvgScore() {
    document.querySelector(".show-description-container").appendChild(avgScoreDiv);
 }
 
-
-
 function createAvgScoreDiv(avgRating) {
    var avgScoreDiv = document.createElement("div");
    avgScoreDiv.classList.add('avg-score');
@@ -96,5 +97,23 @@ function createAvgScoreDiv(avgRating) {
    return avgScoreDiv;
 }
 
+//funkcije za localStorage:
+function saveToLocalStorage(reviews) {
+   localStorage.clear();
+   localStorage.setItem("reviews", JSON.stringify(reviews));
+}
+
+//ako nema nista u local storage vraca "null"
+function loadFromLocalStorage() {
+   const reviewsString = localStorage.getItem('reviews');
+   const reviews = JSON.parse(reviewsString);
+   return reviews;
+}
+
+
 //svaki put kad se ponovno ucita stranica
 renderAvgScore();
+
+var tempReviews = loadFromLocalStorage();
+if (tempReviews !== null) reviews = tempReviews;
+rednerReviews();
