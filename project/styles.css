@@ -123,3 +123,18 @@ body {
    background-color: #371686;
    border-radius: 15px;
 }
+
+.delete-button {
+   padding: 10px 20px;
+   border-radius: 10px;
+   border: none;
+   outline: none;
+   width: 100px;
+   font-weight: 600;
+   background-color: #fffffe;
+   color: #20004f;
+}
+
+.delete-button:hover {
+   transform: translateY(-2px); /* Pomeranje nagore za 5px */
+}
