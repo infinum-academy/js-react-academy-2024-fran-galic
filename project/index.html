@@ -4,7 +4,8 @@
    <head>
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>Document</title>
+      <link href="./styles.css" rel="stylesheet" >
+      <title>TV shows</title>
    </head>
 
    <body>
@@ -16,7 +17,7 @@
       <!-- Sredisnji dio stranice -->
       <div class="main">
          <div class="show-information">
-            <img src="./images/breaking_bad.jpg" alt="visual of the series">
+            <img src="./images/breaking_bad.jpg" alt="visual of the series" class="show-image">
             <div class="show-description-container">
                <div class="series-title">Breaking Bad</div>
                <div class="series-description">Breaking Bad follows Walter White, a struggling, frustrated high 
@@ -28,9 +29,9 @@
          <div class="reviews-form-container">
             <div>Reviews</div>
             <form class="reviews-form">
-               <textarea name="tijelo" rows="10" cols="50" required>Add review</textarea>
-               <input type="text" id="grade" name="grade" placeholder="Add rating" required>
-               <input type="button" value="Post" onclick="addReview()">
+               <textarea name="tijelo" rows="10" cols="50" class="main-description" required>Add review</textarea>
+               <input type="text" id="grade" name="grade" placeholder="Add rating" class="rating-text" required>
+               <input type="button" value="Post" onclick="addReview()" class="post-button">
             </form>
          </div>
 

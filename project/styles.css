@@ -1,0 +1,125 @@
+body {
+   background-color: #20004f;
+   display: flex;
+   flex-flow: column wrap;    /* pogledat jos za ovo wrap */
+   justify-content: flex-start;
+   align-items: center; /* osigurava da se itemi poranvaju u sreidnu po vertiklanoj osi */
+   color: #fffffe;
+   font-family: Arial, Helvetica, sans-serif;
+   margin: 0;
+   padding: 0 10% 30px 10%;
+}
+
+
+.header {
+   padding: 1rem 0;
+   font-weight: 700;
+   font-size: 1.3rem;
+   display: flex;
+   flex: row nowrap;
+   justify-content: flex-start;
+
+   align-self: flex-start;
+   padding-left: 20%; 
+}
+
+.header div {
+   flex: 0 1 auto;
+}
+
+.main {
+   max-width: 800px;
+   display: flex;
+   flex-flow: column wrap;
+   justify-content: flex-start;
+   row-gap: 1.3rem;
+}
+
+.show-information {
+   display: flex;
+   flex-flow: column wrap; /* Dozvoljava da se elementi prelamaju ako je potrebno */
+   align-items: flex-start;
+   width: 100%;
+}
+
+.show-image {
+   max-width: 100%; /* Ograničava širinu slike na 100% širine kontejnera */
+   height: auto; /* Održava proporcije slike */
+   flex: 1 1 none; /* Fleksibilnost rasta i skupljanja slike */
+   border-radius: 30px 30px 0 0;
+}
+
+.show-description-container {
+   background-color: #fffffe;
+   color:#4a1db6;
+   padding: 2.5rem 1.5rem;
+   border-radius: 0 0 30px 30px;
+}
+
+.show-description-container {
+   display: flex;
+   flex-flow: column wrap;
+   row-gap: 1.5rem;
+}
+
+.series-title {
+   font-weight: 700;
+   font-size: 1.5rem;
+}
+
+.reviews-form-container {
+   display: flex;
+   flex-flow: column wrap;
+   row-gap: 1.3rem;
+}
+
+.reviews-form-container div {
+   font-weight: 700;
+   font-size: 1.4rem;
+}
+
+.reviews-form {
+   display: flex;
+   flex-flow: column wrap;
+   row-gap: 1.2rem;
+}
+
+.main-description {
+   padding: 15px;
+   border-radius: 15px;
+   resize: none; /* Dozvoljava vertikalno menjanje veličine */
+   outline: none;
+}
+
+.rating-text {
+   padding: 10px;
+   border-radius: 10px;
+   width: 200px;
+   border: none;
+   outline: none;
+}
+
+.post-button {
+   padding: 10px 20px;
+   border-radius: 10px;
+   border: none;
+   outline: none;
+   width: 100px;
+   font-weight: 600;
+}
+
+.post-button:hover {
+   transform: translateY(-2px); /* Pomeranje nagore za 5px */
+}
+
+.reviews-container, .review {
+   display: flex;
+   flex-flow: column wrap;
+   row-gap: 1.8rem;
+}
+
+.review {
+   padding: 1.8rem 1rem;
+   background-color: #371686;
+   border-radius: 15px;
+}
