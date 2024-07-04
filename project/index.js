@@ -110,7 +110,6 @@ function loadFromLocalStorage() {
    return reviews;
 }
 
-
 //svaki put kad se ponovno ucita stranica
 renderAvgScore();
 
