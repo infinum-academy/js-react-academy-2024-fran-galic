@@ -1,6 +1,7 @@
 import { ShowDetails } from "@/components/features/shows/ShowDetails/ShowDetails";
 import styles from "./page.module.css";
 import { Stack } from "@chakra-ui/react";
+import { ReviewForm } from "@/components/features/shows/ReviewForm/ReviewForm";
 
 const mockShow = {
   title: "Brekaing bad",
@@ -15,6 +16,7 @@ export default function Home() {
     <main className={styles.main}>
       <Stack spacing={6}>
         <ShowDetails show={mockShow} />
+        <ReviewForm />
       </Stack>
     </main>
   );
