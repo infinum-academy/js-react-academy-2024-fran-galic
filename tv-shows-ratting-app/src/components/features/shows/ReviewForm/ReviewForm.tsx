@@ -13,7 +13,7 @@ interface IReviewFormProps {
 
 export const ReviewForm = ({onAdd}: IReviewFormProps) => {
 
-   const onClickHandler = () => {
+   const addShowReview = () => {
       //dohvacanje podataka
       const inputText = document.getElementById(
         'text-input',
@@ -44,7 +44,7 @@ export const ReviewForm = ({onAdd}: IReviewFormProps) => {
       <Stack spacing='4' maxW='container.sm'>
          <Textarea placeholder='Add review' borderRadius='xl' bg='white' fontSize='xs' color="black" id="text-input"/>
          <Input placeholder='Add rating' borderRadius='xl' bg='white' fontSize='xs' color="black" width={150} size='md' id="grade"/>
-         <Button bg="white" borderRadius='3xl' fontSize='xs' width={70} size='sm' onClick={onClickHandler}>Post</Button>
+         <Button bg="white" borderRadius='3xl' fontSize='xs' width={70} size='sm' onClick={addShowReview}>Post</Button>
       </ Stack>
    );
 }
