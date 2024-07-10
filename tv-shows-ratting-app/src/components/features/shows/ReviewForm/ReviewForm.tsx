@@ -17,15 +17,15 @@ export const ReviewForm = ({onAdd}: IReviewFormProps) => {
       //dohvacanje podataka
       const inputText = document.getElementById(
         'text-input',
-      ) as HTMLTextAreaElement; //HTMLInputElement;
-      const description = inputText.innerHTML;
+      ) as HTMLInputElement; //HTMLInputElement;
+      const description = inputText.value;
       //
       const inputGrade = document.getElementById(
          'grade',
        ) as HTMLInputElement;
       const grade = inputGrade.value;
       // resetiraj mi text
-      inputText.innerHTML = "";
+      inputText.value = "";
       inputGrade.value = "";
       //provjera dali je grade dobar
       if(![1, 2, 3, 4, 5].includes(parseInt(grade))) return;
