@@ -3,7 +3,8 @@
 import { Stack } from "@chakra-ui/react";
 import { ReviewForm } from "../ReviewForm/ReviewForm";
 import { ReviewList } from "../../review/ReviewList/ReviewList";
-import { IReviewList } from "@/typings/review";
+import { IReview, IReviewList } from "@/typings/review";
+import { useState } from "react";
 
  
  //vjeroavtno ce trebat napravit i Container komponteu za ovo ali to cu jos vidit
@@ -33,10 +34,28 @@ import { IReviewList } from "@/typings/review";
 
 export const ShowReviewSection = () => {
 
+   const [reviewList, setReviewList] = useState(mockReviewList);
+
+
+
+
+
+   const onAddTodo = (review: IReview) => {
+      const newReviewList: IReviewList = {
+         reviews: [...reviewList.reviews, review],
+      };
+      console.log(newReviewList);
+      setReviewList(newReviewList);
+      //saveToLocalStorage(newReviewList);
+    };
+
+
+
+
    return (
       <Stack spacing={6}>
-        <ReviewForm />
-        <ReviewList reviewList={mockReviewList}/>
+        <ReviewForm  onAdd={onAddTodo}/>
+        <ReviewList reviewList={reviewList}/>
       </Stack>
    );
 }

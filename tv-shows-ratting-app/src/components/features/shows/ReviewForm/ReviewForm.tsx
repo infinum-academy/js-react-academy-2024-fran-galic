@@ -35,7 +35,7 @@ export const ReviewForm = ({onAdd}: IReviewFormProps) => {
          rating: parseInt(grade),
          comment: description,
       }
-
+      console.log("sve radi", newReview);
       onAdd(newReview);
       console.log('Adding');
    };
