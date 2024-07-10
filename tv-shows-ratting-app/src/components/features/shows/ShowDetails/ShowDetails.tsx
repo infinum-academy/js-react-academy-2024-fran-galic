@@ -1,8 +1,14 @@
-import { IShow, IShowProps } from "@/typings/show";
-import { Box, Card, CardBody, Heading, Stack, StackDivider, Text, Image, CardHeader} from "@chakra-ui/react";
+'use client';
+
+import { IShow } from "@/typings/show";
+import { Card, CardBody, Heading, Stack, Text, Image} from "@chakra-ui/react";
 
 
-export const ShowDetails = ({show : {title, description, averageRating, imageUrl}} : IShowProps) => {
+export interface IShowDetailsProps {
+   show: IShow
+}
+
+export const ShowDetails = ({show : {title, description, averageRating, imageUrl}} : IShowDetailsProps) => {
 
    return (
       <Card maxW='container.sm' borderRadius='2xl' color="#471ab6" >
