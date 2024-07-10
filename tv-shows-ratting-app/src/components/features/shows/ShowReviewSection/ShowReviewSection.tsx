@@ -4,7 +4,7 @@ import { Stack } from "@chakra-ui/react";
 import { ReviewForm } from "../ReviewForm/ReviewForm";
 import { ReviewList } from "../../review/ReviewList/ReviewList";
 import { IReview, IReviewList } from "@/typings/review";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
  
  //vjeroavtno ce trebat napravit i Container komponteu za ovo ali to cu jos vidit
@@ -32,30 +32,51 @@ import { useState } from "react";
    ]
  }
 
-export const ShowReviewSection = () => {
+ interface IShowReviewSectionProps {
+   callRatting: (reviewList: IReviewList) => void;
+ }
+
+export const ShowReviewSection = ({callRatting}: IShowReviewSectionProps) => {
 
    const [reviewList, setReviewList] = useState(mockReviewList);
 
+   const saveToLocalStorage = (reviewList: IReviewList) => {
+      localStorage.setItem('reviewList', JSON.stringify(reviewList));
+   };
 
+   const loadFromLocalStorage = () => {
+      const reviewListString = localStorage.getItem('reviewList');
+      if (! reviewListString) {
+        callRatting(mockReviewList);
+        return mockReviewList;
+      }
+      callRatting(mockReviewList);
+      return JSON.parse(reviewListString);
+   };
 
-
+   //korstimo EffectHook da osigrmao da se akcija lodajnja iz local storaage moze odvijati Asinkorno i SAMO na browseru; akcija se poziva smao kad se komponenta prvi put mounta
+   useEffect(() => {
+      const loadedList = loadFromLocalStorage();
+      setReviewList(loadedList);
+    }, []);
 
    const onAddReview = (review: IReview) => {
       const newReviewList: IReviewList = {
          reviews: [...reviewList.reviews, review],
       };
       setReviewList(newReviewList);
-      //saveToLocalStorage(newReviewList);
-    };
+      callRatting(newReviewList);
+      saveToLocalStorage(newReviewList);
+   };
 
    const onDeleteReview = (reviewToRemove: IReview) => {
       const newReviewList: IReviewList = {
          reviews: reviewList.reviews.filter((review) => review !== reviewToRemove),
       };
       setReviewList(newReviewList);
-      //saveToLocalStorage(newList);
+      callRatting(newReviewList);
+      saveToLocalStorage(newReviewList);
    };
-
 
 
    return (

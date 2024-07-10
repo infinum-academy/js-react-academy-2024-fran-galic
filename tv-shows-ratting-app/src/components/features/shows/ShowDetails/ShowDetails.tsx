@@ -5,10 +5,11 @@ import { Card, CardBody, Heading, Stack, Text, Image} from "@chakra-ui/react";
 
 
 export interface IShowDetailsProps {
-   show: IShow
+   show: IShow,
+   avgRatting?: number
 }
 
-export const ShowDetails = ({show : {title, description, averageRating, imageUrl}} : IShowDetailsProps) => {
+export const ShowDetails = ({show : {title, description, imageUrl}, avgRatting} : IShowDetailsProps) => {
 
    return (
       <Card maxW='container.sm' borderRadius='2xl' color="#471ab6" >
@@ -27,7 +28,7 @@ export const ShowDetails = ({show : {title, description, averageRating, imageUrl
                   {description}
                </Text>
                <Text fontSize='xs'>
-                  {averageRating === undefined ? "no ratings" : averageRating.toFixed(1) + "/5"}
+                  {avgRatting === undefined ? "no ratings" : avgRatting.toFixed(1) + "/5"}
                </Text>
             </Stack>
          </CardBody>
