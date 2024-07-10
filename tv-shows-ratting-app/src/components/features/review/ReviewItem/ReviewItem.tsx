@@ -6,11 +6,12 @@ import { Avatar, Box, Button, Card, CardBody, Flex, Stack, Text} from "@chakra-u
 
 
 interface IReviewItemProps {
-   review: IReview
+   review: IReview,
+   onDelete: (review: IReview) => void;
 }
 
 
-export const ReviewItem = ({review} : IReviewItemProps) => {
+export const ReviewItem = ({review, onDelete} : IReviewItemProps) => {
 
    return (
       <Card maxW='container.sm' borderRadius='2xl' color="white" bg="purple.800" fontSize='xs' gap={4}>
@@ -27,7 +28,7 @@ export const ReviewItem = ({review} : IReviewItemProps) => {
                }
                <Text>{review.comment}</Text>
                <Text>{review.rating + "/5"}</Text>
-               <Button bg="white" borderRadius='3xl' fontSize='xs' width={70} size='sm'>Remove</Button>
+               <Button bg="white" borderRadius='3xl' fontSize='xs' width={70} size='sm' onClick={() => {onDelete(review)}}>Remove</Button>
             </Stack>
          </CardBody>
       </Card>

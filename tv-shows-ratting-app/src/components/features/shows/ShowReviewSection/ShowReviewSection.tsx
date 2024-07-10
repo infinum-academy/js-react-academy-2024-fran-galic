@@ -40,22 +40,28 @@ export const ShowReviewSection = () => {
 
 
 
-   const onAddTodo = (review: IReview) => {
+   const onAddReview = (review: IReview) => {
       const newReviewList: IReviewList = {
          reviews: [...reviewList.reviews, review],
       };
-      console.log(newReviewList);
       setReviewList(newReviewList);
       //saveToLocalStorage(newReviewList);
     };
 
+   const onDeleteReview = (reviewToRemove: IReview) => {
+      const newReviewList: IReviewList = {
+         reviews: reviewList.reviews.filter((review) => review !== reviewToRemove),
+      };
+      setReviewList(newReviewList);
+      //saveToLocalStorage(newList);
+   };
 
 
 
    return (
       <Stack spacing={6}>
-        <ReviewForm  onAdd={onAddTodo}/>
-        <ReviewList reviewList={reviewList}/>
+        <ReviewForm  onAdd={onAddReview}/>
+        <ReviewList reviewList={reviewList} onDeleteReview={onDeleteReview}/>
       </Stack>
    );
 }

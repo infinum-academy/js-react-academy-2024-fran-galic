@@ -8,9 +8,10 @@ import { ReviewItem } from "../ReviewItem/ReviewItem";
 
 interface IReviewListProps {
    reviewList: IReviewList,
+   onDeleteReview: (review: IReview) => void;
 }
 
-export const ReviewList = ({reviewList}: IReviewListProps) => {
+export const ReviewList = ({reviewList, onDeleteReview}: IReviewListProps) => {
 
    return (
       <Flex gap={5} direction="column">
@@ -18,7 +19,8 @@ export const ReviewList = ({reviewList}: IReviewListProps) => {
         return (
             <ReviewItem 
             key={index}
-            review= {review} />
+            review= {review} 
+            onDelete={onDeleteReview}/>
         );
       })}
     </Flex>
