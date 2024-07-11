@@ -1,7 +1,7 @@
 'use client';
 
 import { IReview, IReviewList } from "@/typings/review";
-import { Flex } from "@chakra-ui/react";
+import { Stack } from "@chakra-ui/react";
 import { ReviewItem } from "../ReviewItem/ReviewItem";
 
 
@@ -14,15 +14,16 @@ interface IReviewListProps {
 export const ReviewList = ({reviewList, onDeleteReview}: IReviewListProps) => {
 
    return (
-      <Flex gap={5} direction="column">
+      <Stack spacing={5} direction="column">
       {reviewList.reviews.map((review, index) => {
-        return (
-            <ReviewItem 
+         return (
+            <ReviewItem
             key={index}
-            review= {review} 
-            onDelete={onDeleteReview}/>
-        );
+            review={review}
+            onDelete={onDeleteReview}
+            />
+         );
       })}
-    </Flex>
+      </Stack>
    );
 }

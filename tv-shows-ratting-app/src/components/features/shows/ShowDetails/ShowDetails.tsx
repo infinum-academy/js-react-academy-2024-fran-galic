@@ -12,12 +12,10 @@ export interface IShowDetailsProps {
 export const ShowDetails = ({show : {title, description, imageUrl}, avgRatting} : IShowDetailsProps) => {
 
    return (
-      <Card maxW='container.sm' borderRadius='2xl' color="#471ab6" >
+      <Card maxW='container.sm' borderRadius='2xl' color="#471ab6" overflow="hidden">
          <Image
-         src={imageUrl === undefined ? "https://fakeimg.pl/600x400?text=No+Image+:(" : imageUrl}
+         src={imageUrl ?? "https://fakeimg.pl/600x400?text=No+Image"}
          alt='Series profile image'
-         borderTopLeftRadius='2xl'
-         borderTopRightRadius='2xl'
          />
          <CardBody mt={2}>
             <Stack spacing='2'>
@@ -28,7 +26,7 @@ export const ShowDetails = ({show : {title, description, imageUrl}, avgRatting} 
                   {description}
                </Text>
                <Text fontSize='xs'>
-                  {avgRatting === undefined ? "no ratings" : avgRatting.toFixed(1) + "/5"}
+                  {avgRatting ? `${avgRatting.toFixed(1)}/5` : "no ratings"}
                </Text>
             </Stack>
          </CardBody>

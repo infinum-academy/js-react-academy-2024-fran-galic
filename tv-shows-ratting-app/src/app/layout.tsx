@@ -21,7 +21,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <Providers>
-          <Box bg="#200050" color='white' paddingLeft={4} paddingRight={4} paddingBottom={4}> 
+          <Box bg="#200050" color='white' px={4} paddingBottom={4}> 
             <Header/>
             {children}
           </Box>

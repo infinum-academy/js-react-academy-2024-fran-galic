@@ -58,6 +58,7 @@ export const ShowReviewSection = ({callRatting}: IShowReviewSectionProps) => {
    useEffect(() => {
       const loadedList = loadFromLocalStorage();
       setReviewList(loadedList);
+      callRatting(loadedList);
     }, []);
 
    const onAddReview = (review: IReview) => {

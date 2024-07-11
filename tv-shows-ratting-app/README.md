@@ -34,3 +34,13 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+
+
+
+
+Pitanja:
+1. kako da se napravi da mi se ne randera prvo stara stranica a tke da s eonda ucita nova
+2. Dali mi je organizaicja fajlova dobra?
+3. Kako bi se tocno trebale definiriat dodaci za sheme di mi mozemo definirat koju boju zelimo korsitit
+4. zasto mi stranic aide dolje kad nema uopce reviwa

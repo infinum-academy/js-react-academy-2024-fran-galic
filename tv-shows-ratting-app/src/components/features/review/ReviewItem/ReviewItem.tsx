@@ -28,7 +28,7 @@ export const ReviewItem = ({review, onDelete} : IReviewItemProps) => {
                }
                <Text>{review.comment}</Text>
                <Text>{review.rating + "/5"}</Text>
-               <Button bg="white" borderRadius='3xl' fontSize='xs' width={70} size='sm' onClick={() => {onDelete(review)}}>Remove</Button>
+               <Button bg="white" borderRadius='3xl' fontSize='xs' width="70px" size='sm' onClick={() => {onDelete(review)}}>Remove</Button>
             </Stack>
          </CardBody>
       </Card>
