@@ -19,26 +19,31 @@ const mockShowIdea: IShow = {
 
 export default function Home() {
 
-  const [avgRating, setAvgRating] = useState(mockShowIdea.averageRating);
+  const [show, setShow] = useState(mockShowIdea);
 
   const callAvgRatting = ({reviews}: IReviewList) => {
     if(reviews.length == 0) {
-      setAvgRating(undefined);
-      return;
+      let newShow = {
+        ...show,
+        averageRating: undefined
+      }
+      setShow(newShow);
     }
     //inace:
-    var newAverageRating = (reviews.reduce((sum, review) => sum + review.rating, 0) / reviews.length);
-    console.log("Avg ocjena za novi sou je", newAverageRating);
-    setAvgRating(newAverageRating);
- };
-
+    let newShow = {
+      ...show,
+      averageRating: (reviews.reduce((sum, review) => sum + review.rating, 0) / reviews.length)
+    }
+    setShow(newShow);
+  };
 
   return (
     <main className={styles.main}>
       <Stack spacing={6}>
-        <ShowDetails show={mockShowIdea} avgRatting={avgRating}/>
+        <ShowDetails show={show}/>
         <ShowReviewSection callRatting={callAvgRatting}/>
       </Stack>
     </main>
   );
 }
+
