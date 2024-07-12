@@ -33,10 +33,10 @@ import { useEffect, useState } from "react";
  }
 
  interface IShowReviewSectionProps {
-   callRatting: (reviewList: IReviewList) => void;
+   onCallRatting: (reviewList: IReviewList) => void;
  }
 
-export const ShowReviewSection = ({callRatting}: IShowReviewSectionProps) => {
+export const ShowReviewSection = ({onCallRatting}: IShowReviewSectionProps) => {
 
    const [reviewList, setReviewList] = useState(mockReviewList);
 
@@ -47,10 +47,10 @@ export const ShowReviewSection = ({callRatting}: IShowReviewSectionProps) => {
    const loadFromLocalStorage = () => {
       const reviewListString = localStorage.getItem('reviewList');
       if (! reviewListString) {
-        callRatting(mockReviewList);
+        onCallRatting(mockReviewList);
         return mockReviewList;
       }
-      callRatting(mockReviewList);
+      onCallRatting(mockReviewList);
       return JSON.parse(reviewListString);
    };
 
@@ -58,7 +58,7 @@ export const ShowReviewSection = ({callRatting}: IShowReviewSectionProps) => {
    useEffect(() => {
       const loadedList = loadFromLocalStorage();
       setReviewList(loadedList);
-      callRatting(loadedList);
+      onCallRatting(loadedList);
     }, []);
 
    const onAddReview = (review: IReview) => {
@@ -66,7 +66,7 @@ export const ShowReviewSection = ({callRatting}: IShowReviewSectionProps) => {
          reviews: [...reviewList.reviews, review],
       };
       setReviewList(newReviewList);
-      callRatting(newReviewList);
+      onCallRatting(newReviewList);
       saveToLocalStorage(newReviewList);
    };
 
@@ -75,7 +75,7 @@ export const ShowReviewSection = ({callRatting}: IShowReviewSectionProps) => {
          reviews: reviewList.reviews.filter((review) => review !== reviewToRemove),
       };
       setReviewList(newReviewList);
-      callRatting(newReviewList);
+      onCallRatting(newReviewList);
       saveToLocalStorage(newReviewList);
    };
 

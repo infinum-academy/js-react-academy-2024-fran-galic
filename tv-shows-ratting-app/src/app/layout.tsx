@@ -18,8 +18,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
+    <html lang="en" >
+      <body className={inter.className} >
         <Providers>
           <Box bg="#200050" color='white' px={4} paddingBottom={4}> 
             <Header/>

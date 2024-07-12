@@ -21,7 +21,7 @@ export default function Home() {
 
   const [show, setShow] = useState(mockShowIdea);
 
-  const callAvgRatting = ({reviews}: IReviewList) => {
+  const onCallAvgRatting = ({reviews}: IReviewList) => {
     if(reviews.length == 0) {
       let newShow = {
         ...show,
@@ -41,7 +41,7 @@ export default function Home() {
     <main className={styles.main}>
       <Stack spacing={6}>
         <ShowDetails show={show}/>
-        <ShowReviewSection callRatting={callAvgRatting}/>
+        <ShowReviewSection onCallRatting={onCallAvgRatting}/>
       </Stack>
     </main>
   );
