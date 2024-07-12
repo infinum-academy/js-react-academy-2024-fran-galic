@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+
+<html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link href="./styles.css" rel="stylesheet" >
+      <script src="./index.js" defer></script>
+      <title>TV shows</title>
+   </head>
+
+   <body>
+      <!-- Svi podaci koji idu u header -->
+      <div class="header">
+         <div>TV shows APP</div>
+      </div>
+
+      <!-- Sredisnji dio stranice -->
+      <div class="main">
+         <div class="show-information">
+            <img src="./images/breaking_bad.jpg" alt="visual of the series" class="show-image">
+            <div class="show-description-container">
+               <div class="series-title">Breaking Bad</div>
+               <div class="series-description">Breaking Bad follows Walter White, a struggling, frustrated high 
+                  school chemistry teacher who becomes a crimelord in the local methamphetamine drug trade, driven to 
+                  provide for his family financially after being diagnosed with inoperable lung cancer.</div>
+            </div>
+         </div>
+
+         <div class="reviews-form-container">
+            <div>Reviews</div>
+            <form class="reviews-form">
+               <textarea name="tijelo" rows="10" cols="50" class="main-description" required>Add review</textarea>
+               <div class="rating-input">
+                  <span>Rating </span>
+                  <span class="star" data-value="1">&#9733;</span>
+                  <span class="star" data-value="2">&#9733;</span>
+                  <span class="star" data-value="3">&#9733;</span>
+                  <span class="star" data-value="4">&#9733;</span>
+                  <span class="star" data-value="5">&#9733;</span>
+              </div>
+               <input type="button" value="Post" onclick="addReview()" class="post-button">
+            </form>
+         </div>
+
+         <div class="reviews-container">
+         </div>
+      </div>
+
+      <!-- Tu bi dosao footer ukoliko ce trebati -->
+
+
+   </body>
+</html>
