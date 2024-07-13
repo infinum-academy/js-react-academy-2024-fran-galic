@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import { Providers } from "./providers";
 import { Header } from "@/components/shared/Header/Header";
 import { Box } from "@chakra-ui/react";
+import { SidebarNavigation } from "@/components/shared/SidebarNavigation/SidebarNavigation";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,9 +22,9 @@ export default function RootLayout({
     <html lang="en" >
       <body className={inter.className} >
         <Providers>
-          <Box bg="#200050" color='white' px={4} paddingBottom={4}> 
-            <Header/>
-            {children}
+          <Box bg="#200050" color='white' px={4}> 
+            <SidebarNavigation />
+            {/*children */}
           </Box>
         </Providers>
       </body>

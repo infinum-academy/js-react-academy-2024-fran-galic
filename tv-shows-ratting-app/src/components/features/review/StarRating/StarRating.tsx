@@ -1,3 +1,5 @@
+"use client"
+
 import { StarIcon } from "@chakra-ui/icons";
 import { Flex } from "@chakra-ui/react";
 

@@ -39,8 +39,7 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 
 
 
-Pitanja:
-1. kako da se napravi da mi se ne randera prvo stara stranica a tke da s eonda ucita nova
-2. Dali mi je organizaicja fajlova dobra?
-3. Kako bi se tocno trebale definiriat dodaci za sheme di mi mozemo definirat koju boju zelimo korsitit
-4. zasto mi stranic aide dolje kad nema uopce reviwa
+Što bi se moglo dat poboljšat:
+
+Section 1:
+1) u SidebarNavigation bi mogo naprvaiti bolji logo, slcinije onako kako ga oni imaju
