@@ -1,13 +1,12 @@
  /* 
    + 1.check if correct user email is rendered
-   2. check if correct rating is rendered
-   3. check if correct review comment is rendered
-   4. check if delete button is rendered
-   5. check if onDelete callback has beed called only once with the necessary data
+   + 2. check if correct rating is rendered
+   + 3. check if correct review comment is rendered
+   + 4. check if delete button is rendered
+   + 5. check if onDelete callback has beed called only once with the necessary data
 */
 import { render, screen } from '@testing-library/react';
-import { Fragment } from 'react';
-import { IReview, IReviewList } from '@/typings/review';
+import { IReviewList } from '@/typings/review';
 import { ReviewItem } from './ReviewItem';
 
 describe("ReviewItem", () => {
@@ -46,12 +45,44 @@ describe("ReviewItem", () => {
       expect(email).toBeInTheDocument();
    });
 
-    it("should render correct rating", () => {
+     it("should render correct rating", () => {
       //react testing library rendera stvari
       render(<ReviewItem review={mockReviewList.reviews[0]} onDelete={() => {}}  />);
 
       const starRating = screen.getByTestId('star-rating');
       expect(starRating).toBeInTheDocument();
+
+      const stars = starRating.querySelectorAll('svg'); // Pretpostavljamo da StarIcon koristi SVG element
+      expect(stars.length).toBe(5); // Uvijek će biti 5 zvjezdica
+
    }); 
+
+   it("should render correct review comment", () => {
+      //react testing library rendera stvari
+      render(<ReviewItem review={mockReviewList.reviews[0]} onDelete={() => {}}  />);
+
+      const comment = screen.getByText(mockReviewList.reviews[0].comment);
+      expect(comment).toBeInTheDocument();
+   });
+
+   it("should render delete buttont", () => {
+      //react testing library rendera stvari
+      render(<ReviewItem review={mockReviewList.reviews[0]} onDelete={() => {}}  />);
+
+      const deleteButton = screen.getByRole('button');
+      expect(deleteButton).toBeInTheDocument();
+   });
+
+   it("should check if onDelete callback has beed called only once with the necessary data", () => {
+		const mockOnDelete = jest.fn();
+		render(<ReviewItem review={mockReviewList.reviews[0]} onDelete={mockOnDelete}  />);
+
+		const deleteButton = screen.getByRole('button');
+		deleteButton.click();
+
+		expect(mockOnDelete).toHaveBeenCalled();
+		expect(mockOnDelete).toHaveBeenCalledTimes(1);
+		expect(mockOnDelete).toHaveBeenCalledWith(mockReviewList.reviews[0]);
+	});
  
 }) 
