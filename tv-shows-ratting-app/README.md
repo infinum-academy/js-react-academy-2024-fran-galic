@@ -49,6 +49,4 @@ Section 1:
 
 3) Kad abi neku komponetu nazvali Section a kada Container?
 
-4) koju vijrnedost bi trebao korsiti za izraucn srednej virjendosti soua, jer podaic o sou vcc kazu da imaju review ali mi nemamo te rewiwe pa racunam po onome sot imao upisnao
-
-5) kako bih trebao racunati avr grade za neku seirju, dali trebam uzimat vrijendosti iz rewia koje imam u listi iz LocalStorage ili da smao korsitm vrijednos tkoju sma dobio iz API-aja
+4) kako bih trebao racunati avr grade za neku seirju, dali trebam uzimat vrijendosti iz rewia koje imam u listi iz LocalStorage ili da smao korsitm vrijednos tkoju sma dobio iz API-aja

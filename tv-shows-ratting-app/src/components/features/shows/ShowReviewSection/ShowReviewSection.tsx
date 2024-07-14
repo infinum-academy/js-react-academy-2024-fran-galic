@@ -10,7 +10,7 @@ import { useEffect, useState } from "react";
  //vjeroavtno ce trebat napravit i Container komponteu za ovo ali to cu jos vidit
  const mockReviewList: IReviewList = {
    reviews: [
-/*      {
+     {
        reviewersEmail: "fran.galic7@gmail.com",
        avatar: "https://img.freepik.com/free-psd/3d-illustration-human-avatar-profile_23-2150671142.jpg",
        rating: 5,
@@ -28,7 +28,7 @@ import { useEffect, useState } from "react";
        rating: 4,
        comment: "Finaly some good fuc*** food",
      },
-  */
+ 
    ]
  }
 
