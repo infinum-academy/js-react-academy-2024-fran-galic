@@ -48,7 +48,7 @@ export const ShowReviewSection = ({onCallRatting, showId}: IShowReviewSectionPro
    const loadFromLocalStorage = () => {
       const reviewListString = localStorage.getItem(`reviewList/${showId}`);
       if (! reviewListString) {
-        onCallRatting(mockReviewList);
+        onCallRatting(mockReviewList); 
         return mockReviewList;
       }
       //onCallRatting(mockReviewList);

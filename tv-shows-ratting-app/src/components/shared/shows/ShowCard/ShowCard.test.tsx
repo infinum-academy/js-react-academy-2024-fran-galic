@@ -41,4 +41,30 @@ describe("ShowCard", () => {
       expect(Image.src).toBeTruthy(); // Provjerava da src nije prazan
    });
 
+   it("should  render show title", () => {
+      //react testing library rendera stvari
+      render(<ShowCard show={mockShow1} />);
+
+      const showTitle = screen.getByText(mockShow1.title);
+
+      //jest s ovime testira stvari
+      expect(showTitle).toBeInTheDocument();
+   });
+
+   it("should  render show title", () => {
+      //react testing library rendera stvari
+      render(
+      <Fragment>
+         <ShowCard show={mockShow1} />
+         <ShowCard show={mockShow2} />
+      </Fragment>
+      );
+
+      const averageRating1 = screen.getByText(`${mockShow1.average_rating?.toFixed(1)}/5`);
+      const averageRating2 = screen.getByText("no ratings");
+
+      //jest s ovime testira stvari
+      expect(averageRating1).toBeInTheDocument();
+      expect(averageRating2).toBeInTheDocument();
+   });
 })
