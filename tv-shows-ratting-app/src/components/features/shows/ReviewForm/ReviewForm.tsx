@@ -60,12 +60,10 @@ export const ReviewForm = ({onAdd}: IReviewFormProps) => {
            <Flex gap={4} align="baseline">
                <Text>Rating</Text>
                <Box maxWidth="105px" onMouseLeave={() => setLocked(true)} onMouseEnter={() => setLocked(false)}>
-                  <StarRating noOfStars={isLocked? numSelectedStars : numHoveredStars} isStatic={false} onClick={onClick} onHover={onHover} />
+                  <StarRating noOfStars={isLocked? numSelectedStars : numHoveredStars} isStatic={false} onClick={onClick} onHover={onHover} data_testid="star-rating"/>
                </Box>
             </Flex>
            <Button type="submit" bg="white" borderRadius="xl" fontSize="xs" width="70px" size="sm">Post</Button>
        </Stack>
    );
    };
-
-   <Input placeholder="Add rating" borderRadius="xl" bg="white" fontSize="xs" color="black" width="150px" size="md" id="grade" required/>
