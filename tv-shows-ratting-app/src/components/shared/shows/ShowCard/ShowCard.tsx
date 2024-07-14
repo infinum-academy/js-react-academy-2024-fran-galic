@@ -6,7 +6,7 @@ import { Card, CardBody, Heading, Stack, Image, Text, Flex } from "@chakra-ui/re
 import NextLink from 'next/link';
 
 interface IShowCard {
-   show: IShow,
+   show: IShow
 }
 
 export const ShowCard = ({show : {title, imageUrl, averageRating, id} } : IShowCard) => {

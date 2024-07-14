@@ -12,10 +12,22 @@ export const SidebarNavigation = () => {
 
    useEffect(() => {
      setPath(window.location.pathname);
+     console.log("Trigeralo se", window.location.pathname);
    }, []);
 
    return (
-      <Flex direction="column" height="100vh" width="250px" py={4} px={1} gap={14} fontSize="md">
+      <Flex 
+      direction="column" 
+      height="100vh" 
+      width="250px" 
+      py={4} 
+      px={1} 
+      gap={14} 
+/*       fontSize="md"
+      position="fixed"
+      zIndex="1000"         // Osigurava da sidebar ostane iznad ostalih elemenata    */
+      minWidth="100px"
+      >
          <SiteLogo />
          <Flex direction="column" gap={3} flexGrow={1}>
             <Text as={NextLink} href="/all-shows" textDecoration={path == '/all-shows' ? 'underline' : ''}>

@@ -44,3 +44,5 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 
 Section 1:
 1) u SidebarNavigation bi mogo naprvaiti bolji logo, slcinije onako kako ga oni imaju
+
+2) BUG: kada se vraitm na strnaicu za filomve se ne tirgera UseEffect nego bas morma relodat, kako bi to mogoa promijeniti? 
