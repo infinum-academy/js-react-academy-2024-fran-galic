@@ -10,7 +10,7 @@ import { useEffect, useState } from "react";
  //vjeroavtno ce trebat napravit i Container komponteu za ovo ali to cu jos vidit
  const mockReviewList: IReviewList = {
    reviews: [
-     {
+/*      {
        reviewersEmail: "fran.galic7@gmail.com",
        avatar: "https://img.freepik.com/free-psd/3d-illustration-human-avatar-profile_23-2150671142.jpg",
        rating: 5,
@@ -28,29 +28,30 @@ import { useEffect, useState } from "react";
        rating: 4,
        comment: "Finaly some good fuc*** food",
      },
- 
+  */
    ]
  }
 
  interface IShowReviewSectionProps {
    onCallRatting: (reviewList: IReviewList) => void;
+   showId: string
  }
 
-export const ShowReviewSection = ({onCallRatting}: IShowReviewSectionProps) => {
+export const ShowReviewSection = ({onCallRatting, showId}: IShowReviewSectionProps) => {
 
    const [reviewList, setReviewList] = useState(mockReviewList);
 
    const saveToLocalStorage = (reviewList: IReviewList) => {
-      localStorage.setItem('reviewList', JSON.stringify(reviewList));
+      localStorage.setItem(`reviewList/${showId}`, JSON.stringify(reviewList));
    };
 
    const loadFromLocalStorage = () => {
-      const reviewListString = localStorage.getItem('reviewList');
+      const reviewListString = localStorage.getItem(`reviewList/${showId}`);
       if (! reviewListString) {
         onCallRatting(mockReviewList);
         return mockReviewList;
       }
-      onCallRatting(mockReviewList);
+      //onCallRatting(mockReviewList);
       return JSON.parse(reviewListString);
    };
 
@@ -58,6 +59,7 @@ export const ShowReviewSection = ({onCallRatting}: IShowReviewSectionProps) => {
    useEffect(() => {
       const loadedList = loadFromLocalStorage();
       setReviewList(loadedList);
+      console.log(loadedList);
       onCallRatting(loadedList);
     }, []);
 
