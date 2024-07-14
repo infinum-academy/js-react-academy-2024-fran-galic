@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { Providers } from "./providers";
 import { Header } from "@/components/shared/Header/Header";
-import { Box } from "@chakra-ui/react";
+import { Flex } from "@chakra-ui/react";
 import { SidebarNavigation } from "@/components/shared/SidebarNavigation/SidebarNavigation";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -22,10 +22,10 @@ export default function RootLayout({
     <html lang="en" >
       <body className={inter.className} >
         <Providers>
-          <Box bg="#200050" color='white' px={4}> 
+          <Flex bg="#200050" color='white' px={4}> 
             <SidebarNavigation />
-            {/*children */}
-          </Box>
+            { children }
+          </Flex>
         </Providers>
       </body>
     </html>

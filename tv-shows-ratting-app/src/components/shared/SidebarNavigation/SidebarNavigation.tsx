@@ -17,7 +17,7 @@ export const SidebarNavigation = () => {
    return (
       <Flex direction="column" height="100vh" width="250px" py={4} px={1} gap={14} fontSize="md">
          <SiteLogo />
-         <Stack gap={3} flexGrow={1}>
+         <Flex direction="column" gap={3} flexGrow={1}>
             <Text as={NextLink} href="/all-shows" textDecoration={path == '/all-shows' ? 'underline' : ''}>
                All shows
             </Text>
@@ -27,7 +27,7 @@ export const SidebarNavigation = () => {
             <Text>
                My profile
             </Text>
-         </Stack>
+         </Flex>
          <Text>
             Log out
          </Text>
