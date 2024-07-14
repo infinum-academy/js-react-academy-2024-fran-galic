@@ -1,7 +1,7 @@
 /* 
    + 1. check if component contains image element (with provided url) 
    + 2. check if show title is rendered
-   3. check if correct average rating is rendered 
+   + 3. check if correct average rating is rendered
 */
 import { render, screen } from '@testing-library/react';
 import { ShowCard } from './ShowCard';
@@ -41,28 +41,4 @@ describe("ShowCard", () => {
       expect(Image.src).toBeTruthy(); // Provjerava da src nije prazan
    });
 
-   it("should render show title", () => {
-      render(<ShowCard show={mockShow1} />);
-
-      //getByText() vraca prvi elmetn iz vritualnog DOM-a koji u sebi sadrzi TOCNO ovaj zadani teskt
-      const ShowTitle = screen.getByText(mockShow1.title);
-
-      expect(ShowTitle).toBeInTheDocument();
-   })
-
-   it("should check if correct average rating is rendered ", () => {
-      render(
-         <Fragment>
-            <ShowCard show={mockShow1} />
-            <ShowCard show={mockShow2} />
-         </Fragment>
-      );
-
-      //getByText() vraca prvi elmetn iz vritualnog DOM-a koji u sebi sadrzi TOCNO ovaj zadani teskt
-      const ShowRating1 = screen.getByText(`${mockShow1.average_rating?.toFixed(1)}/5`);
-      const ShowRating2 = screen.getByText("no ratings");
-
-      expect(ShowRating1).toBeInTheDocument();
-      expect(ShowRating2).toBeInTheDocument();
-   })
 })

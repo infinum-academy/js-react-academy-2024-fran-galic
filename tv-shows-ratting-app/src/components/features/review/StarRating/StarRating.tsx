@@ -8,9 +8,10 @@ interface StarRatingProps {
   isStatic: boolean;
   onClick: (index: number) => void;
   onHover: (index: number) => void;
+  data_testid?: string; // opcionlani promt za testiranje
 }
 
-export const StarRating = ({ noOfStars, isStatic, onClick, onHover }: StarRatingProps) => {
+export const StarRating = ({ noOfStars, isStatic, onClick, onHover, data_testid }: StarRatingProps) => {
   const renderStars = Array.from({ length: 5 }, (_, i) => {
       const index = i + 1;
       return (
@@ -25,7 +26,7 @@ export const StarRating = ({ noOfStars, isStatic, onClick, onHover }: StarRating
     });
 
   return (
-    <Flex flexDirection="row" gap="5px" width="25%">
+    <Flex flexDirection="row" gap="5px" width="25%" data-testid={data_testid}>
       {renderStars}
     </Flex>
   );
