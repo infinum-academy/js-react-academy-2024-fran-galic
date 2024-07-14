@@ -21,7 +21,7 @@ export const ShowsList = ({ shows } : IShowsList) => {
       my={8}
       >
          {shows.map((show, index) => {
-            return <ShowCard show={show} key={/* show.id */ index} />
+            return <ShowCard show={show} key={ show.id } />
          })}
       </Flex>
    );
