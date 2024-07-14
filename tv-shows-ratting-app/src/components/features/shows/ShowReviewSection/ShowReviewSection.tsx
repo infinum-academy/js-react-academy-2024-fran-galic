@@ -1,6 +1,6 @@
 'use client';
 
-import { Stack } from "@chakra-ui/react";
+import { Stack, Text } from "@chakra-ui/react";
 import { ReviewForm } from "../ReviewForm/ReviewForm";
 import { ReviewList } from "../../review/ReviewList/ReviewList";
 import { IReview, IReviewList } from "@/typings/review";
@@ -81,7 +81,8 @@ export const ShowReviewSection = ({onCallRatting}: IShowReviewSectionProps) => {
 
 
    return (
-      <Stack spacing={6}>
+      <Stack spacing={5}>
+        <Text fontSize="1.3rem">Reviews</Text>
         <ReviewForm  onAdd={onAddReview}/>
         <ReviewList reviewList={reviewList} onDeleteReview={onDeleteReview}/>
       </Stack>
