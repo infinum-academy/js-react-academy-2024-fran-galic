@@ -1,7 +1,7 @@
 "use client"
 
 import { IShow } from "@/typings/show";
-import { Flex } from "@chakra-ui/react";
+import { Flex, Spacer } from "@chakra-ui/react";
 import { ShowCard } from "../ShowCard/ShowCard";
 
 export interface IShowsList {
