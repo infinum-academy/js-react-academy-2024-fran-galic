@@ -1,5 +1,5 @@
 import { LoadingScreen } from "@/components/shared/LoadingScreen/LoadingScreen";
-import { IShowsList, ShowsList } from "@/components/shared/shows/ShowsList/ShowsList";
+import { ShowsList } from "@/components/shared/shows/ShowsList/ShowsList";
 import { SidebarNavigation } from "@/components/shared/SidebarNavigation/SidebarNavigation";
 import { getShows } from "@/fetchers/shows";
 import { Box, Flex } from "@chakra-ui/react";
