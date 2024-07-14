@@ -14,10 +14,9 @@ export const ShowsList = ({ shows } : IShowsList) => {
       <Flex 
       direction="row"
       wrap="wrap"
-      align="center"
+      align="start"
       justify="start"
-      columnGap={8}
-      rowGap={8}
+      gap={8}
       width="1000px"
       my={8}
       >

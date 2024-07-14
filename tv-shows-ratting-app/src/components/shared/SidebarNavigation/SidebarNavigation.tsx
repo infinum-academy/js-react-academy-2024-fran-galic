@@ -18,15 +18,12 @@ export const SidebarNavigation = () => {
    return (
       <Flex 
       direction="column" 
-      height="100vh" 
-      width="250px" 
+      height="100%" 
+      width="200px" 
       py={4} 
       px={1} 
       gap={14} 
-/*       fontSize="md"
-      position="fixed"
-      zIndex="1000"         // Osigurava da sidebar ostane iznad ostalih elemenata    */
-      minWidth="100px"
+      fontSize="md"
       >
          <SiteLogo />
          <Flex direction="column" gap={3} flexGrow={1}>

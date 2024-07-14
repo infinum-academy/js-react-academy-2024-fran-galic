@@ -1,6 +1,6 @@
 "use client"
 
-import { ShowDetails } from "@/components/features/shows/ShowDetails/ShowDetails";
+/* import { ShowDetails } from "@/components/features/shows/ShowDetails/ShowDetails";
 import styles from "./page.module.css";
 import { Stack } from "@chakra-ui/react";
 import { ShowReviewSection } from "@/components/features/shows/ShowReviewSection/ShowReviewSection";
@@ -46,5 +46,13 @@ export default function Home() {
       </Stack>
     </main>
   );
+} */
+
+export default function HomeRedirect() {
+  window.location.href = '/all-shows';
+  return <></>;
 }
+
+
+
 
