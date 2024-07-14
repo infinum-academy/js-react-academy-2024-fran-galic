@@ -46,3 +46,5 @@ Section 1:
 1) u SidebarNavigation bi mogo naprvaiti bolji logo, slcinije onako kako ga oni imaju
 
 2) kada je samo nekolio itema u listi, zasto posotji toliko vleii gap izmedu prvog i drugog reda? 
+
+3) Kad abi neku komponetu nazvali Section a kada Container?
