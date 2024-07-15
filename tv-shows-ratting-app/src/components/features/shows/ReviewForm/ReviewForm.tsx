@@ -4,6 +4,7 @@ import { IReview } from "@/typings/review";
 import { Box, Button, Input, Stack, Textarea, Text, Flex, Center } from "@chakra-ui/react";
 import { StarRating } from "../../review/StarRating/StarRating";
 import { useState } from "react";
+import { useForm } from "react-hook-form";
 
 
 
@@ -11,52 +12,52 @@ interface IReviewFormProps {
    onAdd: (review: IReview) => void;
  }
 
+interface IReviewFormInputs {
+   grade: number,
+   description: string,
+}
 
 export const ReviewForm = ({onAdd}: IReviewFormProps) => {
 
    const [isLocked, setLocked] = useState(false);
    const [numSelectedStars, setNumSelectedStars] = useState(0);
    const [numHoveredStars, setNumHoveredStars] = useState(0);
+   //useForm Hook:
+   const { register, handleSubmit, setValue } = useForm<IReviewFormInputs>();
 
    const onClick = (index: number) => {
       setNumSelectedStars(index);
+      setValue('grade', index); // Ručno postavljanje vrijednosti
    }
 
    const onHover = (index: number) => {
       setNumHoveredStars(index);
    }
 
-   const addShowReview = (event: any) => {
-      // bez ovog bi se stranica ponovno ucitala, jer je to defoultno ponasanje stranice, mi to ne zelimo
-      event.preventDefault();
-   
-       //uzimam podatke
-       const inputText = document.getElementById("text-input") as HTMLInputElement;
-       const description = inputText.value;
-   
-       const grade = numSelectedStars;
+   const addShowReview = (data: IReviewFormInputs) => {
    
        const newReview: IReview = {
-           rating: grade,
-           comment: description,
+           rating: data.grade,
+           comment: data.description,
        };
 
        //provjerim jeli unos ocjene dobar
-       if (grade == 0) {
+       if (data.grade == 0) {
          alert("You have to Grade the Series/Movie before submitting the review");
          return;
        }
 
        onAdd(newReview);
-       inputText.value = "";
+       setValue('grade', 0);
        setNumSelectedStars(0);
+       setValue('description', "");
    
        console.log("Adding");
    };
    
    return (
-       <Stack as="form" spacing={4} maxW="container.sm" onSubmit={addShowReview}>
-           <Textarea placeholder="Add review" borderRadius="xl" bg="white" fontSize="xs" color="black" id="text-input" required/>
+       <Stack as="form" spacing={4} maxW="container.sm" onSubmit={handleSubmit(addShowReview)}>
+           <Textarea placeholder="Add review" borderRadius="xl" bg="white" fontSize="xs" color="black" id="text-input" required  {...register('description')}/>
            <Flex gap={4} align="baseline">
                <Text>Rating</Text>
                <Box maxWidth="105px" onMouseLeave={() => setLocked(true)} onMouseEnter={() => setLocked(false)}>
@@ -64,6 +65,7 @@ export const ReviewForm = ({onAdd}: IReviewFormProps) => {
                </Box>
             </Flex>
            <Button type="submit" bg="white" borderRadius="xl" fontSize="xs" width="70px" size="sm">Post</Button>
+           <Input type="hidden" {...register('grade')} /> {/* Skriveni input za registraciju ocjene */}
        </Stack>
    );
    };
