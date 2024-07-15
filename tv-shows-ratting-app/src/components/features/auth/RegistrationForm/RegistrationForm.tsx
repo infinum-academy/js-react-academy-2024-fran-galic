@@ -1,11 +1,32 @@
 /* eslint-disable react/no-unescaped-entities */
 'use client';
-import React from 'react';
+import React, { useState } from 'react';
 import { Card, CardBody, Flex, chakra, FormControl, InputGroup, InputLeftElement, Input, Button, Text, FormHelperText } from '@chakra-ui/react';
 import { EmailIcon, LockIcon } from '@chakra-ui/icons';
 import NextLink from 'next/link';
+import { useForm } from 'react-hook-form';
+
+
+
+interface IRegistrationFormInputs {
+  email: string,
+  password: string,
+  password_confirmation: string
+}
+
 
 export const RegistrationForm = () => {
+
+  const { register, handleSubmit, formState: { isSubmitting } } = useForm<IRegistrationFormInputs>();
+
+
+
+
+
+
+
+
+
   return (
     <Card maxW='md' p={5} borderRadius="20px" bg={"#371687"}>
       <CardBody>
@@ -32,6 +53,8 @@ export const RegistrationForm = () => {
                   pl="10"
                   color="white"
                   _placeholder={{ color: 'white' }}
+                  //neka se ovaj input spremi u vairjablu email
+                  {...register('email')}
                 />
                 
               </InputGroup>
@@ -51,6 +74,8 @@ export const RegistrationForm = () => {
                   pl="10"
                   color="white"
                   _placeholder={{ color: 'white' }}
+                  //neka se ovaj input spremi u vairjablu password
+                  {...register('password')}
                 />
               </InputGroup>
               <FormHelperText color="white" pl="20px" fontSize="xs">At least 8 characters</FormHelperText>
@@ -71,6 +96,8 @@ export const RegistrationForm = () => {
                   pl="10"
                   color="white"
                   _placeholder={{ color: 'white' }}
+                  //neka se ovaj input spremi u vairjablu password_confirmation
+                  {...register('password_confirmation')}
                 />
               </InputGroup>
             </FormControl>
