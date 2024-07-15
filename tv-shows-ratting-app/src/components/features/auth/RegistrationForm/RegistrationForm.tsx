@@ -1,11 +1,11 @@
 /* eslint-disable react/no-unescaped-entities */
 'use client';
 import React from 'react';
-import { Card, CardBody, Flex, chakra, FormControl, InputGroup, InputLeftElement, Input, Button, Text } from '@chakra-ui/react';
+import { Card, CardBody, Flex, chakra, FormControl, InputGroup, InputLeftElement, Input, Button, Text, FormHelperText } from '@chakra-ui/react';
 import { EmailIcon, LockIcon } from '@chakra-ui/icons';
 import NextLink from 'next/link';
 
-export const LoginForm = () => {
+export const RegistrationForm = () => {
   return (
     <Card maxW='md' p={5} borderRadius="20px" bg={"#371687"}>
       <CardBody>
@@ -33,9 +33,11 @@ export const LoginForm = () => {
                   color="white"
                   _placeholder={{ color: 'white' }}
                 />
+                
               </InputGroup>
             </FormControl>
 
+          {/*   loznika */}
             <FormControl isRequired>
               <InputGroup size='md'>
                 <InputLeftElement pointerEvents="none">
@@ -51,11 +53,31 @@ export const LoginForm = () => {
                   _placeholder={{ color: 'white' }}
                 />
               </InputGroup>
+              <FormHelperText color="white" pl="20px" fontSize="xs">At least 8 characters</FormHelperText>
+            </FormControl>
+            
+            {/* ponovljena loznika */}
+            <FormControl isRequired>
+              <InputGroup size='md'>
+                <InputLeftElement pointerEvents="none">
+                  <LockIcon color="white" />
+                </InputLeftElement>
+                <Input
+                  type="password"
+
+                  placeholder='Confirm password'
+                  required
+                  borderRadius="20px"
+                  pl="10"
+                  color="white"
+                  _placeholder={{ color: 'white' }}
+                />
+              </InputGroup>
             </FormControl>
 
-            <Button type="submit" px={7} borderRadius="20px" fontSize="sm" color="#371687">LOG IN</Button>
+            <Button type="submit" px={7} borderRadius="20px" fontSize="sm" color="#371687">SIGN UP</Button>
           </chakra.form>
-          <Text color="white">Don't have an account? <Text as={NextLink} href="/register" fontWeight="bold">Register</Text></Text>
+          <Text color="white">Already have an account? <Text as={NextLink} href="/login" fontWeight="bold">Login</Text></Text>
         </Flex>
       </CardBody>
     </Card>
