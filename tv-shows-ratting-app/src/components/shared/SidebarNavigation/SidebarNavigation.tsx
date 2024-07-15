@@ -31,7 +31,7 @@ export const SidebarNavigation = () => {
       fontSize="md"
       >
          <SiteLogo />
-         <Flex direction="column" gap={3} flexGrow={1}>
+         <Flex direction="column" gap={3} flexGrow={1} fontSize="1.2rem">
             <Text as={NextLink} href="/all-shows" textDecoration={path == '/all-shows' ? 'underline' : ''}>
                All shows
             </Text>

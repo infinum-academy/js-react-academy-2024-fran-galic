@@ -88,12 +88,3 @@ export const ReviewForm = ({onAdd}: IReviewFormProps) => {
        </Stack>
    );
    };
-
-/* 
-   <Spinner
-   thickness='4px'
-   speed='0.65s'
-   emptyColor='gray.200'
-   color='blue.400'
-   size='xl'
-   /> */

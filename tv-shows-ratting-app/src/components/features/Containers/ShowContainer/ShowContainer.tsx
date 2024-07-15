@@ -11,11 +11,28 @@ import useSWR from "swr";
 import { getSpecificShow } from "@/fetchers/shows";
 import { LoadingScreen } from "@/components/shared/LoadingScreen/LoadingScreen";
 import { IShow } from "@/typings/show";
+import useSWRMutation from "swr/mutation";
+import { swrKeys } from "@/fetchers/swrKeys";
+import { getSignInMutator } from "@/fetchers/getSignInMutator";
+
+interface IgetSignInMutatorParams2 {
+  id: string
+}
 
 export default function ShowContainer() {
   const params = useParams();
   const id = params.id;
-  const { data, error, isLoading } = useSWR(`/shows/${id}`, () => getSpecificShow(id as string));
+
+  const { trigger } = useSWRMutation(`https://tv-shows.infinum.academy/shows/${id}`, getSignInMutator<IgetSignInMutatorParams2>);
+
+  async function getSpecificShow(params: IgetSignInMutatorParams2) {
+    const response = await trigger(params);
+    return response.data;
+ }
+
+ const { data, error, isLoading } = useSWR(`/api/shows/${id}`, () =>
+  getSpecificShow({ id: id as string })  // jer je to defoult navedeno u dokumenaticiji, moze biti i druge vrijendosti
+);
 
 	if (isLoading) {
 		return <LoadingScreen />;
@@ -51,8 +68,8 @@ export default function ShowContainer() {
          <SidebarNavigation />
       </Box>
       <Stack spacing={5} pt={7}>
-        <ShowDetails show={data}/>
-        <ShowReviewSection onCallRatting={/* onCallAvgRatting */ () => {}} showId={data.id} />
+        <ShowDetails show={data.show}/>
+        <ShowReviewSection onCallRatting={/* onCallAvgRatting */ () => {}} showId={data.show.id} />
       </Stack>
    </Flex>
   );

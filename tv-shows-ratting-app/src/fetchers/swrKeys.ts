@@ -1,5 +1,7 @@
 const apiUrl = "https://tv-shows.infinum.academy";
 export const swrKeys = {
   register: `${apiUrl}/users`,
-  signIn: `${apiUrl}/users/sign_in`
+  signIn: `${apiUrl}/users/sign_in`,
+  shows: `${apiUrl}/shows`,
+  top_rated_shows: `${apiUrl}/shows/top_rated`
 };

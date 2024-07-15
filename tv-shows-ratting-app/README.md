@@ -43,3 +43,7 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 4. dz pitanja i stvari koje bi mogoa poboljsat:
 
 1) da izdvojim ovaj castum input element u vlasititu komponentu, input componete mogiu naprvait vise modularnim i specijaliziranim, to cu kasnije
+
+2) sto zapravo ove vrijednsti { page: '1', items: '20' } u nasem zahtjevu za shows api predsatavlaju?
+
+3) kako bih mogao prilagodit slike da ljepse izgledaju na specific show stranici?
