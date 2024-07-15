@@ -8,6 +8,7 @@ import { useForm } from 'react-hook-form';
 import useSWRMutation from 'swr/mutation';
 import { swrKeys } from '@/fetchers/swrKeys';
 import { SuccessWindow } from '@/components/shared/auth/SuccessWidnow/SuccessWindow';
+import { mutator } from '@/fetchers/mutators';
 
 
 
@@ -24,13 +25,13 @@ export const RegistrationForm = () => {
   const [errorMessage, setErrorMessage] = useState("");  // po defoultu je errorMessage "" sto je faoult vrijednost
   const [registered, setRegistered] = useState(false);
 
- /*  const { trigger } = useSWRMutation(swrKeys.register, mutator<IRegistrationFormInputs>,
+  const { trigger } = useSWRMutation(swrKeys.register, mutator<IRegistrationFormInputs>,
     {
       onSuccess: () => {
         setRegistered(true);
       },
     }
-  ); */
+  ); 
 
   const onRegister = async (data: IRegistrationFormInputs) => {
     if (data.password.length < 8) {
@@ -44,12 +45,12 @@ export const RegistrationForm = () => {
     //ukoliko je sve okej:
     setErrorMessage("");
     console.log(data);
-    //await trigger(data); 
+    await trigger(data); 
   };
 
   return (
     registered ? (
-      <SuccessWindow link={'/'} description={'You have successfully registered!'} buttonText={'Log in'} />
+      <SuccessWindow link={'/login'} description={'You have successfully registered!'} buttonText={'Log in'} />
     ) : (
       <Card maxW='md' p={5} borderRadius="20px" bg={"#371687"}>
         <CardBody>
