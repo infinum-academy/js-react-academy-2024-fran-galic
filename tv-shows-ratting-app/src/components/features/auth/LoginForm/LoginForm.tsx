@@ -1,7 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
 'use client';
 import React, { useState } from 'react';
-import { Card, CardBody, Flex, chakra, FormControl, InputGroup, InputLeftElement, Input, Button, Text } from '@chakra-ui/react';
+import { Card, CardBody, Flex, chakra, FormControl, InputGroup, InputLeftElement, Input, Button, Text, Spinner } from '@chakra-ui/react';
 import { EmailIcon, LockIcon } from '@chakra-ui/icons';
 import NextLink from 'next/link';
 import { useForm } from 'react-hook-form';
@@ -18,7 +18,7 @@ interface ILoginFormInputs {
 export const LoginForm = () => {
 
   const [loggedIn, setLoggedIn] = useState(false);
-  const { register, handleSubmit } = useForm<ILoginFormInputs>();
+  const { register, handleSubmit, formState: { isSubmitting } } = useForm<ILoginFormInputs>();
   const { trigger } = useSWRMutation(swrKeys.signIn, mutator<ILoginFormInputs>);
   
 
@@ -60,6 +60,7 @@ export const LoginForm = () => {
                   color="white"
                   _placeholder={{ color: 'white' }}
                   {...register('email')}
+                  isDisabled={isSubmitting}
                 />
               </InputGroup>
             </FormControl>
@@ -78,11 +79,12 @@ export const LoginForm = () => {
                   color="white"
                   _placeholder={{ color: 'white' }}
                   {...register('password')}
+                  isDisabled={isSubmitting}
                 />
               </InputGroup>
             </FormControl>
 
-            <Button type="submit" px={7} borderRadius="20px" fontSize="sm" color="#371687">LOG IN</Button>
+            <Button type="submit" px={7} borderRadius="20px" fontSize="sm" color="#371687" isDisabled={isSubmitting}>{isSubmitting ? <Spinner /> : 'LOG IN'}</Button>
           </chakra.form>
           <Text color="white">Don't have an account? <Text as={NextLink} href="/register" fontWeight="bold">Register</Text></Text>
         </Flex>

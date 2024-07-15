@@ -1,7 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
 'use client';
 import React, { useState } from 'react';
-import { Card, CardBody, Flex, chakra, FormControl, InputGroup, InputLeftElement, Input, Button, Text, FormHelperText } from '@chakra-ui/react';
+import { Card, CardBody, Flex, chakra, FormControl, InputGroup, InputLeftElement, Input, Button, Text, FormHelperText, Spinner } from '@chakra-ui/react';
 import { EmailIcon, LockIcon } from '@chakra-ui/icons';
 import NextLink from 'next/link';
 import { useForm } from 'react-hook-form';
@@ -21,7 +21,7 @@ interface IRegistrationFormInputs {
 
 export const RegistrationForm = () => {
 
-  const { register, handleSubmit } = useForm<IRegistrationFormInputs>();
+  const { register, handleSubmit, formState: { isSubmitting } } = useForm<IRegistrationFormInputs>();
   const [errorMessage, setErrorMessage] = useState("");  // po defoultu je errorMessage "" sto je faoult vrijednost
   const [registered, setRegistered] = useState(false);
 
@@ -78,6 +78,7 @@ export const RegistrationForm = () => {
                     color="white"
                     _placeholder={{ color: 'white' }}
                     {...register('email')}
+                    isDisabled={isSubmitting}
                   />
                 </InputGroup>
               </FormControl>
@@ -96,6 +97,7 @@ export const RegistrationForm = () => {
                     color="white"
                     _placeholder={{ color: 'white' }}
                     {...register('password')}
+                    isDisabled={isSubmitting}
                   />
                 </InputGroup>
                 <FormHelperText color="white" pl="20px" fontSize="xs">At least 8 characters</FormHelperText>
@@ -115,11 +117,12 @@ export const RegistrationForm = () => {
                     color="white"
                     _placeholder={{ color: 'white' }}
                     {...register('password_confirmation')}
+                    isDisabled={isSubmitting}
                   />
                 </InputGroup>
               </FormControl>
 
-              <Button type="submit" px={7} borderRadius="20px" fontSize="sm" color="#371687">SIGN UP</Button>
+              <Button type="submit" px={7} borderRadius="20px" fontSize="sm" color="#371687" isDisabled={isSubmitting}>{isSubmitting ? <Spinner /> : 'SIGN UP'}</Button>
               {errorMessage && (
                 <Text fontSize="sm" color="white">
                   {errorMessage}

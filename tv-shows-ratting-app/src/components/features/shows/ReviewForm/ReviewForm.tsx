@@ -1,7 +1,7 @@
 'use client';
 
 import { IReview } from "@/typings/review";
-import { Box, Button, Input, Stack, Textarea, Text, Flex, Center } from "@chakra-ui/react";
+import { Box, Button, Input, Stack, Textarea, Text, Flex, Center, Spinner } from "@chakra-ui/react";
 import { StarRating } from "../../review/StarRating/StarRating";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
@@ -23,7 +23,7 @@ export const ReviewForm = ({onAdd}: IReviewFormProps) => {
    const [numSelectedStars, setNumSelectedStars] = useState(0);
    const [numHoveredStars, setNumHoveredStars] = useState(0);
    //useForm Hook:
-   const { register, handleSubmit, setValue } = useForm<IReviewFormInputs>();
+   const { register, handleSubmit, setValue, formState: { isSubmitting }} = useForm<IReviewFormInputs>();
 
    const onClick = (index: number) => {
       setNumSelectedStars(index);
@@ -57,15 +57,43 @@ export const ReviewForm = ({onAdd}: IReviewFormProps) => {
    
    return (
        <Stack as="form" spacing={4} maxW="container.sm" onSubmit={handleSubmit(addShowReview)}>
-           <Textarea placeholder="Add review" borderRadius="xl" bg="white" fontSize="xs" color="black" id="text-input" required  {...register('description')}/>
+           <Textarea 
+           placeholder="Add review" 
+           borderRadius="xl" 
+           bg="white" 
+           fontSize="xs" 
+           color="black" 
+           id="text-input" 
+           required {...register('description')} 
+           isDisabled={isSubmitting}
+           />
            <Flex gap={4} align="baseline">
                <Text>Rating</Text>
                <Box maxWidth="105px" onMouseLeave={() => setLocked(true)} onMouseEnter={() => setLocked(false)}>
-                  <StarRating noOfStars={isLocked? numSelectedStars : numHoveredStars} isStatic={false} onClick={onClick} onHover={onHover} data_testid="star-rating"/>
+                  <StarRating noOfStars={isLocked? numSelectedStars : numHoveredStars} isStatic={isSubmitting? true : false} onClick={onClick} onHover={onHover} data_testid="star-rating"/>
                </Box>
             </Flex>
-           <Button type="submit" bg="white" borderRadius="xl" fontSize="xs" width="70px" size="sm">Post</Button>
+           <Button 
+           type="submit" 
+           bg="white" 
+           borderRadius="xl" 
+           fontSize="xs" 
+           width="70px" 
+           size="sm" 
+           isDisabled={isSubmitting}
+           >
+           {isSubmitting ? <Spinner /> : 'Post'}
+           </Button>
            <Input type="hidden" {...register('grade')} /> {/* Skriveni input za registraciju ocjene */}
        </Stack>
    );
    };
+
+/* 
+   <Spinner
+   thickness='4px'
+   speed='0.65s'
+   emptyColor='gray.200'
+   color='blue.400'
+   size='xl'
+   /> */

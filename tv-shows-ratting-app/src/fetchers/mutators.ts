@@ -12,7 +12,7 @@ export async function mutator<T>(url: string, { arg }: { arg: T }) {
      const response = await fetch(url, options);
  
      if (!response.ok) {
-       alert("Wrong email or password, please try again.");
+       alert("Wrong email or password, please try again. Or the account already exists if you are trying to log in.");
        throw new Error(`An error occurred while trying to mutate the url: ${url}`);
      }
  
