@@ -1,12 +1,39 @@
 /* eslint-disable react/no-unescaped-entities */
 'use client';
-import React from 'react';
+import React, { useState } from 'react';
 import { Card, CardBody, Flex, chakra, FormControl, InputGroup, InputLeftElement, Input, Button, Text } from '@chakra-ui/react';
 import { EmailIcon, LockIcon } from '@chakra-ui/icons';
 import NextLink from 'next/link';
+import { useForm } from 'react-hook-form';
+import { swrKeys } from '@/fetchers/swrKeys';
+import { mutator } from '@/fetchers/mutators';
+import useSWRMutation from 'swr/mutation';
+import { SuccessWindow } from '@/components/shared/auth/SuccessWidnow/SuccessWindow';
+
+interface ILoginFormInputs {
+  email: string,
+  password: string
+}
 
 export const LoginForm = () => {
+
+  const [loggedIn, setLoggedIn] = useState(false);
+  const { register, handleSubmit } = useForm<ILoginFormInputs>();
+  const { trigger } = useSWRMutation(swrKeys.signIn, mutator<ILoginFormInputs>);
+  
+
+  const onLogin = async (data: ILoginFormInputs) => {
+    const response = await trigger(data);
+    localStorage.setItem('userId', response.data.user.id);
+    localStorage.setItem('userHeaders', response.headers);
+    console.log("Proso je login!!!!!!!!!!!!!");
+    setLoggedIn(true);
+  };
+
   return (
+    loggedIn ? (
+      <SuccessWindow link={'/all-shows'} description={'Congrats! You are logged in! Lets see what we are watching today!'} buttonText={'Lets rock!'} />
+    ) : (
     <Card maxW='md' p={5} borderRadius="20px" bg={"#371687"}>
       <CardBody>
         <Flex direction="column" gap={8} alignItems="center">
@@ -17,7 +44,7 @@ export const LoginForm = () => {
             flexDirection="column"
             alignItems="center"
             gap={8}
-            onSubmit={() => {}}
+            onSubmit={handleSubmit(onLogin)}
           >
             <FormControl isRequired>
               <InputGroup size='md'>
@@ -32,6 +59,7 @@ export const LoginForm = () => {
                   pl="10"
                   color="white"
                   _placeholder={{ color: 'white' }}
+                  {...register('email')}
                 />
               </InputGroup>
             </FormControl>
@@ -49,6 +77,7 @@ export const LoginForm = () => {
                   pl="10"
                   color="white"
                   _placeholder={{ color: 'white' }}
+                  {...register('password')}
                 />
               </InputGroup>
             </FormControl>
@@ -59,5 +88,6 @@ export const LoginForm = () => {
         </Flex>
       </CardBody>
     </Card>
+    )
   );
 };

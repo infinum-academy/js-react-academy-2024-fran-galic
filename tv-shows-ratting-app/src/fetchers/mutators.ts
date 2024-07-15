@@ -12,6 +12,7 @@ export async function mutator<T>(url: string, { arg }: { arg: T }) {
      const response = await fetch(url, options);
  
      if (!response.ok) {
+       alert("Wrong email or password, please try again.");
        throw new Error(`An error occurred while trying to mutate the url: ${url}`);
      }
  
@@ -26,7 +27,8 @@ export async function mutator<T>(url: string, { arg }: { arg: T }) {
        expiry: response.headers.get('expiry'),
        uid: response.headers.get('uid'),
      };
- 
+     console.log("Podaci iz Headera: ", headers);
+
      return {
        data: data,
        headers: JSON.stringify(headers),

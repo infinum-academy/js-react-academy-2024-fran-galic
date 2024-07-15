@@ -21,7 +21,7 @@ interface IRegistrationFormInputs {
 
 export const RegistrationForm = () => {
 
-  const { register, handleSubmit, formState: { isSubmitting } } = useForm<IRegistrationFormInputs>();
+  const { register, handleSubmit } = useForm<IRegistrationFormInputs>();
   const [errorMessage, setErrorMessage] = useState("");  // po defoultu je errorMessage "" sto je faoult vrijednost
   const [registered, setRegistered] = useState(false);
 
@@ -44,7 +44,7 @@ export const RegistrationForm = () => {
     }
     //ukoliko je sve okej:
     setErrorMessage("");
-    console.log(data);
+    console.log("On register:", data);
     await trigger(data); 
   };
 
