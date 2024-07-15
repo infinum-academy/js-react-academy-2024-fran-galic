@@ -18,14 +18,22 @@ interface IRegistrationFormInputs {
 export const RegistrationForm = () => {
 
   const { register, handleSubmit, formState: { isSubmitting } } = useForm<IRegistrationFormInputs>();
+  const [errorMesssage, setErrorMessage] = useState("");  // po defoultu je errorMessage "" sto je faoult vrijednost
 
-
-
-
-
-
-
-
+  const onRegister = async (data: IRegistrationFormInputs) => {
+    if (data.password.length < 8) {
+      setErrorMessage("Password must be at least 8 characters");
+      return;
+    }
+    if (data.password !== data.password_confirmation) {
+      setErrorMessage("Passwords do not match");
+      return;
+    }
+    //ukoliko je sve okej:
+    setErrorMessage("");
+    console.log(data);
+    //await trigger(data); 
+  };
 
   return (
     <Card maxW='md' p={5} borderRadius="20px" bg={"#371687"}>
@@ -38,7 +46,7 @@ export const RegistrationForm = () => {
             flexDirection="column"
             alignItems="center"
             gap={8}
-            onSubmit={() => {}}
+            onSubmit={handleSubmit(onRegister)}
           >
             <FormControl isRequired>
               <InputGroup size='md'>
@@ -103,6 +111,11 @@ export const RegistrationForm = () => {
             </FormControl>
 
             <Button type="submit" px={7} borderRadius="20px" fontSize="sm" color="#371687">SIGN UP</Button>
+            {errorMesssage && (
+            <Text fontSize="sm" color="white">
+              {errorMesssage}
+            </Text>
+          )}
           </chakra.form>
           <Text color="white">Already have an account? <Text as={NextLink} href="/login" fontWeight="bold">Login</Text></Text>
         </Flex>
