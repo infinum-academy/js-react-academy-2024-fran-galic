@@ -9,6 +9,8 @@ import useSWRMutation from 'swr/mutation';
 import { swrKeys } from '@/fetchers/swrKeys';
 import { SuccessWindow } from '@/components/shared/auth/SuccessWidnow/SuccessWindow';
 import { mutator } from '@/fetchers/mutators';
+import { PasswordInput } from '@/components/shared/auth/PasswordInput/PasswordInput';
+import { CustomInput } from '@/components/shared/auth/CustomInput/CustomInput';
 
 
 
@@ -64,63 +66,30 @@ export const RegistrationForm = () => {
               gap={8}
               onSubmit={handleSubmit(onRegister)}
             >
-              <FormControl isRequired>
-                <InputGroup size='md'>
-                  <InputLeftElement pointerEvents="none">
-                    <EmailIcon color="white" />
-                  </InputLeftElement>
-                  <Input
-                    required
-                    type="email"
-                    placeholder='Email'
-                    borderRadius="20px"
-                    pl="10"
-                    color="white"
-                    _placeholder={{ color: 'white' }}
-                    {...register('email')}
-                    isDisabled={isSubmitting}
-                  />
-                </InputGroup>
-              </FormControl>
+              
+              <CustomInput 
+                RegisterPart={register('email')} 
+                isDisabled={isSubmitting} 
+                testId={"email"} 
+                placeholder={'Email'} 
+                icon={<EmailIcon color="white" />} 
+              />
 
-              <FormControl isRequired>
-                <InputGroup size='md'>
-                  <InputLeftElement pointerEvents="none">
-                    <LockIcon color="white" />
-                  </InputLeftElement>
-                  <Input
-                    type="password"
-                    placeholder='Password'
-                    required
-                    borderRadius="20px"
-                    pl="10"
-                    color="white"
-                    _placeholder={{ color: 'white' }}
-                    {...register('password')}
-                    isDisabled={isSubmitting}
-                  />
-                </InputGroup>
-                <FormHelperText color="white" pl="20px" fontSize="xs">At least 8 characters</FormHelperText>
-              </FormControl>
+              <PasswordInput 
+                RegisterPart={register('password')} 
+                isDisabled={isSubmitting} 
+                testId={"password"} 
+                placeholder={"Password"}
+                icon={<LockIcon color="white" />} 
+              />
 
-              <FormControl isRequired>
-                <InputGroup size='md'>
-                  <InputLeftElement pointerEvents="none">
-                    <LockIcon color="white" />
-                  </InputLeftElement>
-                  <Input
-                    type="password"
-                    placeholder='Confirm password'
-                    required
-                    borderRadius="20px"
-                    pl="10"
-                    color="white"
-                    _placeholder={{ color: 'white' }}
-                    {...register('password_confirmation')}
-                    isDisabled={isSubmitting}
-                  />
-                </InputGroup>
-              </FormControl>
+              <PasswordInput 
+                RegisterPart={register('password_confirmation')} 
+                isDisabled={isSubmitting} 
+                testId={"password_confirmation"} 
+                placeholder={"Confirm password"} 
+                icon={<LockIcon color="white" />} 
+              />
 
               <Button type="submit" px={7} borderRadius="20px" fontSize="sm" color="#371687" isDisabled={isSubmitting}>{isSubmitting ? <Spinner /> : 'SIGN UP'}</Button>
               {errorMessage && (

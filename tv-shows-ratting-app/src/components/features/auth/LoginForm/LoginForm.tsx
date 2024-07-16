@@ -9,6 +9,8 @@ import { swrKeys } from '@/fetchers/swrKeys';
 import { mutator } from '@/fetchers/mutators';
 import useSWRMutation from 'swr/mutation';
 import { SuccessWindow } from '@/components/shared/auth/SuccessWidnow/SuccessWindow';
+import { PasswordInput } from '@/components/shared/auth/PasswordInput/PasswordInput';
+import { CustomInput } from '@/components/shared/auth/CustomInput/CustomInput';
 
 interface ILoginFormInputs {
   email: string,
@@ -46,43 +48,9 @@ export const LoginForm = () => {
             gap={8}
             onSubmit={handleSubmit(onLogin)}
           >
-            <FormControl isRequired>
-              <InputGroup size='md'>
-                <InputLeftElement pointerEvents="none">
-                  <EmailIcon color="white" />
-                </InputLeftElement>
-                <Input
-                  required
-                  type="email"
-                  placeholder='Email'
-                  borderRadius="20px"
-                  pl="10"
-                  color="white"
-                  _placeholder={{ color: 'white' }}
-                  {...register('email')}
-                  isDisabled={isSubmitting}
-                />
-              </InputGroup>
-            </FormControl>
+            <CustomInput RegisterPart={register('email')} isDisabled={isSubmitting} testId={"email"} placeholder={'Email'} icon={<EmailIcon color="white" />} />
 
-            <FormControl isRequired>
-              <InputGroup size='md'>
-                <InputLeftElement pointerEvents="none">
-                  <LockIcon color="white" />
-                </InputLeftElement>
-                <Input
-                  type="password"
-                  placeholder='Password'
-                  required
-                  borderRadius="20px"
-                  pl="10"
-                  color="white"
-                  _placeholder={{ color: 'white' }}
-                  {...register('password')}
-                  isDisabled={isSubmitting}
-                />
-              </InputGroup>
-            </FormControl>
+            <PasswordInput RegisterPart={register('password')} isDisabled={isSubmitting} testId={"password"} placeholder={"Password"} icon={<LockIcon color="white" />} />
 
             <Button type="submit" px={7} borderRadius="20px" fontSize="sm" color="#371687" isDisabled={isSubmitting}>{isSubmitting ? <Spinner /> : 'LOG IN'}</Button>
           </chakra.form>
