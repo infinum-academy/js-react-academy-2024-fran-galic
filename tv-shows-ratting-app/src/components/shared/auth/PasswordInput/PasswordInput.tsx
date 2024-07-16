@@ -31,7 +31,7 @@ export const PasswordInput = (props: IPasswordInputProps) => {
                _placeholder={{ color: 'white' }}
                {...props.RegisterPart}
                isDisabled={props.isDisabled}
-               data-testId={props.testId}
+               data-testid={props.testId}
             />
             <InputRightElement fontSize="md">
                <IconButton

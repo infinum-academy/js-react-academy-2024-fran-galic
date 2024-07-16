@@ -1,3 +1,4 @@
+'use client';
 import { FormControl, IconButton, Input, InputGroup, InputLeftElement } from "@chakra-ui/react";
 
 interface ICustomInputProps {
@@ -26,7 +27,7 @@ export const CustomInput = (props: ICustomInputProps) => {
                _placeholder={{ color: 'white' }}
                {...props.RegisterPart}
                isDisabled={props.isDisabled}
-               data-testId={props.testId}
+               data-testid={props.testId}
             />
          </InputGroup> 
       </FormControl>
