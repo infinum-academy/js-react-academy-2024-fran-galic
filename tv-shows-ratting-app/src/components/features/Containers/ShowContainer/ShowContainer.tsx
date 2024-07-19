@@ -1,18 +1,12 @@
 "use client"
 
 import { ShowDetails } from "@/components/features/shows/ShowDetails/ShowDetails";
-import { Box, Flex, Stack } from "@chakra-ui/react";
+import { Stack } from "@chakra-ui/react";
 import { ShowReviewSection } from "@/components/features/shows/ShowReviewSection/ShowReviewSection";
-import { useState } from "react";
-import { IReviewList } from "@/typings/review";
-import { SidebarNavigation } from "@/components/shared/SidebarNavigation/SidebarNavigation";
 import { useParams } from "next/navigation";
 import useSWR from "swr";
-import { getSpecificShow } from "@/fetchers/shows";
 import { LoadingScreen } from "@/components/shared/LoadingScreen/LoadingScreen";
-import { IShow } from "@/typings/show";
 import useSWRMutation from "swr/mutation";
-import { swrKeys } from "@/fetchers/swrKeys";
 import { getSignInMutator } from "@/fetchers/getSignInMutator";
 
 interface IgetSignInMutatorParams2 {
