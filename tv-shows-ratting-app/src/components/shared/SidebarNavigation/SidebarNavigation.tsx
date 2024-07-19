@@ -24,13 +24,35 @@ export const SidebarNavigation = () => {
       >
          <SiteLogo />
          <Flex direction="column" gap={3} flexGrow={1} fontSize="1.2rem">
-            <Text as={NextLink} href="/all-shows" textDecoration={pathname == '/all-shows' ? 'underline' : ''}>
+            <Text 
+            as={NextLink} 
+            href="/all-shows" 
+            backgroundColor={pathname == '/all-shows' ? 'purple.700' : 'transparent'}
+            padding={2}
+            paddingLeft={4}
+            borderRadius="50px"
+            width="150px"
+            >
                All shows
             </Text>
-            <Text as={NextLink} href="/top-rated" textDecoration={pathname == '/top-rated' ? 'underline' : ''}>
+            <Text 
+            as={NextLink} 
+            href="/top-rated"
+            backgroundColor={pathname == '/top-rated' ? 'purple.700' : 'transparent'}
+            padding={2}
+            paddingLeft={4}
+            borderRadius="50px"
+            width="150px"
+            >
                Top rated
             </Text>
-            <Text>
+            <Text 
+            backgroundColor='transparent'
+            padding={2}
+            paddingLeft={4}
+            borderRadius="50px"
+            width="150px"
+            >
                My profile
             </Text>
          </Flex>
