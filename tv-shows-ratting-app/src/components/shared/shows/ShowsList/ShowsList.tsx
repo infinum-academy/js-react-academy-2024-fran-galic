@@ -17,7 +17,8 @@ export const ShowsList = ({ shows } : IShowsList) => {
       align="start"
       justify="start"
       gap={8}
-      width="1000px"
+      maxWidth="1000px"
+      width={"100%"}
       my={8}
       >
          {shows.map((show) => {
