@@ -8,7 +8,7 @@ export default function OneShowDetailsPage() {
    return (
       <>
          <AuthRedirect to="/login" condition="isLoggedOut" />
-         <ShowContainer />;
+         <ShowContainer />
       </>
    )
 

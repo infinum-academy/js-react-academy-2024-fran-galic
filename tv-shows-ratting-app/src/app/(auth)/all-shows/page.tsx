@@ -7,7 +7,7 @@ export default function AllShowsPage() {
    return (
       <>
          <AuthRedirect to="/login" condition="isLoggedOut" />
-         <AllShowsContainer />;
+         <AllShowsContainer />
       </>
    )
 }

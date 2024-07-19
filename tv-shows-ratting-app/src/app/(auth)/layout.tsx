@@ -1,5 +1,5 @@
 import { SidebarNavigation } from "@/components/shared/SidebarNavigation/SidebarNavigation";
-import { Flex } from "@chakra-ui/react";
+import { Box, Flex } from "@chakra-ui/react";
 
 //kako bi se postavila odgovarajuca boja na neki token?
 export default function RootLayout({
@@ -8,9 +8,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-   <Flex>
+   <Flex height="100vh">
       <SidebarNavigation />
-      { children }
+      <Box 
+      flex="1" 
+      overflowY="auto" 
+      sx={{ '::-webkit-scrollbar': { display: 'none' }, '-ms-overflow-style': 'none', 'scrollbar-width': 'none' }} 
+      >
+        {children}
+      </Box>
    </Flex>
   )
 }

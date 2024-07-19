@@ -14,7 +14,7 @@ export const SidebarNavigation = () => {
    return (
       <Flex 
       direction="column" 
-      height="100%" 
+      height="100vh" 
       width="200px" 
       paddingTop={4}
       paddingBottom={6} 
