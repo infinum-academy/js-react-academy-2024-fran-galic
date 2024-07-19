@@ -34,13 +34,6 @@ export const AllShowsContainer = () => {
 		return <div>Ups something went wrong...</div>;
 	}
 
-   return (
-      <Flex width="100%" columnGap="7%" minHeight="100vh">
-         <Box width="180px">
-            <SidebarNavigation />
-         </Box>
-         <ShowsList shows={data?.shows} />
-      </Flex>
-   );
+   return ( <ShowsList shows={data?.shows} /> );
 
 }

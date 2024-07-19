@@ -1,10 +1,7 @@
-import { Button, Center, Modal, ModalBody, ModalContent, ModalFooter, ModalOverlay, Text, useDisclosure } from "@chakra-ui/react";
+// !!! treba jos rejsit onu jendu stavr sa navigacijama i sa local storgae da cisitti smao odgovarjauce podatke
+
+import { Button, Modal, ModalBody, ModalContent, ModalFooter, ModalOverlay, Text, useDisclosure } from "@chakra-ui/react";
 import { useRouter } from "next/navigation";
-
-
-
-
-
 
 export const LogOutButton = () => {
 
@@ -32,7 +29,7 @@ export const LogOutButton = () => {
                      </Button>
                      <Button 
                      variant='ghost'
-                     // Trebat cu ispravit   !!!!
+                     // Trebat cu ispravit   !!!!     -> problme za bolje koristenje swr i swrMutaiton da s ene krostie u isto vrijeme
                      onClick={() => {
                         localStorage.clear();
                         onClose();

@@ -32,13 +32,7 @@ export const TopRatedShowsContainer = () => {
 	}
 
    return (
-      <Flex width="100%" columnGap="7%" minHeight="100vh">
-         <Box width="180px">
-            <SidebarNavigation />
-         </Box>
-         <ShowsList shows={data?.shows}/>
-      </Flex>
-      
+      <ShowsList shows={data?.shows}/>
    );
 
 }

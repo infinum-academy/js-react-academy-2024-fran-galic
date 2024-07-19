@@ -14,13 +14,14 @@ export const ShowsList = ({ shows } : IShowsList) => {
       <Flex 
       direction="row"
       wrap="wrap"
-      align="start"
       justify="start"
       gap={8}
       width="1000px"
       my={8}
+      minHeight={"100vh"}
+      align="flex-start"
       >
-         {shows.map((show, index) => {
+         {shows.map((show) => {
             return <ShowCard show={show} key={ show.id } />
          })}
       </Flex>

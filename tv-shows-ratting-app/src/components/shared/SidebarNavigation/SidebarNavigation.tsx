@@ -1,10 +1,9 @@
 "use client"
 
 import { SiteLogo } from "@/components/core/SiteLogo/SiteLogo";
-import { Button, Center, Flex, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Stack, Text, useDisclosure } from "@chakra-ui/react";
+import { Flex, Text} from "@chakra-ui/react";
 import NextLink from 'next/link';
-import { useRouter, usePathname} from "next/navigation";
-import { useEffect, useState } from "react";
+import { usePathname} from "next/navigation";
 import { LogOutButton } from "./LogOutButton/LogOutButton";
 
 
@@ -17,7 +16,8 @@ export const SidebarNavigation = () => {
       direction="column" 
       height="100%" 
       width="200px" 
-      py={4} 
+      paddingTop={4}
+      paddingBottom={6} 
       px={1} 
       gap={14} 
       fontSize="md"
