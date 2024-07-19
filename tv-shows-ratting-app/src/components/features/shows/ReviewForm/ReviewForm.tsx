@@ -83,9 +83,10 @@ export const ReviewForm = ({ onAdd }: IReviewFormProps) => {
       <Button 
         type="submit" 
         bg="white" 
-        borderRadius="xl" 
-        fontSize="xs" 
-        width="70px" 
+        borderRadius="100px" 
+        fontSize="sm" 
+        width="100px"
+        height="40px" 
         size="sm" 
         isDisabled={isSubmitting}
       >
