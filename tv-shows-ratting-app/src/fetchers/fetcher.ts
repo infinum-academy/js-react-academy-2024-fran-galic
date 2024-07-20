@@ -1,6 +1,4 @@
 
-
-
 export async function fetcher<T>(input: string | URL | globalThis.Request, init?: RequestInit): Promise<T> {
 	let data;
 	const oldHeadersString = localStorage.getItem('userHeaders');
