@@ -13,3 +13,9 @@ export interface IReview {
 export interface IReviewList {
    reviews: Array<IReview>
 }
+
+export interface ICreateReviewData {
+	comment: string,
+   rating: number,
+   show_id: string
+}

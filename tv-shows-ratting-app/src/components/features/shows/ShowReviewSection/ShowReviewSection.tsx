@@ -99,7 +99,7 @@ export const ShowReviewSection = ({ showId }: IShowReviewSectionProps) => {
    return (
       <Stack spacing={5}>
         <Text fontSize="1.3rem">Reviews</Text>
-        <ReviewForm  onAdd={/* onAddReview */ () => {}}/>
+        <ReviewForm show_id={showId} />
         <ReviewList reviewList={data} onDeleteReview={/* onDeleteReview */ () => {}}/>
       </Stack>
    );

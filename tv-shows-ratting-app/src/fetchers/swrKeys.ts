@@ -36,4 +36,5 @@ export const swrKeys = {
     const urlWithParams = `${swrKeys.shows}/${showId.toString()}/reviews?${urlParams.toString()}`;
     return urlWithParams;
   },
+  reviews: `${apiUrl}/reviews`
 };
