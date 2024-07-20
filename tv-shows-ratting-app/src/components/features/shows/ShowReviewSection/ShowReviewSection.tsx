@@ -3,7 +3,7 @@
 import { Stack, Text } from "@chakra-ui/react";
 import { ReviewForm } from "../ReviewForm/ReviewForm";
 import { ReviewList } from "../../review/ReviewList/ReviewList";
-import { IReview, IReviewList } from "@/typings/review";
+import { IReview, IReviewList } from "@/typings/Review.type";
 import { useEffect, useState } from "react";
 
  

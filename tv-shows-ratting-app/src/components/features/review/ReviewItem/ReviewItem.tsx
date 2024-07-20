@@ -1,6 +1,6 @@
 'use client';
 
-import { IReview } from "@/typings/review"
+import { IReview } from "@/typings/Review.type"
 import { Avatar, Box, Button, Card, CardBody, Flex, Stack, Text} from "@chakra-ui/react";
 import { StarRating } from "../StarRating/StarRating";
 

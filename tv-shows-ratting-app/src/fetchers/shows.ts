@@ -1,5 +1,5 @@
 import { fetcher } from '@/fetchers/fetcher';
-import { IShow } from '@/typings/show';
+import { IShow } from '@/typings/Show.type';
 
 interface IShowsResponse {
    shows: Array<IShow>

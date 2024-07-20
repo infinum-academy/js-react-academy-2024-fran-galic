@@ -1,4 +1,5 @@
 
+// trebao bi okej raditi za Register i LogIn
 export async function mutator<T>(url: string, { arg }: { arg: T }) {
    try {
      const options = {

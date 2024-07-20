@@ -1,6 +1,6 @@
 "use client"
 
-import { IShow } from "@/typings/show";
+import { IShow } from "@/typings/Show.type";
 import { Flex } from "@chakra-ui/react";
 import { ShowCard } from "../ShowCard/ShowCard";
 

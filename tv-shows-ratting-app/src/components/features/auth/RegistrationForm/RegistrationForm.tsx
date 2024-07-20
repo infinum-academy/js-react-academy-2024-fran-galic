@@ -9,21 +9,18 @@ import { useForm } from 'react-hook-form';
 import useSWRMutation from 'swr/mutation';
 import { swrKeys } from '@/fetchers/swrKeys';
 import { SuccessWindow } from '@/components/shared/auth/SuccessWidnow/SuccessWindow';
-import { mutator } from '@/fetchers/mutators';
 import { PasswordInput } from '@/components/shared/auth/PasswordInput/PasswordInput';
 import { CustomInput } from '@/components/shared/auth/CustomInput/CustomInput';
+import { registerAccount } from '@/mutation/auth';
+import { IRegisterData } from '@/typings/Auth.type';
 
-interface IRegistrationFormInputs {
-  email: string,
-  password: string,
-  password_confirmation: string
-}
+interface IRegistrationFormInputs extends IRegisterData {}; //doslovno isti interface samo se drugaicje zove
 
 export const RegistrationForm = () => {
   const { register, handleSubmit, formState: { isSubmitting, errors }, setError, clearErrors, getValues } = useForm<IRegistrationFormInputs>();
   const [registered, setRegistered] = useState(false);
 
-  const { trigger } = useSWRMutation(swrKeys.register, mutator<IRegistrationFormInputs>,
+  const { trigger } = useSWRMutation(swrKeys.register, registerAccount,
     {
       onSuccess: () => {
         setRegistered(true);
@@ -51,7 +48,7 @@ export const RegistrationForm = () => {
 
   return (
     registered ? (
-      <SuccessWindow link={'/login'} description={'You have successfully registered!'} buttonText={'Log in'} />
+      <SuccessWindow link={'/all-shows'} description={'You have successfully registered!'} buttonText={'Lets Rock!'} />
     ) : (
       <Card maxW='md' p={5} borderRadius="20px" bg={"#371687"}>
         <CardBody>

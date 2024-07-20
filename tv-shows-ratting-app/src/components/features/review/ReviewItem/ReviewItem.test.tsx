@@ -6,7 +6,7 @@
    + 5. check if onDelete callback has beed called only once with the necessary data
 */
 import { render, screen } from '@testing-library/react';
-import { IReviewList } from '@/typings/review';
+import { IReviewList } from '@/typings/Review.type';
 import { ReviewItem } from './ReviewItem';
 
 describe("ReviewItem", () => {

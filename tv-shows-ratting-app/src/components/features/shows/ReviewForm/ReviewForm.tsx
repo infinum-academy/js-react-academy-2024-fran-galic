@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { Box, Button, Input, Stack, Textarea, Text, Flex, Spinner, FormControl, FormErrorMessage } from "@chakra-ui/react";
 import { StarRating } from "../../review/StarRating/StarRating";
 import { useForm } from "react-hook-form";
-import { IReview } from "@/typings/review";
+import { IReview } from "@/typings/Review.type";
 
 interface IReviewFormProps {
   onAdd: (review: IReview) => void;

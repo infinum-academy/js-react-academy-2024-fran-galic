@@ -1,7 +1,7 @@
  'use client';
 
 import React, { useState } from 'react';
-import { IReview, IReviewList } from "@/typings/review";
+import { IReview, IReviewList } from "@/typings/Review.type";
 import { Stack, Button, Flex, Text } from "@chakra-ui/react";
 import { ReviewItem } from "../ReviewItem/ReviewItem";
 
