@@ -6,27 +6,15 @@ import { ShowReviewSection } from "@/components/features/shows/ShowReviewSection
 import { useParams } from "next/navigation";
 import useSWR from "swr";
 import { LoadingScreen } from "@/components/shared/LoadingScreen/LoadingScreen";
-import useSWRMutation from "swr/mutation";
-import { getSignInMutator } from "@/fetchers/getSignInMutator";
 
-interface IgetSignInMutatorParams2 {
-  id: string
-}
+import { swrKeys } from "@/fetchers/swrKeys";
+import { getSpecificShow } from "@/fetchers/shows";
 
 export default function ShowContainer() {
   const params = useParams();
   const id = params.id;
 
-  const { trigger } = useSWRMutation(`https://tv-shows.infinum.academy/shows/${id}`, getSignInMutator<IgetSignInMutatorParams2>);
-
-  async function getSpecificShow(params: IgetSignInMutatorParams2) {
-    const response = await trigger(params);
-    return response.data;
- }
-
- const { data, error, isLoading } = useSWR(`/api/shows/${id}`, () =>
-  getSpecificShow({ id: id as string })  // jer je to defoult navedeno u dokumenaticiji, moze biti i druge vrijendosti
-);
+ const { data, error, isLoading } = useSWR(swrKeys.specificShow(id as string), getSpecificShow);
 
 	if (isLoading) {
 		return <LoadingScreen />;

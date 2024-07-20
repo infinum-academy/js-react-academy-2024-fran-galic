@@ -1,19 +1,4 @@
-// genericki fetcher koji nam rejsva 90 posot posla, i onda cmeo njega koristiti za izgrandju drugih fetchera
 
-/* export async function fetcher<T>(input: string | URL | globalThis.Request, init?: RequestInit): Promise<T> {
-	try {
-		const response = await fetch(input, init);
-
-		if (!response.ok) {
-			throw new Error(`Response status: ${response.status}`);
-		}
-
-		return response.json();
-	} catch (error) {
-		throw new Error(`Response status: ${error}`);
-	}
-}
- */
 
 
 export async function fetcher<T>(input: string | URL | globalThis.Request, init?: RequestInit): Promise<T> {
@@ -32,24 +17,6 @@ export async function fetcher<T>(input: string | URL | globalThis.Request, init?
 			},
 			...init,
 		}); 
- 
-/* 		const options = {
-			method: 'GET',
-			headers: {
-			  'Content-Type': 'application/json',
-			  Accept: 'application/json',
-			  'access-token': oldHeaders.accessToken,
-			  client: oldHeaders.client,
-			  'token-type': oldHeaders.tokenType,
-			  uid: oldHeaders.uid,
-			  expiry: oldHeaders.expiry,
-			},
-		 };  
-
-		 const response = await fetch(input, options);
-*/
- 
-
 
 		// Provjeravamo je li odgovor uspješan
 		if (!response.ok) {
