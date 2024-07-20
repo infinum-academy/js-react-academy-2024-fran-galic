@@ -1,7 +1,9 @@
 // !!! treba jos rejsit onu jendu stavr sa navigacijama i sa local storgae da cisitti smao odgovarjauce podatke
 
+import { swrKeys } from "@/fetchers/swrKeys";
 import { Button, Modal, ModalBody, ModalContent, ModalFooter, ModalOverlay, Text, useDisclosure } from "@chakra-ui/react";
 import { useRouter } from "next/navigation";
+import { mutate } from "swr";
 
 export const LogOutButton = () => {
 
@@ -31,8 +33,8 @@ export const LogOutButton = () => {
                      variant='ghost'
                      // Trebat cu ispravit   !!!!     -> problme za bolje koristenje swr i swrMutaiton da s ene krostie u isto vrijeme
                      onClick={() => {
-                        localStorage.clear();
-                        onClose();
+                        localStorage.removeItem('userHeaders');
+                        onClose()
                         router.push('/login');
                      }}
                      >

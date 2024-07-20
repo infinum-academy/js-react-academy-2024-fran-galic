@@ -24,5 +24,16 @@ export const swrKeys = {
     const urlParams = new URLSearchParams(queryParams);
     const urlWithParams = `${swrKeys.top_rated_shows}?${urlParams.toString()}`;
     return urlWithParams;
-  } 
+  },
+  // za reviews
+  allReviews: ( showId: string, page: number, items: number) => {
+    const queryParams = {
+      page: page.toString(),
+      items: items.toString(),
+    };
+    const urlParams = new URLSearchParams(queryParams);
+
+    const urlWithParams = `${swrKeys.shows}/${showId.toString()}/reviews?${urlParams.toString()}`;
+    return urlWithParams;
+  },
 };

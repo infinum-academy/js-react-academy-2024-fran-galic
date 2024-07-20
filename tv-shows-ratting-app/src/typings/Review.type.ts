@@ -1,8 +1,13 @@
 export interface IReview {
-   reviewersEmail?: string,
-   avatar?: string,
-   rating: number,
+   id: number,
    comment: string,
+   rating: number,
+   show_id: number,
+   user: {
+      id: number,
+      email?: string,
+      image_url?: null
+   }
 }
 
 export interface IReviewList {

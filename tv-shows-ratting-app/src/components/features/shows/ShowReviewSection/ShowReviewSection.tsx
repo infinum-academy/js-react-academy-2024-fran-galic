@@ -5,6 +5,10 @@ import { ReviewForm } from "../ReviewForm/ReviewForm";
 import { ReviewList } from "../../review/ReviewList/ReviewList";
 import { IReview, IReviewList } from "@/typings/Review.type";
 import { useEffect, useState } from "react";
+import { swrKeys } from "@/fetchers/swrKeys";
+import useSWR from "swr";
+import { getReviews } from "@/mutation/reviews";
+import { LoadingScreen } from "@/components/shared/LoadingScreen/LoadingScreen";
 
  
  //vjeroavtno ce trebat napravit i Container komponteu za ovo ali to cu jos vidit
@@ -33,13 +37,12 @@ import { useEffect, useState } from "react";
  }
 
  interface IShowReviewSectionProps {
-   onCallRatting: (reviewList: IReviewList) => void;
    showId: string
  }
 
-export const ShowReviewSection = ({onCallRatting, showId}: IShowReviewSectionProps) => {
+export const ShowReviewSection = ({ showId }: IShowReviewSectionProps) => {
 
-   const [reviewList, setReviewList] = useState(mockReviewList);
+/*    const [reviewList, setReviewList] = useState(mockReviewList);
 
    const saveToLocalStorage = (reviewList: IReviewList) => {
       localStorage.setItem(`reviewList/${showId}`, JSON.stringify(reviewList));
@@ -81,12 +84,23 @@ export const ShowReviewSection = ({onCallRatting, showId}: IShowReviewSectionPro
       saveToLocalStorage(newReviewList);
    };
 
+ */
+
+   const { data, error, isLoading } = useSWR(swrKeys.allReviews(showId, 1, 100) , getReviews);
+
+   if (isLoading) {
+		return <LoadingScreen />;
+	}
+
+	if (error || !data) {
+		return <div>Ups something went wrong...</div>;
+	}
 
    return (
       <Stack spacing={5}>
         <Text fontSize="1.3rem">Reviews</Text>
-        <ReviewForm  onAdd={onAddReview}/>
-        <ReviewList reviewList={reviewList} onDeleteReview={onDeleteReview}/>
+        <ReviewForm  onAdd={/* onAddReview */ () => {}}/>
+        <ReviewList reviewList={data} onDeleteReview={/* onDeleteReview */ () => {}}/>
       </Stack>
    );
 }
