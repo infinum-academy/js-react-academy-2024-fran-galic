@@ -56,7 +56,7 @@
 
 
 	} catch (error) {
-		throw new Error(`Response status: ${error}`);
+		throw new Error(`${error}`);
 	}
 
 	//bit ce ili neki objekt s podacima ili undefined ako nije bilo sadrzaja unutra ili ce se prije svega tog abaciit eroor

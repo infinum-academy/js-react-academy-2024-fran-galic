@@ -63,7 +63,14 @@ export const RegistrationForm = () => {
               onSubmit={handleSubmit(onRegister)}
             >
               <CustomInput 
-                RegisterPart={register('email', { required: 'Email is required' })} 
+                RegisterPart={register('email', { 
+                  required: 'Email is required', 
+                  pattern: {
+                    // korstim RegEx: "jedan ili više ne-praznih znakova na pocektu niza" + @ + "jedan ili više ne-praznih znakova" & - krja niza; /i - neosjetljivo na velika i mala slova
+                    value: /^\S+@\S+$/i,
+                    message: 'Invalid email address'
+                  }
+                })} 
                 isDisabled={isSubmitting} 
                 testId={"email"} 
                 placeholder={'Email'} 

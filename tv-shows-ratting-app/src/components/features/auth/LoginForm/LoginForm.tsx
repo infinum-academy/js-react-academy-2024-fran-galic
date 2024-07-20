@@ -11,22 +11,19 @@ import useSWRMutation from 'swr/mutation';
 import { SuccessWindow } from '@/components/shared/auth/SuccessWidnow/SuccessWindow';
 import { PasswordInput } from '@/components/shared/auth/PasswordInput/PasswordInput';
 import { CustomInput } from '@/components/shared/auth/CustomInput/CustomInput';
+import { ILoginData } from '@/typings/Auth.type';
+import { loginUser } from '@/mutation/auth';
 
-interface ILoginFormInputs {
-  email: string,
-  password: string
-}
+interface ILoginFormInputs extends ILoginData {}; // interface je dsolovno isti kao ILoginData samo se drugacije zove zbog bolje citljivosti
 
 export const LoginForm = () => {
   const [loggedIn, setLoggedIn] = useState(false);
   const { register, handleSubmit, formState: { isSubmitting, errors }, setError } = useForm<ILoginFormInputs>();
-  const { trigger } = useSWRMutation(swrKeys.signIn, mutator<ILoginFormInputs>);
+  const { trigger } = useSWRMutation(swrKeys.signIn, loginUser);
   
   const onLogin = async (data: ILoginFormInputs) => {
     try {
-      const response = await trigger(data);
-      localStorage.setItem('userId', response.data.user.id);
-      localStorage.setItem('userHeaders', response.headers);
+      await trigger(data);
       console.log("Login successful!");
       setLoggedIn(true);
     } catch (error) {
