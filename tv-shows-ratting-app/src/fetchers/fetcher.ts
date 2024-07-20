@@ -15,50 +15,70 @@
 }
  */
 
- export async function fetcher<T>(input: string | URL | globalThis.Request, init?: RequestInit): Promise<T> {
+
+export async function fetcher<T>(input: string | URL | globalThis.Request, init?: RequestInit): Promise<T> {
 	let data;
 	const oldHeadersString = localStorage.getItem('userHeaders');
-	const oldHeaders =  oldHeadersString ? JSON.parse(oldHeadersString) : undefined;
+	console.log("Headeri iz LocalStorage: ", oldHeadersString);
+	const oldHeaders = oldHeadersString ? JSON.parse(oldHeadersString) : undefined;
+	console.log(oldHeaders);
 
 	try {
-		const response = await fetch(input, {
+ 		const response = await fetch(input, {
 			headers: {
-				...{'Content-Type': 'application/json'},
-				...oldHeaders
-
+				'Content-Type': 'application/json',
+				Accept: 'application/json',
+				...oldHeaders,
 			},
 			...init,
-		});
+		}); 
+ 
+/* 		const options = {
+			method: 'GET',
+			headers: {
+			  'Content-Type': 'application/json',
+			  Accept: 'application/json',
+			  'access-token': oldHeaders.accessToken,
+			  client: oldHeaders.client,
+			  'token-type': oldHeaders.tokenType,
+			  uid: oldHeaders.uid,
+			  expiry: oldHeaders.expiry,
+			},
+		 };  
 
-		// nemanista u response body ako dobijemo 204, ali je zahtjec obradne uspjesno
-		const isNoContent = response.status === 204;
+		 const response = await fetch(input, options);
+*/
+ 
 
-		if (!isNoContent) {
-			//podaci u tijelu
-			data = response.json();
-			console.log("Podaci iz tijela: ", data);
-		}
 
+		// Provjeravamo je li odgovor uspješan
 		if (!response.ok) {
 			throw new Error(`Response status: ${response.status}`);
 		}
 
-		// ako je i dalje sve okej:
+		// Provjeravamo je li odgovor prazan (204 No Content)
+		const isNoContent = response.status === 204;
+
+		if (!isNoContent) {
+			// Čekamo na parsiranje tijela odgovora kao JSON
+			data = await response.json();
+			console.log("Podaci iz tijela: ", data);
+		}
+
+		// Ažuriramo lokalnu pohranu novim zaglavljima
 		const newHeaders = {
-			accessToken: response.headers.get('access-token'),
+			'access-token': response.headers.get('access-token'),
 			client: response.headers.get('client'),
-			tokenType: response.headers.get('token-type'),
+			'token-type': response.headers.get('token-type'),
 			expiry: response.headers.get('expiry'),
 			uid: response.headers.get('uid'),
-		 };
+		};
 		console.log("Podaci iz Headera odgovora: ", newHeaders);
 		localStorage.setItem('userHeaders', JSON.stringify(newHeaders));
-
-
 	} catch (error) {
 		throw new Error(`${error}`);
 	}
 
-	//bit ce ili neki objekt s podacima ili undefined ako nije bilo sadrzaja unutra ili ce se prije svega tog abaciit eroor
+	// Vraćamo podatke ili undefined ako nije bilo sadržaja
 	return data;
-} 
+}

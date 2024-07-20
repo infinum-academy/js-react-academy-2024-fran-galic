@@ -15,25 +15,16 @@ export interface IgetSignInMutatorParams {
 
 export const AllShowsContainer = () => {
 
-   const { trigger } = useSWRMutation(swrKeys.shows, getSignInMutator<IgetSignInMutatorParams>);
-
-   async function getShows(params: IgetSignInMutatorParams) {
-      const response = await trigger(params);
-      return response.data;
-   }
-
-   const { data, error, isLoading } = useSWR(`/api/shows`, () =>
-      getShows({ page: '1', items: '20' })  // jer je to defoult navedeno u dokumenaticiji, moze biti i druge vrijendosti
-    );
+   const { data, error, isLoading } = useSWR(swrKeys.shows, getShows);
 
 	if (isLoading) {
 		return <LoadingScreen />;
 	}
 
 	if (error || !data) {
-		return <div>Ups something went wrong...</div>;
+		return <div>Ups something went wrong...</div>
 	}
 
-   return ( <ShowsList shows={data?.shows} /> );
+   return ( <ShowsList shows={data.shows} /> );
 
 }
