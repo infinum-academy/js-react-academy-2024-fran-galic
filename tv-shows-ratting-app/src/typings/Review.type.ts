@@ -6,7 +6,7 @@ export interface IReview {
    user: {
       id: number,
       email?: string,
-      image_url?: null
+      image_url?: string
    }
 }
 
