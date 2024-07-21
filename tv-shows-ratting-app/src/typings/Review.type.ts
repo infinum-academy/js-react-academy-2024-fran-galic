@@ -19,3 +19,5 @@ export interface ICreateReviewData {
    rating: number,
    show_id: string
 }
+
+export interface IEditReviewData extends ICreateReviewData {}

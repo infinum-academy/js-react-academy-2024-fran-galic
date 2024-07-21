@@ -33,7 +33,7 @@ export const ShowDetails = ({show : {title, description, image_url, average_rati
                      </Text>
                   </Flex>
                </Box>
-               <Text pt='2' fontSize='xs' width="300px">
+               <Text pt='2' fontSize='sm' width="300px">
                   {description}
                </Text>
             </Flex>

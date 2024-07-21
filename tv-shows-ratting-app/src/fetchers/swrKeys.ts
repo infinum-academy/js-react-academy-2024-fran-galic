@@ -1,3 +1,5 @@
+import { DeleteIcon } from "@chakra-ui/icons";
+
 const apiUrl = "https://tv-shows.infinum.academy";
 export const swrKeys = {
   register: `${apiUrl}/users`,
@@ -36,5 +38,9 @@ export const swrKeys = {
     const urlWithParams = `${swrKeys.shows}/${showId.toString()}/reviews?${urlParams.toString()}`;
     return urlWithParams;
   },
-  reviews: `${apiUrl}/reviews`
+  reviews: `${apiUrl}/reviews`,
+  deleteReviews: (reviewId: number) => {
+    return `${swrKeys.reviews}/${reviewId.toString()}`
+  },
+  editReview: (reviewId: number) => {return swrKeys.deleteReviews(reviewId)}
 };

@@ -9,31 +9,24 @@ import { render, screen } from '@testing-library/react';
 import { IReviewList } from '@/typings/Review.type';
 import { ReviewItem } from './ReviewItem';
 
+// !!! vratiti cu se na ovo za sad anije toliko bitno
 describe("ReviewItem", () => {
 
-   const mockReviewList: IReviewList = {
-      reviews: [
-        {
-          reviewersEmail: "fran.galic7@gmail.com",
-          avatar: "https://img.freepik.com/free-psd/3d-illustration-human-avatar-profile_23-2150671142.jpg",
-          rating: 5,
-          comment: "Vrlo zabvana i poucna serija",
-        },
-        {
-          reviewersEmail: "pero.peric@gmail.com",
-          avatar: "https://static.vecteezy.com/system/resources/thumbnails/002/002/403/small/man-with-beard-avatar-character-isolated-icon-free-vector.jpg",
-          rating: 3,
-          comment: "Nisam volio onaj dio di je Walter Slomio krevet",
-        },
-        {
-          reviewersEmail: "ivica.kicmanovic@gmail.com",
-          avatar: "https://img.freepik.com/premium-vector/man-character_665280-46970.jpg",
-          rating: 4,
-          comment: "Finaly some good fuc*** food",
-        },
-    
-      ]
-    }
+  const mockReviewList: IReviewList = {
+    reviews: [
+      {
+        id: 1,
+        comment: "Vrlo zabavna i poucna serija",
+        rating: 5,
+        show_id: 101,
+        user: {
+          id: 1,
+          email: "fran.galic7@gmail.com",
+          image_url: "https://img.freepik.com/free-psd/3d-illustration-human-avatar-profile_23-2150671142.jpg",
+        }
+      }
+    ]
+  };
 
    it("should render correct user email", () => {
       //react testing library rendera stvari

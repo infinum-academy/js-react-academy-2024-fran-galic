@@ -4,13 +4,15 @@ import React, { useState } from 'react';
 import { IReview, IReviewList } from "@/typings/Review.type";
 import { Stack, Button, Flex, Text } from "@chakra-ui/react";
 import { ReviewItem } from "../ReviewItem/ReviewItem";
+import { mutate } from 'swr';
+import { swrKeys } from '@/fetchers/swrKeys';
 
 interface IReviewListProps {
-  reviewList: IReviewList;
-  onDeleteReview: (review: IReview) => void;
+  reviewList: IReviewList,
+  show_id: string,
 }
 
-export const ReviewList = ({ reviewList, onDeleteReview }: IReviewListProps) => {
+export const ReviewList = ({ reviewList, show_id }: IReviewListProps) => {
   const [currentPage, setCurrentPage] = useState(1);
   const reviewsPerPage = 4;
 
@@ -35,8 +37,10 @@ export const ReviewList = ({ reviewList, onDeleteReview }: IReviewListProps) => 
         return (
           <ReviewItem
             key={index}
-            review={review}
-            onDelete={onDeleteReview}
+            review={review} 
+            //pitanje je dlai to i tkaode rmutira podatke, mislim d abi trbealo raditi
+            mutate={() => { return mutate(swrKeys.allReviews(show_id, 1, 100))}}    
+            show_id= {show_id}      
           />
         );
       })}
