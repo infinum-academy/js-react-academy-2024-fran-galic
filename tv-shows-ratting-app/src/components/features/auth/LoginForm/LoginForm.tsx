@@ -6,7 +6,6 @@ import { EmailIcon, LockIcon } from '@chakra-ui/icons';
 import NextLink from 'next/link';
 import { useForm } from 'react-hook-form';
 import { swrKeys } from '@/fetchers/swrKeys';
-import { mutator } from '@/fetchers/mutators';
 import useSWRMutation from 'swr/mutation';
 import { SuccessWindow } from '@/components/shared/auth/SuccessWidnow/SuccessWindow';
 import { PasswordInput } from '@/components/shared/auth/PasswordInput/PasswordInput';
