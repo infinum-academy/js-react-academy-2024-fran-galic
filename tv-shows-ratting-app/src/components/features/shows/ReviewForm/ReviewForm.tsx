@@ -1,7 +1,7 @@
 'use client';
 
 import { IReview } from "@/typings/review";
-import { Box, Button, Input, Stack, Textarea } from "@chakra-ui/react";
+import { Box, Button, Input, Stack, Textarea, Text, Flex, Center } from "@chakra-ui/react";
 import { StarRating } from "../../review/StarRating/StarRating";
 import { useState } from "react";
 
@@ -57,12 +57,13 @@ export const ReviewForm = ({onAdd}: IReviewFormProps) => {
    return (
        <Stack as="form" spacing={4} maxW="container.sm" onSubmit={addShowReview}>
            <Textarea placeholder="Add review" borderRadius="xl" bg="white" fontSize="xs" color="black" id="text-input" required/>
-            <Box maxWidth="105px" onMouseLeave={() => setLocked(true)} onMouseEnter={() => setLocked(false)}>
-               <StarRating noOfStars={isLocked? numSelectedStars : numHoveredStars} isStatic={false} onClick={onClick} onHover={onHover} />
-            </Box>
+           <Flex gap={4} align="baseline">
+               <Text>Rating</Text>
+               <Box maxWidth="105px" onMouseLeave={() => setLocked(true)} onMouseEnter={() => setLocked(false)}>
+                  <StarRating noOfStars={isLocked? numSelectedStars : numHoveredStars} isStatic={false} onClick={onClick} onHover={onHover} data_testid="star-rating"/>
+               </Box>
+            </Flex>
            <Button type="submit" bg="white" borderRadius="xl" fontSize="xs" width="70px" size="sm">Post</Button>
        </Stack>
    );
    };
-
-   <Input placeholder="Add rating" borderRadius="xl" bg="white" fontSize="xs" color="black" width="150px" size="md" id="grade" required/>

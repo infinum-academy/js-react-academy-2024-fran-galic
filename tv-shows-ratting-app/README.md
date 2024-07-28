@@ -39,8 +39,14 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 
 
 
-Pitanja:
-1. kako da se napravi da mi se ne randera prvo stara stranica a tke da s eonda ucita nova
-2. Dali mi je organizaicja fajlova dobra?
-3. Kako bi se tocno trebale definiriat dodaci za sheme di mi mozemo definirat koju boju zelimo korsitit
-4. zasto mi stranic aide dolje kad nema uopce reviwa
+
+Što bi se moglo dat poboljšat:
+
+Section 1:
+1) u SidebarNavigation bi mogo naprvaiti bolji logo, slcinije onako kako ga oni imaju
+
+2) kada je samo nekolio itema u listi, zasto postoji toliko veliki gap izmedu prvog i drugog reda? npr. to se moze vidjeti na topRated shows stranici
+
+3) Kada bi neku komponetu nazvali Section a kada Container?
+
+4) kako bih trebao racunati avr grade za neku seirju, dali trebam uzimat vrijendosti iz review-a koje imam u listi iz LocalStorage ili da smao korsitm vrijednos tkoju sma dobio iz API-aja

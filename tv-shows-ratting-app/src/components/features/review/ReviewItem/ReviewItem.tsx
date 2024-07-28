@@ -28,7 +28,7 @@ export const ReviewItem = ({review, onDelete} : IReviewItemProps) => {
                   )
                }
                <Text fontSize='sm'>{review.comment}</Text>
-               <StarRating noOfStars={review.rating} isStatic={true} onClick={() => {}} onHover={() => {}} />
+               <StarRating noOfStars={review.rating} isStatic={true} onClick={() => {}} onHover={() => {}} data_testid="star-rating"/>
                <Button bg="white" borderRadius='3xl' fontSize='xs' width="70px" size='sm' onClick={() => {onDelete(review)}}>Remove</Button>
             </Stack>
          </CardBody>
