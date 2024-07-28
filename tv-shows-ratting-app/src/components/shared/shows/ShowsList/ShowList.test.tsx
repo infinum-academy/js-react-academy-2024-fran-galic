@@ -2,7 +2,7 @@
    + 1. check if all the provided shows are rendered
 */
 
-import { IShow } from '@/typings/show';
+import { IShow } from '@/typings/Show.type';
 import { render, screen } from '@testing-library/react';
 import { ShowsList } from './ShowsList';
 

@@ -1,6 +1,6 @@
 "use client"
 
-import { IShow } from "@/typings/show";
+import { IShow } from "@/typings/Show.type";
 import { StarIcon } from "@chakra-ui/icons";
 import { Card, CardBody, Heading, Stack, Image, Text, Flex } from "@chakra-ui/react";
 import NextLink from 'next/link';

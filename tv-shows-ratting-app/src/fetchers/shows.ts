@@ -1,18 +1,28 @@
-import { fetcher } from '@/fetchers/fetcher';
-import { IShow } from '@/typings/show';
+import { IShow } from "@/typings/Show.type";
+import { fetcher } from "./fetcher";
 
 interface IShowsResponse {
    shows: Array<IShow>
 }
 
-export function getShows() {
-	return fetcher<IShowsResponse>("/api/shows");
+interface IShowResponse {
+	show: IShow
 }
 
-export function getTopRatedShows() {
-	return fetcher<IShowsResponse>("/api/shows/top-rated");
+export async function getShows(url: string, { arg }: { arg?: any } = {}) : Promise<IShowsResponse>{
+	return fetcher<IShowsResponse>(url, {
+		method: 'GET',
+	});
 }
 
-export function getSpecificShow(id: string) {
-	return fetcher<IShow>(`/api/shows/${id}`);
+export async function getTopRatedShows(url: string, { arg }: { arg?: any } = {}) : Promise<IShowsResponse>{
+	return fetcher<IShowsResponse>(url, {
+		method: 'GET',
+	});
+}
+
+export async function getSpecificShow(url: string, { arg }: { arg?: any } = {}) : Promise<IShowResponse>{
+	return fetcher<IShowResponse>(url, {
+		method: 'GET',
+	});
 }

@@ -1,69 +1,97 @@
 'use client';
 
-import { IReview } from "@/typings/review";
-import { Box, Button, Input, Stack, Textarea, Text, Flex, Center } from "@chakra-ui/react";
+import React, { useState } from 'react';
+import { Box, Button, Input, Stack, Textarea, Text, Flex, Spinner, FormControl, FormErrorMessage } from "@chakra-ui/react";
 import { StarRating } from "../../review/StarRating/StarRating";
-import { useState } from "react";
-
-
+import { useForm } from "react-hook-form";
+import { IReview } from "@/typings/Review.type";
 
 interface IReviewFormProps {
-   onAdd: (review: IReview) => void;
- }
+  onAdd: (review: IReview) => void;
+}
 
+interface IReviewFormInputs {
+  grade: number,
+  description: string,
+}
 
-export const ReviewForm = ({onAdd}: IReviewFormProps) => {
+export const ReviewForm = ({ onAdd }: IReviewFormProps) => {
+  const [isLocked, setLocked] = useState(false);
+  const [numSelectedStars, setNumSelectedStars] = useState(0);
+  const [numHoveredStars, setNumHoveredStars] = useState(0);
 
-   const [isLocked, setLocked] = useState(false);
-   const [numSelectedStars, setNumSelectedStars] = useState(0);
-   const [numHoveredStars, setNumHoveredStars] = useState(0);
+  const { register, handleSubmit, setValue, formState: { errors, isSubmitting }, clearErrors } = useForm<IReviewFormInputs>();
 
-   const onClick = (index: number) => {
-      setNumSelectedStars(index);
-   }
+  const onClick = (index: number) => {
+    setNumSelectedStars(index);
+    setValue('grade', index); 
+    clearErrors('grade');
+  }
 
-   const onHover = (index: number) => {
-      setNumHoveredStars(index);
-   }
+  const onHover = (index: number) => {
+    setNumHoveredStars(index);
+  }
 
-   const addShowReview = (event: any) => {
-      // bez ovog bi se stranica ponovno ucitala, jer je to defoultno ponasanje stranice, mi to ne zelimo
-      event.preventDefault();
-   
-       //uzimam podatke
-       const inputText = document.getElementById("text-input") as HTMLInputElement;
-       const description = inputText.value;
-   
-       const grade = numSelectedStars;
-   
-       const newReview: IReview = {
-           rating: grade,
-           comment: description,
-       };
+  const addShowReview = (data: IReviewFormInputs) => {
+    const newReview: IReview = {
+      rating: data.grade,
+      comment: data.description,
+    };
 
-       //provjerim jeli unos ocjene dobar
-       if (grade == 0) {
-         alert("You have to Grade the Series/Movie before submitting the review");
-         return;
-       }
+    onAdd(newReview);
+    setValue('grade', 0);
+    setNumSelectedStars(0);
+    setValue('description', "");
 
-       onAdd(newReview);
-       inputText.value = "";
-       setNumSelectedStars(0);
-   
-       console.log("Adding");
-   };
-   
-   return (
-       <Stack as="form" spacing={4} maxW="container.sm" onSubmit={addShowReview}>
-           <Textarea placeholder="Add review" borderRadius="xl" bg="white" fontSize="xs" color="black" id="text-input" required/>
-           <Flex gap={4} align="baseline">
-               <Text>Rating</Text>
-               <Box maxWidth="105px" onMouseLeave={() => setLocked(true)} onMouseEnter={() => setLocked(false)}>
-                  <StarRating noOfStars={isLocked? numSelectedStars : numHoveredStars} isStatic={false} onClick={onClick} onHover={onHover} data_testid="star-rating"/>
-               </Box>
-            </Flex>
-           <Button type="submit" bg="white" borderRadius="xl" fontSize="xs" width="70px" size="sm">Post</Button>
-       </Stack>
-   );
-   };
+    console.log("Adding");
+  };
+
+  return (
+    <Stack as="form" spacing={4} maxW="container.sm" onSubmit={handleSubmit(addShowReview)}>
+      <FormControl isInvalid={!!errors.description}>
+        <Textarea 
+          placeholder="Add review" 
+          borderRadius="xl" 
+          bg="white" 
+          fontSize="xs" 
+          color="black" 
+          id="text-input" 
+          {...register('description', { required: 'Description is required' })} 
+          isDisabled={isSubmitting}
+        />
+        <FormErrorMessage>{errors.description?.message}</FormErrorMessage>
+      </FormControl>
+      <FormControl isInvalid={!!errors.grade}>
+        <Flex gap={4} align="baseline">
+          <Text>Rating</Text>
+          <Box maxWidth="105px" onMouseLeave={() => setLocked(true)} onMouseEnter={() => setLocked(false)}>
+            <StarRating 
+              noOfStars={isLocked ? numSelectedStars : numHoveredStars} 
+              isStatic={isSubmitting} 
+              onClick={onClick} 
+              onHover={onHover} 
+              data_testid="star-rating"
+            />
+          </Box>
+        </Flex>
+        {errors.grade && <FormErrorMessage>{errors.grade.message}</FormErrorMessage>}
+        <Input type="hidden" {...register('grade', { 
+          required: 'Rating is required', 
+          validate: value => value > 0 || 'You must select a rating'
+        })} /> {/* hidden input za rating */}
+      </FormControl>
+      <Button 
+        type="submit" 
+        bg="white" 
+        borderRadius="100px" 
+        fontSize="sm" 
+        width="100px"
+        height="40px" 
+        size="sm" 
+        isDisabled={isSubmitting}
+      >
+        {isSubmitting ? <Spinner /> : 'Post'}
+      </Button>
+    </Stack>
+  );
+};
