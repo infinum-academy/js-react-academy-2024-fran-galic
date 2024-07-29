@@ -28,5 +28,11 @@ export const Button = defineStyleConfig({
 			height: '60px',
          padding: 0
 		},
+		noButton: {
+			color: 'white',
+			backgroundColor: 'transparent',
+			borderColor: 'none',
+         padding: 0
+		}
 	}
 });

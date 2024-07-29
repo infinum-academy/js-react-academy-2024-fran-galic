@@ -35,7 +35,7 @@ export const LoginForm = () => {
     loggedIn ? (
       <SuccessWindow link={'/all-shows'} description={'Congrats! You are logged in! Lets see what we are watching today!'} buttonText={'Lets rock!'} />
     ) : (
-      <Card maxW='md' p={5} borderRadius="20px" bg={"#371687"}>
+      <Card maxW='md' p={5} borderRadius={2} bg={"purple"}>
         <CardBody>
           <Flex direction="column" gap={8} alignItems="center">
             <Text fontSize="2xl" fontWeight="bold" color="white">TV shows APP</Text>
@@ -72,7 +72,7 @@ export const LoginForm = () => {
                 error={errors.password?.message} 
               />
 
-              <Button type="submit" px={7} borderRadius="20px" fontSize="sm" color="#371687" isDisabled={isSubmitting}>{isSubmitting ? <Spinner /> : 'LOG IN'}</Button>
+              <Button type="submit" px={7} borderRadius={2} fontSize="sm" color="purple" isDisabled={isSubmitting}>{isSubmitting ? <Spinner /> : 'LOG IN'}</Button>
             </chakra.form>
             <Text color="white">Don't have an account? <Text as={NextLink} href="/register" fontWeight="bold">Register</Text></Text>
           </Flex>

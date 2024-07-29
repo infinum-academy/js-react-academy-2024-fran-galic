@@ -27,22 +27,22 @@ export const SidebarNavigation = () => {
             <Text 
             as={NextLink} 
             href="/all-shows" 
-            backgroundColor={pathname == '/all-shows' ? 'purple.700' : 'transparent'}
+            backgroundColor={pathname == '/all-shows' ? 'purple' : 'transparent'}
             padding={2}
             paddingLeft={4}
-            borderRadius="50px"
-            width="150px"
+            borderRadius={2}
+            width="120px"
             >
                All shows
             </Text>
             <Text 
             as={NextLink} 
             href="/top-rated"
-            backgroundColor={pathname == '/top-rated' ? 'purple.700' : 'transparent'}
+            backgroundColor={pathname == '/top-rated' ? 'purple' : 'transparent'}
             padding={2}
             paddingLeft={4}
-            borderRadius="50px"
-            width="150px"
+            borderRadius={2}
+            width="120px"
             >
                Top rated
             </Text>
@@ -50,7 +50,7 @@ export const SidebarNavigation = () => {
             backgroundColor='transparent'
             padding={2}
             paddingLeft={4}
-            borderRadius="50px"
+            borderRadius={2}
             width="150px"
             >
                My profile
