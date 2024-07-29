@@ -20,7 +20,7 @@ export const LoadingScreen = () => {
          thickness='4px'
          speed='0.65s'
          emptyColor='lightpurple'
-         color='pink'
+         color='white'
          size='xl'
          />
       </Flex>

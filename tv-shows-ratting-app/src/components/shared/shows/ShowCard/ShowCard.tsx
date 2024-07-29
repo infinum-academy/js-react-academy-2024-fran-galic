@@ -12,7 +12,7 @@ interface IShowCard {
 export const ShowCard = ({show : {title, image_url, average_rating, id} } : IShowCard) => {
 
    return (
-      <Card width='165px' borderRadius='2xl' color="#471ab6" overflow="hidden" height="250px" as={NextLink} href={`/all-shows/${id}`}>
+      <Card width='165px' borderRadius='2xl' color="purple" overflow="hidden" height="250px" as={NextLink} href={`/all-shows/${id}`}>
          <Image
          src={image_url ?? "https://fakeimg.pl/600x400?text=No+Image"}
          alt='Series profile image'
@@ -26,7 +26,7 @@ export const ShowCard = ({show : {title, image_url, average_rating, id} } : ISho
                </Heading>
                <Flex fontSize='xs' gap={1} align="baseline">
                   <StarIcon
-                     color="#471ab6"
+                     color="purpule"
                   />
                   <Text textAlign="center">
                    {average_rating ? `  ${average_rating.toFixed(1)}/5` : "no ratings"}
