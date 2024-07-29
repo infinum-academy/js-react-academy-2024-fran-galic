@@ -50,7 +50,7 @@ export const RegistrationForm = () => {
     registered ? (
       <SuccessWindow link={'/all-shows'} description={'You have successfully registered!'} buttonText={'Lets Rock!'} />
     ) : (
-      <Card maxW='md' p={5} borderRadius="20px" bg={"#371687"}>
+      <Card maxW='md' p={5} borderRadius={2} bg={"purple"}>
         <CardBody>
           <Flex direction="column" gap={8} alignItems="center">
             <Text fontSize="2xl" fontWeight="bold" color="white">TV shows APP</Text>
@@ -96,7 +96,7 @@ export const RegistrationForm = () => {
                 error={errors.password_confirmation?.message}
               />
 
-              <Button type="submit" px={7} borderRadius="20px" fontSize="sm" color="#371687" isDisabled={isSubmitting}>{isSubmitting ? <Spinner /> : 'SIGN UP'}</Button>
+              <Button type="submit" fontSize="sm" variant={"default"} isDisabled={isSubmitting}>{isSubmitting ? <Spinner /> : 'SIGN UP'}</Button>
             </chakra.form>
             <Text color="white">Already have an account? <Text as={NextLink} href="/login" fontWeight="bold">Login</Text></Text>
           </Flex>

@@ -26,10 +26,15 @@ export const PasswordInput = (props: IPasswordInputProps) => {
           type={isHidden ? 'password' : 'text'}
           placeholder={props.placeholder}
           required
-          borderRadius="20px"
+          borderRadius={1}
           pl="10"
           color="white"
           _placeholder={{ color: 'white' }}
+          borderColor={props.error ? "pink" : "white"}
+          borderWidth={2}  // Dodano svojstvo za deblji obrub
+          _hover={{ borderColor: props.error ? "pink" : "white" }}
+          _focus={{ borderColor: props.error ? "pink" : "white", boxShadow: 'none' }}
+          _invalid={{ borderColor: "pink" }}
           {...props.RegisterPart}
           isDisabled={props.isDisabled}
           data-testid={props.testId}
@@ -47,7 +52,7 @@ export const PasswordInput = (props: IPasswordInputProps) => {
           />
         </InputRightElement>
       </InputGroup>
-      {props.error && <FormErrorMessage>{props.error}</FormErrorMessage>}
+      {props.error && <FormErrorMessage color="pink">{props.error}</FormErrorMessage>}
     </FormControl>
   );
 }
