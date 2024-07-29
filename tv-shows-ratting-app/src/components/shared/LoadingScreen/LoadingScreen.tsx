@@ -19,8 +19,8 @@ export const LoadingScreen = () => {
          <Spinner
          thickness='4px'
          speed='0.65s'
-         emptyColor='gray.200'
-         color='blue.400'
+         emptyColor='lightpurple'
+         color='pink'
          size='xl'
          />
       </Flex>

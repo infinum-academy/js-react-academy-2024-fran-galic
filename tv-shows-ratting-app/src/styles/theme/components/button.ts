@@ -32,7 +32,14 @@ export const Button = defineStyleConfig({
 			color: 'white',
 			backgroundColor: 'transparent',
 			borderColor: 'none',
-         padding: 0
+		},
+		IconButton: {
+			borderRadius: 'none',
+			width: 'auto',
+			height: 'auto',
+			padding: 0,
+			margin: 0,
 		}
 	}
 });
+

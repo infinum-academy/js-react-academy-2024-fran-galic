@@ -28,7 +28,7 @@ export const SidebarNavigation = () => {
             as={NextLink} 
             href="/all-shows" 
             backgroundColor={pathname == '/all-shows' ? 'purple' : 'transparent'}
-            padding={2}
+            padding={1}
             paddingLeft={4}
             borderRadius={2}
             width="120px"
@@ -39,7 +39,7 @@ export const SidebarNavigation = () => {
             as={NextLink} 
             href="/top-rated"
             backgroundColor={pathname == '/top-rated' ? 'purple' : 'transparent'}
-            padding={2}
+            padding={1}
             paddingLeft={4}
             borderRadius={2}
             width="120px"
@@ -48,10 +48,10 @@ export const SidebarNavigation = () => {
             </Text>
             <Text 
             backgroundColor='transparent'
-            padding={2}
+            padding={1}
             paddingLeft={4}
             borderRadius={2}
-            width="150px"
+            width="120px"
             >
                My profile
             </Text>
