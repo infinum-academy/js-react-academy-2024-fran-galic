@@ -12,6 +12,8 @@ import { PasswordInput } from '@/components/shared/auth/PasswordInput/PasswordIn
 import { CustomInput } from '@/components/shared/auth/CustomInput/CustomInput';
 import { ILoginData } from '@/typings/Auth.type';
 import { loginUser } from '@/mutation/auth';
+import { IoPerson } from "react-icons/io5";
+import { Icon } from '@chakra-ui/react'
 
 interface ILoginFormInputs extends ILoginData {}; // interface je dsolovno isti kao ILoginData samo se drugacije zove zbog bolje citljivosti
 
@@ -59,7 +61,7 @@ export const LoginForm = () => {
                 isDisabled={isSubmitting} 
                 testId={"email"} 
                 placeholder={'Email'} 
-                icon={<EmailIcon color="white" />} 
+                icon={<Icon as={IoPerson} color={"white"}/>} 
                 error={errors.email?.message} 
               />
 
@@ -74,7 +76,7 @@ export const LoginForm = () => {
 
               <Button type="submit" px={7} borderRadius={2} fontSize="sm" color="purple" isDisabled={isSubmitting}>{isSubmitting ? <Spinner /> : 'LOG IN'}</Button>
             </chakra.form>
-            <Text color="white">Don't have an account? <Text as={NextLink} href="/register" fontWeight="bold">Register</Text></Text>
+            <Text color="white" fontSize={6}>Don't have an account? <Text as={NextLink} href="/register" fontWeight="bold">Register</Text></Text>
           </Flex>
         </CardBody>
       </Card>

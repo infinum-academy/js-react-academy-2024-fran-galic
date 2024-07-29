@@ -38,6 +38,8 @@ export const PasswordInput = (props: IPasswordInputProps) => {
           {...props.RegisterPart}
           isDisabled={props.isDisabled}
           data-testid={props.testId}
+          fontSize={5}
+          fontWeight={"normal"}
         />
         <InputRightElement fontSize="md">
           <IconButton

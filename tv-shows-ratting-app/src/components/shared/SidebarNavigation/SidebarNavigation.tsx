@@ -20,10 +20,10 @@ export const SidebarNavigation = () => {
       paddingBottom={6} 
       px={1} 
       gap={14} 
-      fontSize="md"
+      fontSize={3}
       >
          <SiteLogo />
-         <Flex direction="column" gap={3} flexGrow={1} fontSize="1.2rem">
+         <Flex direction="column" gap={3} flexGrow={1}>
             <Text 
             as={NextLink} 
             href="/all-shows" 

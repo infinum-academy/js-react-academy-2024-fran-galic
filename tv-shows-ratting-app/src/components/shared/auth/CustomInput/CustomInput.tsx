@@ -35,6 +35,8 @@ interface ICustomInputProps {
               {...props.RegisterPart}
               isDisabled={props.isDisabled}
               data-testid={props.testId}
+              fontSize={5}
+              fontWeight={"normal"}
             />
           </InputGroup>
           {props.error && <FormErrorMessage color="pink">{props.error}</FormErrorMessage>}

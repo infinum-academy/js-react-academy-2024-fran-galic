@@ -13,6 +13,8 @@ import { PasswordInput } from '@/components/shared/auth/PasswordInput/PasswordIn
 import { CustomInput } from '@/components/shared/auth/CustomInput/CustomInput';
 import { registerAccount } from '@/mutation/auth';
 import { IRegisterData } from '@/typings/Auth.type';
+import { IoPerson } from "react-icons/io5";
+import { Icon } from '@chakra-ui/react'
 
 interface IRegistrationFormInputs extends IRegisterData {}; //doslovno isti interface samo se drugaicje zove
 
@@ -74,7 +76,7 @@ export const RegistrationForm = () => {
                 isDisabled={isSubmitting} 
                 testId={"email"} 
                 placeholder={'Email'} 
-                icon={<EmailIcon color="white" />} 
+                icon={<Icon as={IoPerson} color={"white"}/>} 
                 error={errors.email?.message}
               />
 
@@ -98,7 +100,7 @@ export const RegistrationForm = () => {
 
               <Button type="submit" fontSize="sm" variant={"default"} isDisabled={isSubmitting}>{isSubmitting ? <Spinner /> : 'SIGN UP'}</Button>
             </chakra.form>
-            <Text color="white">Already have an account? <Text as={NextLink} href="/login" fontWeight="bold">Login</Text></Text>
+            <Text color="white" fontSize={6}>Already have an account? <Text as={NextLink} href="/login" fontWeight="bold">Login</Text></Text>
           </Flex>
         </CardBody>
       </Card>

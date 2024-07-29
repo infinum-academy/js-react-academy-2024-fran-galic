@@ -41,7 +41,7 @@ export const EditReviewButton = ({ initialComment, mutate, show_id, review_id }:
       </Button>
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
-        <ModalContent borderRadius="20px">
+        <ModalContent borderRadius={2}>
           <ModalBody>
             <Stack spacing={4}>
                <Text fontSize='xl'>Edit the current review:</Text>

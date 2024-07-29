@@ -3,8 +3,6 @@
 import { Flex, Stack, Text } from "@chakra-ui/react";
 import { ReviewForm } from "../ReviewForm/ReviewForm";
 import { ReviewList } from "../../review/ReviewList/ReviewList";
-import { IReview, IReviewList } from "@/typings/Review.type";
-import { useEffect, useState } from "react";
 import { swrKeys } from "@/fetchers/swrKeys";
 import useSWR from "swr";
 import { getReviews } from "@/mutation/reviews";
@@ -28,7 +26,7 @@ export const ShowReviewSection = ({ showId }: IShowReviewSectionProps) => {
 
    return (
       <Flex direction={"row"} gap={5} mt={10} justify={"space-between"} maxWidth={"100%"} wrap={"wrap"}>
-         <Text fontSize="1.3rem">Reviews</Text>
+         <Text fontSize={2}>Reviews</Text>
          <Stack spacing={8} flexGrow={1} maxWidth={"870px"}>
             <ReviewForm show_id={showId} />
             <ReviewList reviewList={data} show_id={showId}/>
