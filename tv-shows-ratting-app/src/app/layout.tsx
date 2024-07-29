@@ -23,7 +23,7 @@ export default function RootLayout({
     <html lang="en" >
       <body className={inter.className} >
         <Providers>
-          <Flex bg={"darkpurple"} color='white' px={4} gap={5} > 
+          <Flex bg={"darkpurple"} color='white' px={4} gap={5} width={"100vw"}> 
              { children }
           </Flex>
         </Providers>

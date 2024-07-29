@@ -2,7 +2,7 @@
 'use client';
 
 import { IShow } from "@/typings/Show.type";
-import { Flex, Button, Text, Stack, IconButton } from "@chakra-ui/react";
+import { Flex, Button, Text, Stack, IconButton, useMediaQuery } from "@chakra-ui/react";
 import { ShowCard } from "../ShowCard/ShowCard";
 import { ChevronLeftIcon, ChevronRightIcon } from "@chakra-ui/icons";
 
@@ -15,6 +15,8 @@ export interface IShowsList {
 }
 
 export const ShowsList = ({ shows, currentPage = 1, setCurrentPage = () => {}, totalItems = 0, itemsPerPage = 25 }: IShowsList) => {
+   const [isLargerThanXL] = useMediaQuery("(min-width: 1280px)"); 
+
    const totalPages = Math.ceil(totalItems / itemsPerPage);
 
    const handleNextPage = () => {
@@ -31,7 +33,7 @@ export const ShowsList = ({ shows, currentPage = 1, setCurrentPage = () => {}, t
             direction="row"
             wrap="wrap"
             align="start"
-            justify="start"
+            justify={isLargerThanXL ? "start" : "center"}
             gap={8}
             maxWidth="1000px"
             width={"100%"}

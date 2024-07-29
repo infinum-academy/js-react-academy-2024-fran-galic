@@ -16,8 +16,8 @@ export const rattingAppTheme = extendTheme({
    fontSizes,
    fontWeights,
    colors, 
-/*  	space, */
-	 radii,
-       border_width,
-  /*  breakpoints  */
+   //space, 
+   radii,
+   border_width,
+   breakpoints  
 });

@@ -25,7 +25,7 @@ export default function ShowContainer() {
 	}
 
   return (
-    <Stack spacing={5} pt={7} minHeight="100vh">
+    <Stack spacing={5} pt={7} pr={5} minHeight="100vh">
       <ShowDetails show={data.show}/>
       <ShowReviewSection showId={data.show.id} />
     </Stack>

@@ -1,6 +1,6 @@
 // !!! treba jos rejsit onu jendu stavr sa navigacijama i sa local storgae da cisitti smao odgovarjauce podatke
 
-import { Box, Button, Modal, ModalBody, ModalContent, ModalFooter, ModalOverlay, Text, useDisclosure } from "@chakra-ui/react";
+import { Box, Button, Flex, Modal, ModalBody, ModalContent, ModalFooter, ModalOverlay, Text, useDisclosure } from "@chakra-ui/react";
 import { useRouter } from "next/navigation";
 
 export const LogOutButton = () => {
