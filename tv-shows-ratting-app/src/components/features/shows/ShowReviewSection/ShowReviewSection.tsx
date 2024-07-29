@@ -29,7 +29,7 @@ export const ShowReviewSection = ({ showId }: IShowReviewSectionProps) => {
    return (
       <Flex direction={"row"} gap={5} mt={10} justify={"space-between"} maxWidth={"100%"} wrap={"wrap"}>
          <Text fontSize="1.3rem">Reviews</Text>
-         <Stack spacing={5} flexGrow={1} maxWidth={"870px"}>
+         <Stack spacing={8} flexGrow={1} maxWidth={"870px"}>
             <ReviewForm show_id={showId} />
             <ReviewList reviewList={data} show_id={showId}/>
          </Stack>

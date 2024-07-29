@@ -80,11 +80,11 @@ export const ReviewForm = ({ show_id }: IReviewFormProps) => {
           width={"100%"}
           pt={7}
           _placeholder={{ color: 'purple' }}
-          borderColor={errors ? "purple" : "white"}
+          borderColor="purple"
           borderWidth={2}  // Dodano svojstvo za deblji obrub
-          _hover={{ borderColor: errors ? "purple" : "white" }}
-          _focus={{ borderColor: errors ? "purple" : "white", boxShadow: 'none' }}
-          _invalid={{ borderColor: "purple" }}
+          _hover={{ borderColor: "purple" }}
+          _focus={{ borderColor: "purple", boxShadow: 'none' }}
+          _invalid={{ borderColor: "pink" }}
         />
         <FormErrorMessage color="pink">{errors.description?.message}</FormErrorMessage>
       </FormControl>
@@ -103,7 +103,7 @@ export const ReviewForm = ({ show_id }: IReviewFormProps) => {
                 />
               </Box>
             </Flex>
-            {errors.grade && <FormErrorMessage>{errors.grade.message}</FormErrorMessage>}
+            {errors.grade && <FormErrorMessage color="pink">{errors.grade.message}</FormErrorMessage>}
             <Input type="hidden" {...register('grade', { 
               required: 'Rating is required', 
               validate: value => value > 0 || 'You must select a rating'
