@@ -12,14 +12,14 @@ interface IShowCard {
 export const ShowCard = ({show : {title, image_url, average_rating, id} } : IShowCard) => {
 
    return (
-      <Card width='165px' borderRadius='2xl' color="purple" overflow="hidden" height="250px" as={NextLink} href={`/all-shows/${id}`}>
+      <Card variant={"showCard"} as={NextLink} href={`/all-shows/${id}`}>
          <Image
          src={image_url ?? "https://fakeimg.pl/600x400?text=No+Image"}
          alt='Series profile image'
          height="80%"
          objectFit="cover"
          />
-         <CardBody py={2} px={3}>
+         <CardBody>
             <Stack spacing='0.4'>
                <Heading fontSize='0.9rem' marginBottom="1px" whiteSpace="nowrap" isTruncated>
                   {title}

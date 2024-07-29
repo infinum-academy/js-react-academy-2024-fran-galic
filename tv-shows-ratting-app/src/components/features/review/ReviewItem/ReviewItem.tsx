@@ -38,7 +38,7 @@ export const ReviewItem = ({review, mutate, show_id} : IReviewItemProps) => {
 
 
    return (
-      <Card maxW='100%' borderRadius='2xl' color="white" bg="purple" fontSize='xs' p={2} > 
+      <Card variant={"reviewItemCard"}> 
          <CardBody>
             <Flex columnGap="100px" direction={"row"} wrap={"wrap"} rowGap={5}>
                <Flex gap={"4"}>

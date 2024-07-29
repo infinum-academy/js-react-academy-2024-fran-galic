@@ -7,10 +7,12 @@ import { fontSizes } from "./foundations/font-sizes";
 import { fontWeights } from "./foundations/font-weights";
 import { Button } from "./components/button";
 import { border_width } from "./foundations/border-width";
+import { Card } from "./components/card";
 
 export const rattingAppTheme = extendTheme({
 	components: {
-      Button
+      Button,
+      Card,
 	},
    fonts,
    fontSizes,

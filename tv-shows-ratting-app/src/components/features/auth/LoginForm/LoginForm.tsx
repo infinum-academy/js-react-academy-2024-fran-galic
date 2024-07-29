@@ -37,7 +37,7 @@ export const LoginForm = () => {
     loggedIn ? (
       <SuccessWindow link={'/all-shows'} description={'Congrats! You are logged in! Lets see what we are watching today!'} buttonText={'Lets rock!'} />
     ) : (
-      <Card maxW='md' p={5} borderRadius={2} bg={"purple"}>
+      <Card variant={"LoginRegisterCard"}>
         <CardBody>
           <Flex direction="column" gap={8} alignItems="center">
             <Text fontSize="2xl" fontWeight="bold" color="white">TV shows APP</Text>

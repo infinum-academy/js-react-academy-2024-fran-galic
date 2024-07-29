@@ -13,7 +13,7 @@ export interface IShowDetailsProps {
 export const ShowDetails = ({show : {title, description, image_url, average_rating} } : IShowDetailsProps) => {
 
    return (
-      <Card maxW='1053px' borderRadius='2xl' color="purple" overflow="hidden">
+      <Card variant={"ShowDetailsCard"}>
          <Image
          src={image_url ?? "https://fakeimg.pl/600x400?text=No+Image"}
          alt='Series profile image'
@@ -21,7 +21,7 @@ export const ShowDetails = ({show : {title, description, image_url, average_rati
          objectFit="cover"
          width='1053px'
          />
-         <CardBody pl={10} py={7}>
+         <CardBody>
             <Flex gap='5' justify="space-between" align="start" wrap={"wrap"}>
                <Box pt={2}>
                   <Heading fontSize="1.7rem">

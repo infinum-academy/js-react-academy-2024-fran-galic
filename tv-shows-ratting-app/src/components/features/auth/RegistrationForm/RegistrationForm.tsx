@@ -52,7 +52,7 @@ export const RegistrationForm = () => {
     registered ? (
       <SuccessWindow link={'/all-shows'} description={'You have successfully registered!'} buttonText={'Lets Rock!'} />
     ) : (
-      <Card maxW='md' p={5} borderRadius={2} bg={"purple"}>
+      <Card variant={"LoginRegisterCard"}>
         <CardBody>
           <Flex direction="column" gap={8} alignItems="center">
             <Text fontSize="2xl" fontWeight="bold" color="white">TV shows APP</Text>

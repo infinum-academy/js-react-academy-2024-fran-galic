@@ -28,7 +28,7 @@ export const ShowsList = ({ shows, currentPage = 1, setCurrentPage = () => {}, t
    };
 
    return (
-      <Stack spacing={2} direction="column" my={7}>
+      <Stack spacing={2} direction="column" my={7} pr={5}>
          <Flex 
             direction="row"
             wrap="wrap"
