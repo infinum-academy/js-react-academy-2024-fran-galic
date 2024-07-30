@@ -14,7 +14,7 @@ interface ICustomInputProps {
 
     export const CustomInput = (props: ICustomInputProps) => {
       return (
-        <FormControl isRequired isInvalid={!!props.error}>
+        <FormControl isRequired isInvalid={!!props.error} maxWidth={"300px"}>
           <InputGroup size='md'>
             <InputLeftElement pointerEvents="none">
               {props.icon}
@@ -37,6 +37,7 @@ interface ICustomInputProps {
               data-testid={props.testId}
               fontSize={5}
               fontWeight={"normal"}
+              maxWidth={"300px"}
             />
           </InputGroup>
           {props.error && <FormErrorMessage color="pink">{props.error}</FormErrorMessage>}

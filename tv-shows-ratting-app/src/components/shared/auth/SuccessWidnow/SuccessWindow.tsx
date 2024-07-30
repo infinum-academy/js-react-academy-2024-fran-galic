@@ -8,7 +8,7 @@ interface ISuccessWindow {
 }
 
 export const SuccessWindow = ({ link, description, buttonText }: ISuccessWindow) => (
-   <Card maxW='md' p={5} borderRadius={1} bg={"purple"}>
+   <Card maxW='md' p={5} borderRadius={1} bg={"purple"} mx={5}>
       <CardBody>
          <Stack gap={5} color={"white"}>
             <Text>{description}</Text>

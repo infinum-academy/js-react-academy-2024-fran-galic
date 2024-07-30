@@ -17,8 +17,8 @@ export const SidebarNavigation = () => {
       height="100vh" 
       width="220px" 
       paddingTop={4}
-      paddingBottom={6} 
-      px={1} 
+      paddingBottom={3} 
+      pl={3} 
       gap={14} 
       fontSize={3}
       >

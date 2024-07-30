@@ -17,7 +17,7 @@ export const PasswordInput = (props: IPasswordInputProps) => {
   const [isHidden, setHidden] = useState(true);
 
   return (
-    <FormControl isRequired isInvalid={!!props.error}>
+    <FormControl isRequired isInvalid={!!props.error} maxWidth={"300px"}>
       <InputGroup size='md'>
         <InputLeftElement pointerEvents="none">
           {props.icon}
@@ -40,6 +40,7 @@ export const PasswordInput = (props: IPasswordInputProps) => {
           data-testid={props.testId}
           fontSize={5}
           fontWeight={"normal"}
+          maxWidth={"300px"}
         />
         <InputRightElement fontSize="md">
           <IconButton

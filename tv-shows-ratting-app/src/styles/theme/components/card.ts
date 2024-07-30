@@ -44,16 +44,5 @@ export const Card = defineMultiStyleConfig({
             py: "7"
          },
 		},
-      LoginRegisterCard: {
-			container: {
-            maxW: 'md',
-            p: "5",
-            borderRadius: "2",
-            bg: "purple"
-			},
-			body: {
-            // u ovom slucaju netreba nista
-         },
-		},
-	},
+	}
 });

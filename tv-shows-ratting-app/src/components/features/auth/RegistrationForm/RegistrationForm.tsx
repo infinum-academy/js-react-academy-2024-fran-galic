@@ -2,7 +2,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Card, CardBody, Flex, chakra, FormControl, Button, Text, Spinner, FormErrorMessage } from '@chakra-ui/react';
+import { Card, CardBody, Flex, chakra, FormControl, Button, Text, Spinner, FormErrorMessage, useMediaQuery } from '@chakra-ui/react';
 import { EmailIcon, LockIcon } from '@chakra-ui/icons';
 import NextLink from 'next/link';
 import { useForm } from 'react-hook-form';
@@ -21,6 +21,7 @@ interface IRegistrationFormInputs extends IRegisterData {}; //doslovno isti inte
 export const RegistrationForm = () => {
   const { register, handleSubmit, formState: { isSubmitting, errors }, setError, clearErrors, getValues } = useForm<IRegistrationFormInputs>();
   const [registered, setRegistered] = useState(false);
+  const [isLargerThanXL] = useMediaQuery("(min-width: 1280px)"); 
 
   const { trigger } = useSWRMutation(swrKeys.register, registerAccount,
     {
@@ -52,9 +53,17 @@ export const RegistrationForm = () => {
     registered ? (
       <SuccessWindow link={'/all-shows'} description={'You have successfully registered!'} buttonText={'Lets Rock!'} />
     ) : (
-      <Card variant={"LoginRegisterCard"}>
-        <CardBody>
-          <Flex direction="column" gap={8} alignItems="center">
+          <Flex 
+          direction="column"
+          justify={"center"}
+          gap={8} 
+          alignItems="center"            
+          width={{base: '100vw', md: '380px'}}
+          height={{base: '100vh', md: 'auto'}}
+          p= "10"
+          borderRadius= {{ base: 0, md: 2}}
+          bg= "purple"
+          >
             <Text fontSize="2xl" fontWeight="bold" color="white">TV shows APP</Text>
             <chakra.form
               width="100%"
@@ -102,8 +111,6 @@ export const RegistrationForm = () => {
             </chakra.form>
             <Text color="white" fontSize={6}>Already have an account? <Text as={NextLink} href="/login" fontWeight="bold">Login</Text></Text>
           </Flex>
-        </CardBody>
-      </Card>
     )
   );
 };

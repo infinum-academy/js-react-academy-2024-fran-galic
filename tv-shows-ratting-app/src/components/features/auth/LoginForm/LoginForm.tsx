@@ -37,9 +37,17 @@ export const LoginForm = () => {
     loggedIn ? (
       <SuccessWindow link={'/all-shows'} description={'Congrats! You are logged in! Lets see what we are watching today!'} buttonText={'Lets rock!'} />
     ) : (
-      <Card variant={"LoginRegisterCard"}>
-        <CardBody>
-          <Flex direction="column" gap={8} alignItems="center">
+          <Flex
+          direction="column"
+          justify={"center"}
+          gap={8} 
+          alignItems="center"            
+          width={{base: '100vw', md: '380px'}}
+          height={{base: '100vh', md: 'auto'}}
+          p= "10"
+          borderRadius= {{ base: 0, md: 2}}
+          bg= "purple"
+          >
             <Text fontSize="2xl" fontWeight="bold" color="white">TV shows APP</Text>
             <chakra.form
               width="100%"
@@ -78,8 +86,6 @@ export const LoginForm = () => {
             </chakra.form>
             <Text color="white" fontSize={6}>Don't have an account? <Text as={NextLink} href="/register" fontWeight="bold">Register</Text></Text>
           </Flex>
-        </CardBody>
-      </Card>
     )
   );
 };
