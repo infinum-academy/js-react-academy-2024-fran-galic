@@ -14,7 +14,7 @@ export function NavigationDrawer() {
    
    return (
      <>
-       <IconButton aria-label='Mobile Navigation' icon={<HamburgerIcon />} ref={btnRef} onClick={onOpen} variant={"noButton"}/>
+       <IconButton aria-label='Mobile Navigation' icon={<HamburgerIcon />} ref={btnRef} onClick={onOpen} variant={"noButton"} fontSize={2}/>
        <Drawer
          isOpen={isOpen}
          placement='right'

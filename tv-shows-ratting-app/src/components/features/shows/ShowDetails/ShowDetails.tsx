@@ -22,19 +22,19 @@ export const ShowDetails = ({show : {title, description, image_url, average_rati
          width='1053px'
          />
          <CardBody>
-            <Flex gap='5' justify="space-between" align="start" wrap={"wrap"}>
+            <Flex gap={{base: 2, sm: 5}} justify="space-between" align="start" wrap={"wrap"}>
                <Box pt={2}>
-                  <Heading fontSize="1.7rem">
+                  <Heading fontSize={{base: 3, sm: 1}}>
                      {title}
                   </Heading>
-                  <Flex align="baseline">
-                     <StarIcon color="purple" fontSize={5} mr={1}/>
-                     <Text fontSize={5}>
+                  <Flex align="baseline" fontSize={{base: 6, sm: 5}}>
+                     <StarIcon color="purple" mr={1}/>
+                     <Text>
                      {average_rating ? `${average_rating.toFixed(1)}/5` : "no ratings"}
                      </Text>
                   </Flex>
                </Box>
-               <Text pt='2' fontSize='sm' maxWidth="477px">
+               <Text pt='2' fontSize={{base: 6, sm: 5}} maxWidth="477px">
                   {description}
                </Text>
             </Flex>

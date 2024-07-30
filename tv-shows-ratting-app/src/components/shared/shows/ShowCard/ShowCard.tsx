@@ -20,7 +20,7 @@ export const ShowCard = ({show : {title, image_url, average_rating, id} } : ISho
          objectFit="cover"
          />
          <CardBody>
-            <Stack spacing='0.4'>
+            <Flex gap='0.4' flexDirection={{ base: "row", sm: "column" }} justify={"space-between"} p={{ base: "2", sm: "0" }} align={"baseline"}>
                <Heading fontSize='0.9rem' marginBottom="1px" whiteSpace="nowrap" isTruncated>
                   {title}
                </Heading>
@@ -32,7 +32,7 @@ export const ShowCard = ({show : {title, image_url, average_rating, id} } : ISho
                    {average_rating ? `  ${average_rating.toFixed(1)}/5` : "no ratings"}
                   </Text>
                </Flex>
-            </Stack>
+            </Flex>
          </CardBody>
       </Card>
    );

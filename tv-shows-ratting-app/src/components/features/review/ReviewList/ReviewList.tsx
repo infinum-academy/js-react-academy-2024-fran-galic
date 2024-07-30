@@ -33,7 +33,7 @@ export const ReviewList = ({ reviewList, show_id }: IReviewListProps) => {
   };
 
   return (
-    <Flex gap={5} direction="column" mb={7} width={"100%"}>
+    <Flex gap={5} direction="column" mb={3} width={"100%"}>
       {currentReviews.map((review, index) => {
         return (
           <ReviewItem

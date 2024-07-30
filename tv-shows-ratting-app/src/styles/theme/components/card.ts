@@ -8,11 +8,11 @@ export const Card = defineMultiStyleConfig({
 	variants: {
 		showCard: {
 			container: {
-            width:'165px', 
-            borderRadius:'2xl', 
+            width: { base: '90%', sm: '165px' }, // Responsive width
+            height: { base: 'auto', sm: '250px' }, // Responsive height
+            borderRadius:'2xl',  
             color:"purple", 
             overflow:"hidden", 
-            height:"250px",
 			},
 			body: {
 				py:"2",
@@ -40,8 +40,10 @@ export const Card = defineMultiStyleConfig({
             overflow:"hidden"
 			},
 			body: {
-            pl: "10",
-            py: "7"
+            pl: { base: '5', sm: '10' },
+            pt: { base: '3', sm: '7' },
+            pb: { base: '5', sm: '7' },
+            pr: { base: '5', sm: '5' },
          },
 		},
 	}
