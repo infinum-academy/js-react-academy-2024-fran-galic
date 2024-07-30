@@ -23,12 +23,12 @@ export default function RootLayout({
         </Stack>
 			</Show>
       <Show above='xl'>
-        <Flex height="100vh">
+        <Flex height="100vh" width={"100vw"}>
             <SidebarNavigation />
             <Box 
             flex="1" 
             overflowY="auto" 
-            sx={{ '::-webkit-scrollbar': { display: 'none' }, '-ms-overflow-style': 'none', 'scrollbar-width': 'none' }} 
+            sx={{ '::-webkit-scrollbar': { display: 'none' }, '-ms-overflow-style': 'none', 'scrollbar-width': 'none' }}
             >
               {children}
             </Box>

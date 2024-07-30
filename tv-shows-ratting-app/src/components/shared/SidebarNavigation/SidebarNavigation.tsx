@@ -46,8 +46,10 @@ export const SidebarNavigation = () => {
             >
                Top rated
             </Text>
-            <Text 
-            backgroundColor='transparent'
+            <Text
+            as={NextLink} 
+            href="/my-profile"
+            backgroundColor={pathname == '/my-profile' ? 'purple' : 'transparent'}
             padding={1}
             paddingLeft={4}
             borderRadius={2}
