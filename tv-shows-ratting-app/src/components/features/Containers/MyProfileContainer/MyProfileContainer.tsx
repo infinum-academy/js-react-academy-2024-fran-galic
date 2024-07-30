@@ -55,9 +55,10 @@ export const MyProfileContainer = () => {
       flexDirection="column"
       height="100vh"
       width={"100%"}
-      justifyContent="center"
+      justifyContent={{ base: 'start', lg: 'center' }}
+      pt={{ base: "20", lg: '0' }}
       backgroundColor="darkpurple"
-      gap="40px"
+      gap={{ base: '20px', lg: '40px' }}
     >
       <Flex flexDirection="column" alignItems="center">
         <Text fontSize={6} color="white">
@@ -109,6 +110,7 @@ export const MyProfileContainer = () => {
             h={{ base: '170px', lg: '260px' }}
             borderRadius="full"
             overflow="hidden"
+            position="relative"
           >
             <Image
               src={selectedImage as string}
@@ -116,6 +118,18 @@ export const MyProfileContainer = () => {
               objectFit="cover"
               width="100%"
               height="100%"
+              cursor="pointer"
+            />
+            <Input
+              type="file"
+              width="100%"
+              height="100%"
+              opacity={0}
+              position="absolute"
+              top="0"
+              left="0"
+              onChange={handleChange}
+              cursor="pointer"
             />
           </Box>
           <Button size="md" width="144px">
