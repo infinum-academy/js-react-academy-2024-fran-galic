@@ -66,7 +66,7 @@ export const ReviewForm = ({ show_id }: IReviewFormProps) => {
   };
 
   return (
-    <Flex direction={"column"} justify={"start"} as="form" gap={4} onSubmit={handleSubmit(addShowReview)}>
+    <Flex direction={"column"} justify={"start"} as="form" gap={{base: 1, sm: 4}} onSubmit={handleSubmit(addShowReview)}>
       <FormControl isInvalid={!!errors.description} flexGrow={1}>
         <Textarea 
           placeholder="Add review" 
@@ -78,6 +78,7 @@ export const ReviewForm = ({ show_id }: IReviewFormProps) => {
           {...register('description', { required: 'Description is required' })} 
           isDisabled={isSubmitting}
           width={"100%"}
+          height="auto"
           pt={7}
           _placeholder={{ color: 'purple' }}
           borderColor="purple"
@@ -89,7 +90,7 @@ export const ReviewForm = ({ show_id }: IReviewFormProps) => {
         <FormErrorMessage color="pink">{errors.description?.message}</FormErrorMessage>
       </FormControl>
 
-      <Flex justify={"space-between"} pl={10} pt={2} align={"center"}>
+      <Flex justify={"space-between"} pl={{base: 0, sm: 10}} pt={2} align={"center"}>
         <FormControl isInvalid={!!errors.grade}>
             <Flex gap={4} align="baseline">
               <Text>Rating</Text>

@@ -26,7 +26,7 @@ export const ShowReviewSection = ({ showId }: IShowReviewSectionProps) => {
 
    return (
       <Flex direction={"row"} gap={5} mt={10} justify={"space-between"} maxWidth={"100%"} wrap={"wrap"}>
-         <Text fontSize={2}>Reviews</Text>
+         <Text fontSize={{base: 3, sm: 2}}>Reviews</Text>
          <Stack spacing={8} flexGrow={1} maxWidth={"870px"}>
             <ReviewForm show_id={showId} />
             <ReviewList reviewList={data} show_id={showId}/>
