@@ -6,6 +6,7 @@ import NextLink from 'next/link';
 import { usePathname} from "next/navigation";
 import { LogOutButton } from "./LogOutButton/LogOutButton";
 import { TvShowPicker } from "@/components/features/TvShowPicker/TvShowPicker";
+import { TSPContextProvider } from "@/components/features/TvShowPicker/components/TSPContextProvider";
 
 
 export const SidebarNavigation = () => {
@@ -58,7 +59,9 @@ export const SidebarNavigation = () => {
             >
                My profile
             </Text>
-            <TvShowPicker />
+            <TSPContextProvider>
+               <TvShowPicker />
+            </TSPContextProvider>
          </Flex>
          <LogOutButton />
       </Flex>
