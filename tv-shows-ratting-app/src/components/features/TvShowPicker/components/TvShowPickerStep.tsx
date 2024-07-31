@@ -42,7 +42,8 @@ export const TvShowPickerStep = () => {
           px="20px"
           justifyContent="space-around"
           width="100%"
-          height="280px"
+          height="auto"
+          direction={{ base: 'column', md: 'row' }} // Promjena smjera ovisno o veličini ekrana
         >
           {[0, 1].map((index) => (
             <Flex
@@ -52,7 +53,8 @@ export const TvShowPickerStep = () => {
               onClick={() => {
                 updateRankings(index);
               }}
-              width="40%"
+              width={{ base: '100%', md: '40%' }} // Podešavanje širine ovisno o veličini ekrana
+              mb={{ base: 4, md: 0 }} // Dodavanje donje margine za manje ekrane
               border="4px"
               borderColor={selected != index ? 'white' : 'pink'}
               borderRadius={1}
