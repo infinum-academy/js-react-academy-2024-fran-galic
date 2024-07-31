@@ -1,10 +1,12 @@
 'use client';
 
 import { Button, Flex, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, ModalOverlay, useDisclosure, Text } from '@chakra-ui/react';
+import { TvShowPickerStepper } from './components/TvShowPickerStepper';
+import { TvShowPickerButtons } from './components/TvShowPickerButtons';
+import { TvShowPickerProgress } from './components/TvShowPickerProgress';
 
 /* import { PlannerButtons } from './components/PlannerButtons';
 import { PlannerProgress } from './components/PlannerProgress';
-import { PlannerStepper } from './components/PlannerStepper';
  */
 
 export const TvShowPicker = () => {
@@ -23,14 +25,12 @@ export const TvShowPicker = () => {
 				<ModalContent borderRadius={2} p={2}>
 					<ModalHeader>Lets see what we are watching tonight: </ModalHeader>
 					<ModalBody>
-						{/* <PlannerStepper /> */}
-                  <div>Nesto</div>
+						<TvShowPickerStepper />
 					</ModalBody>
 					<ModalFooter>
 						<Flex direction="column" width="100%" gap={3}>
-{/* 							<PlannerProgress />
-							<PlannerButtons /> */}
-                     <div>Nesto dolje</div>
+							<TvShowPickerProgress />
+							<TvShowPickerButtons onClose={onClose} />
 						</Flex>
 					</ModalFooter>
 				</ModalContent>
