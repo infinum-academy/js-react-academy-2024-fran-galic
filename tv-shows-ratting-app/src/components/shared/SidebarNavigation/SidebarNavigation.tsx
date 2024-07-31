@@ -5,6 +5,7 @@ import { Flex, Text} from "@chakra-ui/react";
 import NextLink from 'next/link';
 import { usePathname} from "next/navigation";
 import { LogOutButton } from "./LogOutButton/LogOutButton";
+import { TvShowPicker } from "@/components/features/TvShowPicker/TvShowPicker";
 
 
 export const SidebarNavigation = () => {
@@ -57,6 +58,7 @@ export const SidebarNavigation = () => {
             >
                My profile
             </Text>
+            <TvShowPicker />
          </Flex>
          <LogOutButton />
       </Flex>
