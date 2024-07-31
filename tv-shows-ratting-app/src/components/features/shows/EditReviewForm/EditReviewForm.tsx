@@ -4,14 +4,17 @@ import React, { useState } from 'react';
 import { Box, Button, Input, Stack, Textarea, Text, Flex, Spinner, FormControl, FormErrorMessage } from "@chakra-ui/react";
 import { StarRating } from "../../review/StarRating/StarRating";
 import { useForm } from "react-hook-form";
-import { ICreateReviewData, IReview } from "@/typings/Review.type";
+import { ICreateReviewData, IEditReviewData, IReview } from "@/typings/Review.type";
 import useSWRMutation from 'swr/mutation';
 import { swrKeys } from '@/fetchers/swrKeys';
 import { postReview } from '@/mutation/reviews';
 import { mutate } from 'swr';
 
-interface IReviewFormProps {
+interface IEditReviewFormProps {
   show_id: string
+  initialComment: string
+  onClose: () => void
+  trigger: (data: IEditReviewData) => void
 }
 
 interface IReviewFormInputs {
@@ -19,7 +22,7 @@ interface IReviewFormInputs {
   description: string,
 }
 
-export const ReviewForm = ({ show_id }: IReviewFormProps) => {
+export const EditReviewForm = ({ show_id, initialComment, onClose, trigger }: IEditReviewFormProps) => {
 
   //stanja za zvijezde
   const [isLocked, setLocked] = useState(false);
@@ -28,16 +31,6 @@ export const ReviewForm = ({ show_id }: IReviewFormProps) => {
 
   const { register, handleSubmit, setValue, formState: { errors, isSubmitting }, clearErrors } = useForm<IReviewFormInputs>();
 
-  //dio za useWSRMuation
-  const { trigger } = useSWRMutation(swrKeys.reviews , postReview,
-    {
-      onSuccess: () => {
-        //ukoliko si uspio postat na server novi Review, pozovi mutate koji ce revliditirat stvari u zajednickom SWR cashu i samim time ce se stranica re Renderat
-        console.log("Reviews se revaliditiraju");
-        mutate(swrKeys.allReviews(show_id, 1, 100));
-      },
-    }
-  ); 
 
   //funkcije za star rewiew
   const onClick = (index: number) => {
@@ -50,8 +43,8 @@ export const ReviewForm = ({ show_id }: IReviewFormProps) => {
   }
 
   // 2. dio za useWSRMuation
-  const addShowReview = async (data: IReviewFormInputs) => {
-    const newReviewData: ICreateReviewData = {
+  const editReview = async (data: IReviewFormInputs) => {
+    const editedReviewData: IEditReviewData = {
       comment: data.description,
       rating: data.grade,
       show_id: show_id
@@ -61,22 +54,24 @@ export const ReviewForm = ({ show_id }: IReviewFormProps) => {
     setNumSelectedStars(0);
     setValue('description', "");
 
-    await trigger(newReviewData);
-    console.log("Adding");
+    await trigger(editedReviewData);
+    console.log("Patching the review has finnshed");
+    onClose();
   };
 
   return (
-    <Stack as="form" spacing={4} maxW="container.sm" onSubmit={handleSubmit(addShowReview)}>
+    <Stack as="form" spacing={4} maxW="container.sm" onSubmit={handleSubmit(editReview)}>
       <FormControl isInvalid={!!errors.description}>
         <Textarea 
           placeholder="Add review" 
           borderRadius="xl" 
           bg="white" 
-          fontSize="xs" 
+          fontSize="sm" 
           color="black" 
-          id="text-input" 
+          id="text-input"
           {...register('description', { required: 'Description is required' })} 
           isDisabled={isSubmitting}
+          defaultValue={initialComment}
         />
         <FormErrorMessage>{errors.description?.message}</FormErrorMessage>
       </FormControl>
@@ -88,7 +83,8 @@ export const ReviewForm = ({ show_id }: IReviewFormProps) => {
               noOfStars={isLocked ? numSelectedStars : numHoveredStars} 
               isStatic={isSubmitting} 
               onClick={onClick} 
-              onHover={onHover} 
+              onHover={onHover}
+              color = "#280454"
               data_testid="star-rating"
             />
           </Box>
@@ -99,18 +95,42 @@ export const ReviewForm = ({ show_id }: IReviewFormProps) => {
           validate: value => value > 0 || 'You must select a rating'
         })} /> {/* hidden input za rating */}
       </FormControl>
-      <Button 
-        type="submit" 
-        bg="white" 
-        borderRadius="100px" 
-        fontSize="sm" 
-        width="100px"
-        height="40px" 
-        size="sm" 
-        isDisabled={isSubmitting}
-      >
-        {isSubmitting ? <Spinner /> : 'Post'}
-      </Button>
+      <Flex gap={3} justify={"end"} pb={2}>
+         <Button 
+         type="submit" 
+         bg="#280454" 
+         borderRadius="100px" 
+         fontSize="sm" 
+         width="100px"
+         height="40px" 
+         size="sm" 
+         isDisabled={isSubmitting}
+         color={"white"}
+         _hover={{
+            backgroundColor: "#280454", 
+            opacity: 0.9, 
+          }}
+         >
+         {isSubmitting ? <Spinner /> : 'Commit'}
+         </Button>
+         <Button 
+         bg="#280454" 
+         borderRadius="100px" 
+         fontSize="sm" 
+         width="100px"
+         height="40px" 
+         size="sm" 
+         isDisabled={isSubmitting}
+         color={"white"}
+         _hover={{
+            backgroundColor: "#280454", 
+            opacity: 0.9, 
+          }}
+          onClick={onClose}
+         >
+            Close
+         </Button>
+      </Flex>
     </Stack>
   );
 };

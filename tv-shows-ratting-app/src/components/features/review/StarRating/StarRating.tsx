@@ -9,14 +9,15 @@ interface StarRatingProps {
   onClick: (index: number) => void;
   onHover: (index: number) => void;
   data_testid?: string; // opcionlani promt za testiranje
+  color?: string
 }
 
-export const StarRating = ({ noOfStars, isStatic, onClick, onHover, data_testid }: StarRatingProps) => {
+export const StarRating = ({ noOfStars, isStatic, onClick, onHover, data_testid, color= "yellow" }: StarRatingProps) => {
   const renderStars = Array.from({ length: 5 }, (_, i) => {
       const index = i + 1;
       return (
         <StarIcon
-          color={index <= noOfStars ? "yellow" : "gray"}
+          color={index <= noOfStars ? color : "gray"}
           height="10%"
           key={index}
           onClick={!isStatic ? () => onClick(index) : undefined}

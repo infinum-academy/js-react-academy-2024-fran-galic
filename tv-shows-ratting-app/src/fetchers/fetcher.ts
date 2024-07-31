@@ -27,7 +27,7 @@ export async function fetcher<T>(input: string | URL | globalThis.Request, init?
 		if (!isNoContent) {
 			// Čekamo na parsiranje tijela odgovora kao JSON
 			data = await response.json();
-			console.log("Podaci iz tijela: ", data);
+			console.log("Podaci iz tijela odgovora: ", data);
 		}
 
 		// Ažuriramo lokalnu pohranu novim zaglavljima

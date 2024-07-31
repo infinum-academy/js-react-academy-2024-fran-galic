@@ -5,6 +5,12 @@
 import { IShow } from '@/typings/Show.type';
 import { render, screen } from '@testing-library/react';
 import { ShowsList } from './ShowsList';
+import { ShowCard } from '../ShowCard/ShowCard';
+
+
+jest.mock('../ShowCard/ShowCard', () => ({
+  ShowCard: jest.fn(({ show }) => <div>{show.title}</div>)
+}));
 
 describe("ShowsList", () => {
 
@@ -43,10 +49,16 @@ describe("ShowsList", () => {
       },
     ];    
     
-   it("should render all shows", () => {
+    it("should render all shows", () => {
       render(<ShowsList shows={mockShows} />);
-      const showsNumber = screen.getAllByRole('link').length;
+      const showsNumber = screen.getAllByText(/Show/).length;
       expect(showsNumber).toEqual(mockShows.length);
    });
 
+   it("should call ShowCard with appropriate props", () => {
+    render(<ShowsList shows={mockShows} />);
+    mockShows.forEach((show, index) => {
+       expect(ShowCard).toHaveBeenNthCalledWith(index + 1, { show }, {});
+    });
+ });
 })

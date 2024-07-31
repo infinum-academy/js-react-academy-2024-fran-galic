@@ -1,17 +1,23 @@
 import { fetcher } from "@/fetchers/fetcher";
-import { ILoginData, IRegisterData } from "@/typings/Auth.type";
+import { ILoginData, IRegisterData, IUser } from "@/typings/Auth.type";
 
 
 export async function registerAccount(url: string, { arg }: { arg: IRegisterData }) {
-	return fetcher(url, {
+	
+	const data = await fetcher<IUser>(url, {
 		method: 'POST',
 		body: JSON.stringify(arg),
 	});
+	localStorage.setItem("user-id", data.user.id);
+	return data;
 }
 
 export async function loginUser(url: string, { arg }: { arg: ILoginData }) {
-	return fetcher(url, {
+
+	const data = await fetcher<IUser>(url, {
 		method: 'POST',
 		body: JSON.stringify(arg),
 	});
+	localStorage.setItem("user-id", data.user.id);
+	return data;
 }

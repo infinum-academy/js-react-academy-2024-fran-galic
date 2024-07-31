@@ -31,8 +31,9 @@ export const LogOutButton = () => {
                      variant='ghost'
                      // Trebat cu ispravit   !!!!     -> problme za bolje koristenje swr i swrMutaiton da s ene krostie u isto vrijeme
                      onClick={() => {
-                        localStorage.clear();
-                        onClose();
+                        localStorage.removeItem('userHeaders');
+                        localStorage.removeItem('user-id');
+                        onClose()
                         router.push('/login');
                      }}
                      >
