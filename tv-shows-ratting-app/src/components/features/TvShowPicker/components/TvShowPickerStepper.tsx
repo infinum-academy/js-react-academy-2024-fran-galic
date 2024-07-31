@@ -1,8 +1,8 @@
 import { useContext, useEffect } from 'react';
-import { IShow } from '@/typings/Show.type';
 import { TSPContext } from './TSPContextProvider';
 import { TvShowPickerStep } from './TvShowPickerStep';
 import { TvShowPickerResult } from './TvShowPickerResult';
+import { IShow } from '@/typings/Show.type';
 
 export const TvShowPickerStepper = () => {
   const {
@@ -14,8 +14,9 @@ export const TvShowPickerStepper = () => {
     setCurrentStep,
     setFinalRanking,
   } = useContext(TSPContext);
+
   useEffect(() => {
-    if (tourSize == 0) {
+    if (tourSize === 0 && allShows.length > 0) {
       let bn = 0;
       const n = allShows.length;
       for (bn = 1; bn < n; bn *= 2);
@@ -27,7 +28,7 @@ export const TvShowPickerStepper = () => {
       setRankedShows(tempArr as IShow[]);
       setFinalRanking([]);
     }
-  }, []);
+  }, [allShows]);
 
   if (currentStep) return <TvShowPickerStep />;
   else return <TvShowPickerResult />;

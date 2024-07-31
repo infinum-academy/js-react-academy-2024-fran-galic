@@ -3,7 +3,7 @@ import { Flex, Text } from '@chakra-ui/react';
 import { TSPContext } from './TSPContextProvider';
 
 export const TvShowPickerResult = () => {
-  const { finalRanking } = useContext(TSPContext);
+  const { finalRanking } = useContext(TSPContext); 
   return (
     <>
       <Text fontSize="title" color="white">

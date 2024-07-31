@@ -1,5 +1,5 @@
-import { useContext, useEffect, useState } from 'react';
 import { Button, Flex } from '@chakra-ui/react';
+import { useContext } from 'react';
 import { TSPContext } from './TSPContextProvider';
 import { IShow } from '@/typings/Show.type';
 
@@ -20,7 +20,7 @@ export const TvShowPickerButtons = ({ onClose }: IPlannerButtons) => {
   } = useContext(TSPContext);
 
   function nextStep() {
-    if (Math.abs(currentStep) == 1) {
+    if (Math.abs(currentStep) === 1) {
       setFinalRanking([...finalRanking, rankedShows[1]]);
       setCurrentStep(0);
     } else if (currentStep > 0) setCurrentStep(currentStep - 1);
@@ -29,7 +29,7 @@ export const TvShowPickerButtons = ({ onClose }: IPlannerButtons) => {
 
   function findBestRoot(index: number, bestShow: IShow) {
     if (index >= tourSize) return index;
-    if (rankedShows[index * 2] == bestShow)
+    if (rankedShows[index * 2] === bestShow)
       return findBestRoot(index * 2, bestShow);
     return findBestRoot(index * 2 + 1, bestShow);
   }
@@ -37,14 +37,23 @@ export const TvShowPickerButtons = ({ onClose }: IPlannerButtons) => {
   function nextRound() {
     let rootIndex = findBestRoot(1, rankedShows[1]);
     let tempArr = rankedShows.map((show) =>
-      show == rankedShows[1] ? undefined : show
+      show === rankedShows[1] ? undefined : show
     );
 
     setRankedShows(tempArr as IShow[]);
     setCurrentStep(Math.ceil(-rootIndex / 2));
   }
+
+  function startNewTour() {
+    setTourSize(0);
+    setCurrentStep(0);
+    setFinalRanking([]);
+    setRankedShows([]);
+  }
+
   const selected = rankedShows[Math.abs(currentStep)];
   const showNextButton = Boolean(currentStep && selected);
+
   return (
     <Flex>
       {showNextButton && <Button onClick={() => nextStep()}> Next </Button>}
@@ -54,7 +63,7 @@ export const TvShowPickerButtons = ({ onClose }: IPlannerButtons) => {
           <Button
             ml="auto"
             onClick={() => {
-              setTourSize(0);
+              startNewTour();
               onClose();
             }}
           >

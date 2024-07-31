@@ -11,7 +11,7 @@ export const TvShowPickerStep = () => {
   } = useContext(TSPContext);
 
   let targetIndex = Math.abs(currentStep);
-  let shows = [rankedShows[targetIndex * 2], rankedShows[targetIndex * 2 + 1]];
+  let shows = [rankedShows[targetIndex * 2], rankedShows[targetIndex * 2 + 1]]; 
   let startState = 2;
   if (rankedShows[targetIndex] == rankedShows[targetIndex * 2]) startState = 0;
   else if (rankedShows[targetIndex] != rankedShows[targetIndex * 2 + 1])
@@ -54,8 +54,8 @@ export const TvShowPickerStep = () => {
               }}
               width="40%"
               border="4px"
-              borderColor={selected != index ? 'purple.300' : 'white'}
-              borderRadius="mdRadius"
+              borderColor={selected != index ? 'white' : 'pink'}
+              borderRadius={1}
               overflow="hidden"
             >
               <Image
@@ -64,10 +64,21 @@ export const TvShowPickerStep = () => {
                 height="70%"
                 objectFit="cover"
               />
-              <Box padding={3} backgroundColor="white" height="100%">
-                <Text>{shows[index].title}</Text>
-                <Text hideBelow="lg">{shows[index].average_rating}/5</Text>
-              </Box>
+                <Box padding={3} backgroundColor="purple" height="100%" color="white">
+                  <Text
+                    display="-webkit-box"
+                    overflow="hidden"
+                    whiteSpace="normal"
+                    textOverflow="ellipsis"
+                    css={{
+                      WebkitLineClamp: 2,
+                      WebkitBoxOrient: "vertical",
+                    }}
+                  >
+                    {shows[index].title}
+                  </Text>
+                  <Text hideBelow="lg">{shows[index].average_rating}/5</Text>
+                </Box>
             </Flex>
           ))}
         </Flex>
