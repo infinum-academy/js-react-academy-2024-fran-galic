@@ -19,6 +19,7 @@ export const CustomInput = forwardRef(
           {icon}
         </InputLeftElement>
         <Input
+          ref={ref}
           type='text'
           placeholder={placeholder}
           required
