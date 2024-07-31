@@ -1,7 +1,7 @@
 import { IShow } from "@/typings/Show.type";
 import { fetcher } from "./fetcher";
 
-interface IShowsResponse {
+export interface IShowsResponse {
    shows: Array<IShow>
 }
 
