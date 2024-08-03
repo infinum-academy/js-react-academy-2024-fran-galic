@@ -12,18 +12,33 @@ interface StarRatingProps {
   color?: string
 }
 
-export const StarRating = ({ noOfStars, isStatic, onClick, onHover, data_testid, color= "yellow" }: StarRatingProps) => {
+export const StarRating = ({ noOfStars, isStatic, onClick, onHover, data_testid, color= "white" }: StarRatingProps) => {
   const renderStars = Array.from({ length: 5 }, (_, i) => {
       const index = i + 1;
-      return (
-        <StarIcon
-          color={index <= noOfStars ? color : "gray"}
-          height="10%"
-          key={index}
-          onClick={!isStatic ? () => onClick(index) : undefined}
-          onMouseOver={!isStatic ? () => onHover(index) : undefined}
-        />
-      );
+      if(isStatic) {
+        if(index <= noOfStars) {
+          return (
+            <StarIcon
+              color={color}
+              height="10%"
+              key={index}
+              onClick={undefined}
+              onMouseOver={undefined}
+            />
+          );
+        }
+      }
+      else {
+          return (
+          <StarIcon
+            color={index <= noOfStars ? color : "purple"}
+            height="10%"
+            key={index}
+            onClick={() => onClick(index)}
+            onMouseOver={() => onHover(index)}
+          />
+        );
+      }
     });
 
   return (

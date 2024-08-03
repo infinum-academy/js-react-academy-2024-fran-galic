@@ -15,43 +15,45 @@ export const SidebarNavigation = () => {
       <Flex 
       direction="column" 
       height="100vh" 
-      width="200px" 
+      width="220px" 
       paddingTop={4}
-      paddingBottom={6} 
-      px={1} 
+      paddingBottom={3} 
+      pl={3} 
       gap={14} 
-      fontSize="md"
+      fontSize={3}
       >
          <SiteLogo />
-         <Flex direction="column" gap={3} flexGrow={1} fontSize="1.2rem">
+         <Flex direction="column" gap={3} flexGrow={1}>
             <Text 
             as={NextLink} 
             href="/all-shows" 
-            backgroundColor={pathname == '/all-shows' ? 'purple.700' : 'transparent'}
-            padding={2}
+            backgroundColor={pathname == '/all-shows' ? 'purple' : 'transparent'}
+            padding={1}
             paddingLeft={4}
-            borderRadius="50px"
-            width="150px"
+            borderRadius={2}
+            width="120px"
             >
                All shows
             </Text>
             <Text 
             as={NextLink} 
             href="/top-rated"
-            backgroundColor={pathname == '/top-rated' ? 'purple.700' : 'transparent'}
-            padding={2}
+            backgroundColor={pathname == '/top-rated' ? 'purple' : 'transparent'}
+            padding={1}
             paddingLeft={4}
-            borderRadius="50px"
-            width="150px"
+            borderRadius={2}
+            width="120px"
             >
                Top rated
             </Text>
-            <Text 
-            backgroundColor='transparent'
-            padding={2}
+            <Text
+            as={NextLink} 
+            href="/my-profile"
+            backgroundColor={pathname == '/my-profile' ? 'purple' : 'transparent'}
+            padding={1}
             paddingLeft={4}
-            borderRadius="50px"
-            width="150px"
+            borderRadius={2}
+            width="120px"
             >
                My profile
             </Text>
@@ -60,3 +62,5 @@ export const SidebarNavigation = () => {
       </Flex>
    );
 }
+
+

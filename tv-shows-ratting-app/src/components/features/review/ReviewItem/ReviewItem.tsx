@@ -1,12 +1,15 @@
 'use client';
 
 import { IReview } from "@/typings/Review.type"
-import { Avatar, Box, Button, Card, CardBody, Flex, Stack, Text} from "@chakra-ui/react";
+import { Avatar, Box, Button, Card, CardBody, Flex, IconButton, Menu, MenuButton, MenuItem, MenuList, Stack, Text} from "@chakra-ui/react";
 import { StarRating } from "../StarRating/StarRating";
 import useSWRMutation from "swr/mutation";
 import { swrKeys } from "@/fetchers/swrKeys";
 import { delteReview } from "@/mutation/reviews";
 import { EditReviewButton } from "./EditReviewButton/EditReviewButton";
+import { ChevronDownIcon, TriangleDownIcon } from "@chakra-ui/icons";
+import { Icon } from '@chakra-ui/react'
+import { HiDotsVertical } from "react-icons/hi";
 
 interface IReviewItemProps {
    review: IReview,
@@ -35,28 +38,82 @@ export const ReviewItem = ({review, mutate, show_id} : IReviewItemProps) => {
 
 
    return (
-      <Card maxW='container.sm' borderRadius='2xl' color="white" bg="purple.800" fontSize='xs' gap={4}> 
+      <Card variant={"reviewItemCard"}> 
          <CardBody>
-            <Stack spacing='4'>
-            <Flex gap={5} alignItems="center">
-               {review.user.image_url && <Avatar size='sm' src={review.user.image_url} />}
-               {review.user.email && <Text fontSize='sm' align="center">{review.user.email}</Text>}
-            </Flex>
-               <Text fontSize='sm'>{review.comment}</Text>
-               <Flex align={"center"} gap={2}>
-                  <Box flexGrow={1}>
-                  <StarRating noOfStars={review.rating} isStatic={true} onClick={() => {}} onHover={() => {}} data_testid="star-rating"/>
-                  </Box>
-                  {isMyReview && (
-                     <>
-                        <Button bg="white" borderRadius='3xl' fontSize='xs' width="70px" size='sm' onClick={trigger}>Remove</Button>
-                        <EditReviewButton initialComment={review.comment} mutate={mutate} show_id={show_id} review_id={review.id}/>
-                     </>
-                     )}
+            <Flex columnGap={{ base: "50px", md: "100px" }} direction={"row"} wrap="nowrap" justify="space-between" >
+               <Flex direction={"row"} wrap={"wrap"} justify={"start"} columnGap="100px" rowGap={4}>
+                  <Flex gap={"4"} order={{ base: 1, md: 1 }}>
+                     {review.user.image_url && <Avatar size='sm' src={review.user.image_url} />}
+                     <Flex direction={"column"} justify={"start"} align={"start"} gap={2}>
+                        {review.user.email && <Text fontSize='sm' align="center" fontWeight={"bold"}>{review.user.email}</Text>}
+                        <Flex direction={"row"} gap={2}>
+                           <Text>{`${review.rating}/5`}</Text>
+                           <Box flexGrow={1} gap={1}>
+                              <StarRating noOfStars={review.rating} isStatic={true} onClick={() => {}} onHover={() => {}} data_testid="star-rating"/>
+                           </Box>
+                        </Flex>
+                     </Flex>
+                  </Flex>
+                  <Text
+                     fontSize="sm"
+                     noOfLines={3} 
+                     wordBreak="break-word"
+                     flexGrow={1}
+                     fontWeight="regular"
+                     order={{ base: 3, md: 2 }}
+                     overflow="hidden"
+                     textOverflow="ellipsis"
+                     display="-webkit-box"
+                     style={{
+                        WebkitLineClamp: 3,
+                        WebkitBoxOrient: "vertical"
+                     }}
+                  >
+                  {review.comment}
+                  </Text>
                </Flex>
-            </Stack>
+                  {isMyReview && (
+                     <Box order={{ base: 2, md: 3 }}>
+                        <Menu>
+                           <MenuButton
+                           as={IconButton}
+                           aria-label="Options"
+                           icon={<Icon as={HiDotsVertical} />}
+                           variant="noButton"
+                           />
+                           <MenuList borderRadius={2} p={3} display="inline-block" minW="auto">
+                              <Flex direction="column" align="flex-start"  width={"100px"} gap={0}>
+                              <EditReviewButton 
+                                 initialComment={review.comment} 
+                                 mutate={mutate} 
+                                 show_id={show_id} 
+                                 review_id={review.id}
+                              />
+                                 <Button 
+                                 bg="white" 
+                                 borderRadius='3xl' 
+                                 fontSize='xs' 
+                                 width="70px" 
+                                 size='sm' 
+                                 onClick={trigger} 
+                                 variant={"noButton"} 
+                                 color={"purple"}
+                                 mr="100px"
+                                 sx={{ textAlign: 'left', justifyContent: 'flex-start' }}
+                                 pl={2}
+                                 >
+                                    DELETE
+                                 </Button>
+                              </Flex>
+                           </MenuList>
+                        </Menu>
+                     </Box>
+                     )}
+               
+            </Flex>
          </CardBody>
       </Card>
 
    );
 }
+

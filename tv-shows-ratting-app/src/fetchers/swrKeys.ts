@@ -42,5 +42,6 @@ export const swrKeys = {
   deleteReviews: (reviewId: number) => {
     return `${swrKeys.reviews}/${reviewId.toString()}`
   },
-  editReview: (reviewId: number) => {return swrKeys.deleteReviews(reviewId)}
+  editReview: (reviewId: number) => {return swrKeys.deleteReviews(reviewId)},
+  me: () => {return `${swrKeys.register}/me`},
 };

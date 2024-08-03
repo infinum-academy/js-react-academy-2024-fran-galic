@@ -66,51 +66,59 @@ export const ReviewForm = ({ show_id }: IReviewFormProps) => {
   };
 
   return (
-    <Stack as="form" spacing={4} maxW="container.sm" onSubmit={handleSubmit(addShowReview)}>
-      <FormControl isInvalid={!!errors.description}>
+    <Flex direction={"column"} justify={"start"} as="form" gap={{base: 1, sm: 4}} onSubmit={handleSubmit(addShowReview)}>
+      <FormControl isInvalid={!!errors.description} flexGrow={1}>
         <Textarea 
           placeholder="Add review" 
-          borderRadius="xl" 
+          borderRadius={2}
           bg="white" 
-          fontSize="xs" 
-          color="black" 
+          fontSize={5} 
+          color="purple" 
           id="text-input" 
           {...register('description', { required: 'Description is required' })} 
           isDisabled={isSubmitting}
+          width={"100%"}
+          height="auto"
+          pt={7}
+          _placeholder={{ color: 'purple' }}
+          borderColor="purple"
+          borderWidth={2}  // Dodano svojstvo za deblji obrub
+          _hover={{ borderColor: "purple" }}
+          _focus={{ borderColor: "purple", boxShadow: 'none' }}
+          _invalid={{ borderColor: "pink" }}
         />
-        <FormErrorMessage>{errors.description?.message}</FormErrorMessage>
+        <FormErrorMessage color="pink">{errors.description?.message}</FormErrorMessage>
       </FormControl>
-      <FormControl isInvalid={!!errors.grade}>
-        <Flex gap={4} align="baseline">
-          <Text>Rating</Text>
-          <Box maxWidth="105px" onMouseLeave={() => setLocked(true)} onMouseEnter={() => setLocked(false)}>
-            <StarRating 
-              noOfStars={isLocked ? numSelectedStars : numHoveredStars} 
-              isStatic={isSubmitting} 
-              onClick={onClick} 
-              onHover={onHover} 
-              data_testid="star-rating"
-            />
-          </Box>
-        </Flex>
-        {errors.grade && <FormErrorMessage>{errors.grade.message}</FormErrorMessage>}
-        <Input type="hidden" {...register('grade', { 
-          required: 'Rating is required', 
-          validate: value => value > 0 || 'You must select a rating'
-        })} /> {/* hidden input za rating */}
-      </FormControl>
-      <Button 
-        type="submit" 
-        bg="white" 
-        borderRadius="100px" 
-        fontSize="sm" 
-        width="100px"
-        height="40px" 
-        size="sm" 
-        isDisabled={isSubmitting}
-      >
-        {isSubmitting ? <Spinner /> : 'Post'}
-      </Button>
-    </Stack>
+
+      <Flex justify={"space-between"} pl={{base: 0, sm: 10}} pt={2} align={"center"}>
+        <FormControl isInvalid={!!errors.grade}>
+            <Flex gap={4} align="baseline">
+              <Text>Rating</Text>
+              <Box maxWidth="105px" onMouseLeave={() => setLocked(true)} onMouseEnter={() => setLocked(false)}>
+                <StarRating 
+                  noOfStars={isLocked ? numSelectedStars : numHoveredStars} 
+                  isStatic={isSubmitting} 
+                  onClick={onClick} 
+                  onHover={onHover} 
+                  data_testid="star-rating"
+                />
+              </Box>
+            </Flex>
+            {errors.grade && <FormErrorMessage color="pink">{errors.grade.message}</FormErrorMessage>}
+            <Input type="hidden" {...register('grade', { 
+              required: 'Rating is required', 
+              validate: value => value > 0 || 'You must select a rating'
+            })} /> {/* hidden input za rating */}
+          </FormControl>
+
+        <Button 
+          type="submit" 
+          isDisabled={isSubmitting}
+          variant={"default"}
+        >
+          {isSubmitting ? <Spinner /> : 'Post'}
+        </Button>
+      </Flex>
+    </Flex>
   );
 };

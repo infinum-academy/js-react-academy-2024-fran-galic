@@ -2,10 +2,11 @@
 
 import React, { useState } from 'react';
 import { IReview, IReviewList } from "@/typings/Review.type";
-import { Stack, Button, Flex, Text } from "@chakra-ui/react";
+import { Stack, Button, Flex, Text, IconButton } from "@chakra-ui/react";
 import { ReviewItem } from "../ReviewItem/ReviewItem";
 import { mutate } from 'swr';
 import { swrKeys } from '@/fetchers/swrKeys';
+import { ChevronLeftIcon, ChevronRightIcon } from '@chakra-ui/icons';
 
 interface IReviewListProps {
   reviewList: IReviewList,
@@ -32,7 +33,7 @@ export const ReviewList = ({ reviewList, show_id }: IReviewListProps) => {
   };
 
   return (
-    <Stack spacing={5} direction="column" mb={7}>
+    <Flex gap={5} direction="column" mb={3} width={"100%"}>
       {currentReviews.map((review, index) => {
         return (
           <ReviewItem
@@ -45,19 +46,31 @@ export const ReviewList = ({ reviewList, show_id }: IReviewListProps) => {
         );
       })}
       {totalPages > 1 && (
-        <Flex justifyContent="end" mt={2} align={"center"}>
-          <Button onClick={handlePrevPage} isDisabled={currentPage === 1}>
-            Previous
-          </Button>
-          <Text mx={4} fontSize="lg">
-            Page {currentPage} of {totalPages}
+        <Flex justifyContent="center" align="center">
+          <IconButton
+              icon={<ChevronLeftIcon />}
+              onClick={handlePrevPage}
+              color={(currentPage === 1)? "transparent" : "white"}
+              background="transparent"
+              aria-label="Previous page"
+              fontSize={2}
+            variant={"IconButton"}
+          />
+          <Text fontSize="lg" color="white">
+              {currentPage} of {totalPages}
           </Text>
-          <Button onClick={handleNextPage} isDisabled={currentPage === totalPages} ml={2}>
-            Next
-          </Button>
+          <IconButton
+              icon={<ChevronRightIcon />}
+              onClick={handleNextPage}
+              background="transparent"
+              color={(currentPage === totalPages)? "transparent" : "white"}
+              aria-label="Next page"
+              fontSize={2}
+              variant={"IconButton"}
+          />
         </Flex>
       )}
-    </Stack>
+    </Flex>
   );
 };
 

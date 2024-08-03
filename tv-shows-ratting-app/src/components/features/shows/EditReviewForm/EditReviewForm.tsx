@@ -15,6 +15,7 @@ interface IEditReviewFormProps {
   initialComment: string
   onClose: () => void
   trigger: (data: IEditReviewData) => void
+  starcColor?: string
 }
 
 interface IReviewFormInputs {
@@ -22,7 +23,7 @@ interface IReviewFormInputs {
   description: string,
 }
 
-export const EditReviewForm = ({ show_id, initialComment, onClose, trigger }: IEditReviewFormProps) => {
+export const EditReviewForm = ({ show_id, initialComment, onClose, trigger, starcColor }: IEditReviewFormProps) => {
 
   //stanja za zvijezde
   const [isLocked, setLocked] = useState(false);
@@ -72,8 +73,13 @@ export const EditReviewForm = ({ show_id, initialComment, onClose, trigger }: IE
           {...register('description', { required: 'Description is required' })} 
           isDisabled={isSubmitting}
           defaultValue={initialComment}
+          borderColor="purple"
+          borderWidth={2}  // Dodano svojstvo za deblji obrub
+          _hover={{ borderColor: "purple" }}
+          _focus={{ borderColor: "purple", boxShadow: 'none' }}
+          _invalid={{ borderColor: "pink" }}
         />
-        <FormErrorMessage>{errors.description?.message}</FormErrorMessage>
+        <FormErrorMessage color={"pink"}>{errors.description?.message}</FormErrorMessage>
       </FormControl>
       <FormControl isInvalid={!!errors.grade}>
         <Flex gap={4} align="baseline">
@@ -84,12 +90,12 @@ export const EditReviewForm = ({ show_id, initialComment, onClose, trigger }: IE
               isStatic={isSubmitting} 
               onClick={onClick} 
               onHover={onHover}
-              color = "#280454"
+              color = {starcColor}
               data_testid="star-rating"
             />
           </Box>
         </Flex>
-        {errors.grade && <FormErrorMessage>{errors.grade.message}</FormErrorMessage>}
+        {errors.grade && <FormErrorMessage color={"pink"}>{errors.grade.message}</FormErrorMessage>}
         <Input type="hidden" {...register('grade', { 
           required: 'Rating is required', 
           validate: value => value > 0 || 'You must select a rating'

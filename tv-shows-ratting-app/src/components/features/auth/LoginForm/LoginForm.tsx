@@ -6,13 +6,14 @@ import { EmailIcon, LockIcon } from '@chakra-ui/icons';
 import NextLink from 'next/link';
 import { useForm } from 'react-hook-form';
 import { swrKeys } from '@/fetchers/swrKeys';
-import { mutator } from '@/fetchers/mutators';
 import useSWRMutation from 'swr/mutation';
 import { SuccessWindow } from '@/components/shared/auth/SuccessWidnow/SuccessWindow';
 import { PasswordInput } from '@/components/shared/auth/PasswordInput/PasswordInput';
 import { CustomInput } from '@/components/shared/auth/CustomInput/CustomInput';
 import { ILoginData } from '@/typings/Auth.type';
 import { loginUser } from '@/mutation/auth';
+import { IoPerson } from "react-icons/io5";
+import { Icon } from '@chakra-ui/react'
 
 interface ILoginFormInputs extends ILoginData {}; // interface je dsolovno isti kao ILoginData samo se drugacije zove zbog bolje citljivosti
 
@@ -36,9 +37,17 @@ export const LoginForm = () => {
     loggedIn ? (
       <SuccessWindow link={'/all-shows'} description={'Congrats! You are logged in! Lets see what we are watching today!'} buttonText={'Lets rock!'} />
     ) : (
-      <Card maxW='md' p={5} borderRadius="20px" bg={"#371687"}>
-        <CardBody>
-          <Flex direction="column" gap={8} alignItems="center">
+          <Flex
+          direction="column"
+          justify={"center"}
+          gap={8} 
+          alignItems="center"            
+          width={{base: '100vw', md: '380px'}}
+          height={{base: '100vh', md: 'auto'}}
+          p= "10"
+          borderRadius= {{ base: 0, md: 2}}
+          bg= "purple"
+          >
             <Text fontSize="2xl" fontWeight="bold" color="white">TV shows APP</Text>
             <chakra.form
               width="100%"
@@ -60,7 +69,7 @@ export const LoginForm = () => {
                 isDisabled={isSubmitting} 
                 testId={"email"} 
                 placeholder={'Email'} 
-                icon={<EmailIcon color="white" />} 
+                icon={<Icon as={IoPerson} color={"white"}/>} 
                 error={errors.email?.message} 
               />
 
@@ -73,12 +82,10 @@ export const LoginForm = () => {
                 error={errors.password?.message} 
               />
 
-              <Button type="submit" px={7} borderRadius="20px" fontSize="sm" color="#371687" isDisabled={isSubmitting}>{isSubmitting ? <Spinner /> : 'LOG IN'}</Button>
+              <Button type="submit" px={7} borderRadius={2} fontSize="sm" color="purple" isDisabled={isSubmitting}>{isSubmitting ? <Spinner /> : 'LOG IN'}</Button>
             </chakra.form>
-            <Text color="white">Don't have an account? <Text as={NextLink} href="/register" fontWeight="bold">Register</Text></Text>
+            <Text color="white" fontSize={6}>Don't have an account? <Text as={NextLink} href="/register" fontWeight="bold">Register</Text></Text>
           </Flex>
-        </CardBody>
-      </Card>
     )
   );
 };

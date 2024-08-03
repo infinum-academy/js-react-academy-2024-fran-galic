@@ -26,16 +26,26 @@ export const EditReviewButton = ({ initialComment, mutate, show_id, review_id }:
 
   return (
     <>
-      <Button bg="white" borderRadius='3xl' fontSize='xs' width="70px" size='sm' onClick={onOpen}>
-        Edit
+      <Button 
+      bg="white" 
+      borderRadius='3xl' 
+      fontSize='xs' 
+      width="70px" 
+      size='sm' 
+      onClick={onOpen} 
+      variant={"noButton"} 
+      color={"purple"} 
+      sx={{ textAlign: 'left', justifyContent: 'flex-start' }}
+      pl={2}>
+        EDIT
       </Button>
-      <Modal isOpen={isOpen} onClose={onClose}>
+      <Modal isOpen={isOpen} onClose={onClose} >
         <ModalOverlay />
-        <ModalContent borderRadius="20px">
+        <ModalContent borderRadius={2} mx={2}>
           <ModalBody>
             <Stack spacing={4}>
                <Text fontSize='xl'>Edit the current review:</Text>
-               <EditReviewForm show_id={show_id} initialComment={initialComment} onClose={onClose} trigger={trigger}/>
+               <EditReviewForm show_id={show_id} initialComment={initialComment} onClose={onClose} trigger={trigger} starcColor={"pink"}/>
             </Stack>
           </ModalBody>
         </ModalContent>
