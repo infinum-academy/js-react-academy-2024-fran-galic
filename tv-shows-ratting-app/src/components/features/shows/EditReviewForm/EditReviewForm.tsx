@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { Box, Button, Input, Stack, Textarea, Text, Flex, Spinner, FormControl, FormErrorMessage } from "@chakra-ui/react";
 import { StarRating } from "../../review/StarRating/StarRating";
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import { ICreateReviewData, IEditReviewData, IReview } from "@/typings/Review.type";
 import useSWRMutation from 'swr/mutation';
 import { swrKeys } from '@/fetchers/swrKeys';
@@ -11,39 +11,28 @@ import { postReview } from '@/mutation/reviews';
 import { mutate } from 'swr';
 
 interface IEditReviewFormProps {
-  show_id: string
-  initialComment: string
-  onClose: () => void
-  trigger: (data: IEditReviewData) => void
-  starcColor?: string
+  show_id: string;
+  initialComment: string;
+  onClose: () => void;
+  trigger: (data: IEditReviewData) => void;
+  starcColor?: string;
 }
 
 interface IReviewFormInputs {
-  grade: number,
-  description: string,
+  grade: number;
+  description: string;
 }
 
 export const EditReviewForm = ({ show_id, initialComment, onClose, trigger, starcColor }: IEditReviewFormProps) => {
 
-  //stanja za zvijezde
-  const [isLocked, setLocked] = useState(false);
-  const [numSelectedStars, setNumSelectedStars] = useState(0);
-  const [numHoveredStars, setNumHoveredStars] = useState(0);
+  const { control, register, handleSubmit, setValue, formState: { errors, isSubmitting }, clearErrors } = useForm<IReviewFormInputs>({
+    defaultValues: {
+      grade: 0,
+      description: initialComment,
+    },
+  });
 
-  const { register, handleSubmit, setValue, formState: { errors, isSubmitting }, clearErrors } = useForm<IReviewFormInputs>();
-
-
-  //funkcije za star rewiew
-  const onClick = (index: number) => {
-    setNumSelectedStars(index);
-    setValue('grade', index); 
-    clearErrors('grade');
-  }
-  const onHover = (index: number) => {
-    setNumHoveredStars(index);
-  }
-
-  // 2. dio za useWSRMuation
+  // 2. dio za useWSRMutation
   const editReview = async (data: IReviewFormInputs) => {
     const editedReviewData: IEditReviewData = {
       comment: data.description,
@@ -52,11 +41,10 @@ export const EditReviewForm = ({ show_id, initialComment, onClose, trigger, star
     };
     
     setValue('grade', 0);
-    setNumSelectedStars(0);
     setValue('description', "");
 
     await trigger(editedReviewData);
-    console.log("Patching the review has finnshed");
+    console.log("Patching the review has finished");
     onClose();
   };
 
@@ -72,7 +60,6 @@ export const EditReviewForm = ({ show_id, initialComment, onClose, trigger, star
           id="text-input"
           {...register('description', { required: 'Description is required' })} 
           isDisabled={isSubmitting}
-          defaultValue={initialComment}
           borderColor="purple"
           borderWidth={2}  // Dodano svojstvo za deblji obrub
           _hover={{ borderColor: "purple" }}
@@ -84,22 +71,32 @@ export const EditReviewForm = ({ show_id, initialComment, onClose, trigger, star
       <FormControl isInvalid={!!errors.grade}>
         <Flex gap={4} align="baseline">
           <Text>Rating</Text>
-          <Box maxWidth="105px" onMouseLeave={() => setLocked(true)} onMouseEnter={() => setLocked(false)}>
-            <StarRating 
-              noOfStars={isLocked ? numSelectedStars : numHoveredStars} 
-              isStatic={isSubmitting} 
-              onClick={onClick} 
-              onHover={onHover}
-              color = {starcColor}
-              data_testid="star-rating"
+          <Box maxWidth="105px">
+            <Controller
+              name="grade"
+              control={control}
+              rules={{ 
+                required: 'Rating is required', 
+                validate: value => value > 0 || 'You must select a rating'
+              }}
+              render={({ field }) => (
+                <StarRating
+                  noOfStars={field.value}
+                  isStatic={isSubmitting}
+                  onClick={(index) => {
+                    field.onChange(index);
+                    clearErrors('grade');
+                  }}
+                  onHover={() => {}}
+                  color={starcColor}
+                  data_testid="star-rating"
+                />
+              )}
             />
           </Box>
         </Flex>
-        {errors.grade && <FormErrorMessage color={"pink"}>{errors.grade.message}</FormErrorMessage>}
-        <Input type="hidden" {...register('grade', { 
-          required: 'Rating is required', 
-          validate: value => value > 0 || 'You must select a rating'
-        })} /> {/* hidden input za rating */}
+        <FormErrorMessage color={"pink"}>{errors.grade?.message}</FormErrorMessage>
+        <Input type="hidden" {...register('grade')} /> {/* hidden input za rating */}
       </FormControl>
       <Flex gap={3} justify={"end"} pb={2}>
          <Button 
