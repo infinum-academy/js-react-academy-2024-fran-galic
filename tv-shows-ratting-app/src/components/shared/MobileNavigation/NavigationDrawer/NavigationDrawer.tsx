@@ -5,6 +5,8 @@ import { HamburgerIcon } from "@chakra-ui/icons";
 import { usePathname } from "next/navigation";
 import NextLink from 'next/link';
 import { useRouter } from "next/navigation";
+import { TvShowPicker } from "@/components/features/TvShowPicker/TvShowPicker";
+import { TSPContextProvider } from "@/components/features/TvShowPicker/components/TSPContextProvider";
 
 export function NavigationDrawer() {
    const { isOpen, onOpen, onClose } = useDisclosure();
@@ -76,6 +78,10 @@ export function NavigationDrawer() {
                 >
                     My profile
                 </Text>
+
+                <TSPContextProvider>
+                  <TvShowPicker />
+                </TSPContextProvider>
               </Flex>
            </DrawerBody>
  

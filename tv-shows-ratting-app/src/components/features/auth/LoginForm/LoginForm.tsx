@@ -58,13 +58,13 @@ export const LoginForm = () => {
               onSubmit={handleSubmit(onLogin)}
             >
               <CustomInput 
-                RegisterPart={register('email', { 
+                {...register('email', { 
                   required: 'Email is required', 
                   pattern: {
                     // korstim RegEx: "jedan ili više ne-praznih znakova na pocektu niza" + @ + "jedan ili više ne-praznih znakova" & - krja niza; /i - neosjetljivo na velika i mala slova
                     value: /^\S+@\S+$/i,
                     message: 'Invalid email address'
-                  }
+                  } 
                 })} 
                 isDisabled={isSubmitting} 
                 testId={"email"} 
@@ -74,12 +74,12 @@ export const LoginForm = () => {
               />
 
               <PasswordInput 
-                RegisterPart={register('password', { required: 'Password is required' })} 
+                {...register('password', { required: 'Password is required' })} 
                 isDisabled={isSubmitting} 
                 testId={"password"} 
                 placeholder={"Password"} 
                 icon={<LockIcon color="white" />} 
-                error={errors.password?.message} 
+                error={errors.password?.message}
               />
 
               <Button type="submit" px={7} borderRadius={2} fontSize="sm" color="purple" isDisabled={isSubmitting}>{isSubmitting ? <Spinner /> : 'LOG IN'}</Button>

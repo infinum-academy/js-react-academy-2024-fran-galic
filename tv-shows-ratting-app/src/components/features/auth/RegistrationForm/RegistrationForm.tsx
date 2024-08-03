@@ -74,7 +74,7 @@ export const RegistrationForm = () => {
               onSubmit={handleSubmit(onRegister)}
             >
               <CustomInput 
-                RegisterPart={register('email', { 
+                {...register('email', { 
                   required: 'Email is required', 
                   pattern: {
                     // korstim RegEx: "jedan ili više ne-praznih znakova na pocektu niza" + @ + "jedan ili više ne-praznih znakova" & - krja niza; /i - neosjetljivo na velika i mala slova
@@ -90,7 +90,7 @@ export const RegistrationForm = () => {
               />
 
               <PasswordInput 
-                RegisterPart={register('password', { required: 'Password is required', minLength: { value: 8, message: 'Password must be at least 8 characters' } })} 
+                {...register('password', { required: 'Password is required', minLength: { value: 8, message: 'Password must be at least 8 characters' } })} 
                 isDisabled={isSubmitting} 
                 testId={"password"} 
                 placeholder={"Password"}
@@ -99,7 +99,7 @@ export const RegistrationForm = () => {
               />
 
               <PasswordInput 
-                RegisterPart={register('password_confirmation', { required: 'Password confirmation is required', validate: value => value === getValues('password') || 'Passwords do not match' })} 
+                {...register('password_confirmation', { required: 'Password confirmation is required', validate: value => value === getValues('password') || 'Passwords do not match' })} 
                 isDisabled={isSubmitting} 
                 testId={"password_confirmation"} 
                 placeholder={"Confirm password"} 

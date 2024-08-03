@@ -1,43 +1,42 @@
 'use client';
 
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
-import { FormControl, IconButton, Input, InputGroup, InputLeftElement, InputRightElement, FormErrorMessage } from "@chakra-ui/react";
+import { FormControl, IconButton, Input, InputGroup, InputLeftElement, InputRightElement, FormErrorMessage, InputProps, forwardRef } from "@chakra-ui/react";
 import { useState } from "react";
 
-interface IPasswordInputProps {
-  RegisterPart: any,
-  isDisabled: boolean,
+interface IPasswordInput extends InputProps {
+  name: string;
   testId: string;
-  placeholder: string;
   icon: any;
   error?: string;
 }
 
-export const PasswordInput = (props: IPasswordInputProps) => {
-  const [isHidden, setHidden] = useState(true);
+export const PasswordInput = forwardRef(
+  ({ placeholder, testId, icon, error, ...rest }: IPasswordInput, ref) => {
+    const [isHidden, setHidden] = useState(true);
 
-  return (
-    <FormControl isRequired isInvalid={!!props.error} maxWidth={"300px"}>
+    return (
+      <FormControl isRequired isInvalid={!!error} maxWidth={"300px"}>
       <InputGroup size='md'>
         <InputLeftElement pointerEvents="none">
-          {props.icon}
+          {icon}
         </InputLeftElement>
         <Input
+          ref={ref}
           type={isHidden ? 'password' : 'text'}
-          placeholder={props.placeholder}
+          placeholder={placeholder}
           required
           borderRadius={1}
           pl="10"
           color="white"
           _placeholder={{ color: 'white' }}
-          borderColor={props.error ? "pink" : "white"}
+          borderColor={error ? "pink" : "white"}
           borderWidth={2}  // Dodano svojstvo za deblji obrub
-          _hover={{ borderColor: props.error ? "pink" : "white" }}
-          _focus={{ borderColor: props.error ? "pink" : "white", boxShadow: 'none' }}
+          _hover={{ borderColor: error ? "pink" : "white" }}
+          _focus={{ borderColor: error ? "pink" : "white", boxShadow: 'none' }}
           _invalid={{ borderColor: "pink" }}
-          {...props.RegisterPart}
-          isDisabled={props.isDisabled}
-          data-testid={props.testId}
+          {...rest}
+          data-testid={testId}
           fontSize={5}
           fontWeight={"normal"}
           maxWidth={"300px"}
@@ -55,7 +54,9 @@ export const PasswordInput = (props: IPasswordInputProps) => {
           />
         </InputRightElement>
       </InputGroup>
-      {props.error && <FormErrorMessage color="pink">{props.error}</FormErrorMessage>}
+      {error && <FormErrorMessage color="pink">{error}</FormErrorMessage>}
     </FormControl>
-  );
-}
+    );
+  }
+);
+
